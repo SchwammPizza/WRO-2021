@@ -7,7 +7,8 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 from motors import motor
 from robotContainer import robotContainer
 
-
+Motor = motor()
+RC = robotContainer()
 
 
 # This program requires LEGO EV3 MicroPython v2.0 or higher.
