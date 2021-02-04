@@ -8,3 +8,6 @@ class robotContainer:
     turn_speed = 20
     slowturn_speed = 10
     line = ["black"] 
+    straightAcc = 5
+    turnAcc = 4
+    
