@@ -6,9 +6,7 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 from motors import motor
 from robotContainer import robotContainer
-from lifter import Lifter
 
-lifter = Lifter()
 Motor = motor()
 RC = robotContainer()
 
@@ -22,4 +20,4 @@ ev3 = EV3Brick()
 
 
 # Write your program here.
-lifter.moveMotor(100, -90)
+
