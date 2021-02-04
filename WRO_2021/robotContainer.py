@@ -1,6 +1,6 @@
 class robotContainer:
     wheel_diameter = 5.5
-    wheel_distance = 18.7
+    wheel_distance = 17
     speed = 50
     fast_speed = 70
     slow_speed = 30
@@ -8,6 +8,6 @@ class robotContainer:
     turn_speed = 20
     slowturn_speed = 10
     line = ["black"] 
-    straightAcc = 5
-    turnAcc = 4
+    straightAcc = 50
+    turnAcc = 50
     
