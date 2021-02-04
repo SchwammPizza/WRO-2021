@@ -33,12 +33,12 @@ class driveTrain:
 
     def turnOnWheel(self, degrees, speed, wheel):
         speed *= 10
-        degrees *= 10
-        angle = (RC.wheel_distance*2/RC.wheel_diameter)/360*degrees
+        angle = 2*RC.wheel_distance*degrees/RC.wheel_diameter
         print(angle)
         if wheel == "left":
             Motor.DriveTrain.driveRight.run_angle(speed, angle)
         
         elif wheel == "right":
+            speed *= -1
             Motor.DriveTrain.driveLeft.run_angle(speed, angle)
 

@@ -19,4 +19,4 @@ rc = RC()
 
 ev3 = EV3Brick()
 
-
+DriveTrain.turnOnPoint(360*5, rc.turn_speed)
