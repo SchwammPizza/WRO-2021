@@ -7,7 +7,9 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 from motors import motor
 from robotContainer import robotContainer as RC
 from driveTrain import driveTrain
+from lifter import Lifter
 
+lifter = Lifter()
 DriveTrain = driveTrain()
 Motor = motor()
 rc = RC()
