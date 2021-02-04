@@ -1,6 +1,8 @@
 from pybricks.robotics import DriveBase
 from motors import motor
 from robotContainer import robotContainer as rc 
+from math import pi 
+
 
 Motor = motor()
 RC = rc()
@@ -14,10 +16,12 @@ class driveTrain:
         pass
 
     def forward(self, distance, speed):
-        distance *= 10
+        angle = distance*360/(pi*RC.wheel_distance)
         speed *= 10
+        print(angle)
+        angle *=-1
         robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
-        robot.straight(distance)
+        robot.turn(angle)
 
     
     
