@@ -10,4 +10,4 @@ class Lifter:
 
     def runTrue(self, speed):
         speed *= 9
-        motor.LifterMotor.lifterMotor.run_angle(speed)
+        motor.LifterMotor.lifterMotor.run(speed)

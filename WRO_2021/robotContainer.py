@@ -11,4 +11,5 @@ class robotContainer:
     line = ["black"] 
     straightAcc = 20
     turnAcc = 50
+    LOW_AGGRESSION = 4
     
