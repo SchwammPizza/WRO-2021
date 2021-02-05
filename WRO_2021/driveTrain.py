@@ -26,6 +26,7 @@ class driveTrain:
     def turnOnPoint(self, degrees, speed):
         degrees *= 10
         distance = degrees*pi*RC.wheel_distance/360
+        print(speed)
         speed *= 10
         print(distance)
         robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
