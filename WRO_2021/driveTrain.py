@@ -2,7 +2,7 @@ from pybricks.robotics import DriveBase
 from motors import motor
 from robotContainer import robotContainer as rc 
 from math import pi 
-
+import time
 
 Motor = motor()
 RC = rc()
@@ -57,15 +57,14 @@ class driveTrain:
             speed *= -1
             Motor.DriveTrain.driveLeft.run_angle(speed, angle)
 
-    def followLine(self, speed, aggression, LineColor, distance):
+    def followLine(self, speed, aggression, distance):
         def lineDrive():
-            if "Black" in LineColor:
-                threshold = 70
-                leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
-                if(leftReflected < threshold):
-                    self.tank_drive.on(speed, speed + RobotContainer.LOW_AGGRESSION)
-                else:
-                    self.tank_drive.on(speed + RobotContainer.LOW_AGGRESSION, speed)
+            threshold = 70
+            leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
+            if(leftReflected < threshold):
+                self.tank_drive.on(self, speed, speed + RC.LOW_AGGRESSION)
+            else:
+                self.tank_drive.on(self, speed + RC.LOW_AGGRESSION, speed)
 
         if distance == 0:
             lineDrive()
@@ -76,46 +75,50 @@ class driveTrain:
             print("Resetted DriveTrain")
             motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
             motor2 = Motor.DriveTrain.driveRight.angle()
-            dist = (motor1 + motor2) / 2
-            rotations = distance / (RobotContainer.wheel_diameter * pi)
+            dist = ((motor1 + motor2) / 2) / 360
+            rotations = distance / (RC.wheel_diameter * pi)
             if dist <= 0:
                 dist *= -1
             while rotations > dist:
                 motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
                 motor2 = Motor.DriveTrain.driveRight.angle()
-                dist = (motor1 + motor2) / 2
+                dist = ((motor1 + motor2) / 2) / 360
                 if dist <= 0:
                     dist *= -1
                 lineDrive()
-            self.tank_drive.stop()
+            self.tank_drive.stop(self)
     
     def colorr(self, colort):
-        if colort == color.BLACK:
+        if colort == "Color.BLACK":
             colort = "Black"
-        elif colort == color.BLUE:
+        elif colort == "Color.BLUE":
             colort = "Blue"
-        elif colort == color.GREEN:
+        elif colort == "Color.GREEN":
             colort = "Green"
-        elif colort == color.YELLOW:
+        elif colort == "Color.YELLOW":
             colort = "Yellow"
-        elif colort == color.RED:
+        elif colort == "Color.RED":
             colort = "Red"
-        elif colort == color.WHITE:
+        elif colort == "Color.WHITE":
             colort = "White"
-        elif colort == color.BROWN:
+        elif colort == "Color.BROWN":
             colort = "Brown"
-        elif colort == color or colort == None:
+        elif colort == "Color":
             colort = "None"
         return colort
 
     def getSensorStates(self, colors):
         #returns if both sensors match to the color
         values = [0, 0]
-        left = Motor.DriveTrain.driveColorLeft.color_name
-        left = self.colorr(left)
-        right = Motor.DriveTrain.driveColorRight.color_name
-        right = self.colorr(right)
+        threshold = 70
+        left = Motor.DriveTrain.driveColorLeft.reflection()
+        if left < threshold:
+            left = "Black"
+        right = Motor.DriveTrain.driveColorRight.reflection()
+        if right < threshold:
+            right = "Black"
         sensor_values = [left, right]
+        print(sensor_values)
         for i in range(len(sensor_values)):
             if sensor_values[i] in colors:
                 values[i] = 1
@@ -123,29 +126,35 @@ class driveTrain:
 
     def turnToLine(self, speed, lineColor):
         speed *= -1
-        self.tank_drive.on(speed, -1*speed)
-        if(speed > 0):
+        self.tank_drive.on(self, speed, -1*speed)
+        if(speed < 0):
             while True:
-                right = Motor.DriveTrain.driveColorRight.color()
-                right = self.colorr(right)
-                if right in lineColor:
+                left = Motor.DriveTrain.driveColorLeft.color()
+                left = str(left)
+                left = self.colorr(left)
+                if left == lineColor[0] or left == lineColor[1]:
+                    self.tank_drive.stop(self)
+                    time.sleep(1)
+                    self.turnOnPoint(20, speed)
+                    self.tank_drive.stop(self)
                     break
-            self.turnAngle(speed, 5)
-            self.tank_drive.stop()
         else:
             while True:
-                left = Motor.DriveTrain.driveColorLeft.color_name
-                left = self.colorr(left)
-                if left in lineColor:
+                right = Motor.DriveTrain.driveColorRight.color()
+                right = str(right)
+                right = self.colorr(right)
+                if right == lineColor[0] or right == lineColor[1]:
+                    self.tank_drive.stop(self)
+                    self.turnOnPoint(5, speed)
+                    self.tank_drive.stop(self)
                     break
-            self.turnOnPoint(5, speed)
-            self.tank_drive.stop()
 
-    def followToLine(self, speed, aggression, LineColor, StopColor):
+    def followToLine(self, speed, aggression, StopColor):
         states = self.getSensorStates(StopColor)
         while states[0]!= 1 or states[1] != 1:
+            print(states)
             states = self.getSensorStates(StopColor)
-            self.followLine(speed, aggression, LineColor, 0)
-        self.tank_drive.stop()
+            self.followLine(speed, aggression, 0)
+        self.tank_drive.stop(self)
 
 

@@ -10,6 +10,8 @@ from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
 
+import time
+
 gripper = Gripper()
 lifter = Lifter()
 DriveTrain = driveTrain()
@@ -19,4 +21,6 @@ rc = RC()
 
 ev3 = EV3Brick()
 
-DriveTrain.turnOnPoint(-360 * 20, rc.turn_speed)
+lifter.runTrue(-40)
+time.sleep(1)
+DriveTrain.followToLine(rc.fast_speed, rc.LOW_AGGRESSION, rc.line)

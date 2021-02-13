@@ -8,7 +8,7 @@ class robotContainer:
     turn_speed = 35
     turnOnWheel_speed = 50
     slowturn_speed = 10
-    line = ["black"] 
+    line = ["Black", "Brown"] 
     straightAcc = 20
     turnAcc = 50
     LOW_AGGRESSION = 4
