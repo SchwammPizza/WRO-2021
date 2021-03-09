@@ -1,6 +1,15 @@
 from motors import motor
 
+class instanceBuffer:
+    instance = 0
+
 class Gripper:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = Gripper()
+        return instanceBuffer.instance
+
     def __init__(self):
         pass
 
