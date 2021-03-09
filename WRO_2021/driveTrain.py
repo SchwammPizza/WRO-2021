@@ -29,7 +29,7 @@ class driveTrain:
     def __init__(self):
         pass
 
-    def forward(self, distance, speed):
+    def driveForward(self, distance, speed):
         angle = distance*360/(pi*RC.wheel_distance)
         speed *= 10
         print(angle)
@@ -156,5 +156,53 @@ class driveTrain:
             states = self.getSensorStates(StopColor)
             self.followLine(speed, aggression, 0)
         self.tank_drive.stop(self)
+
+    def driveChekpoints(self, point1, point2):
+        e_offset = 0
+        if point1 == "Checkpoint0":
+            self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 47.5)
+            #Continue
+
+        if point1 in Checkpoint1:
+            if point2 == "Checkpoint3":
+                self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 59.4)
+                e_offset = -90
+            #With Checkpoint2
+            elif RC.obstacleB:
+                self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 44.4)
+                self.turnToLine(RC.turn_speed, RC.line)
+                self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 41.7)
+
+                if point2 not in Checkpoint2:
+                    self.turnToLine(-RC.turn_speed, RC.line)
+                    self.driveForward(69.8, RC.fast_speed)
+                    e_offset = 0
+
+                    if point2 == "Checkpoint4.1":
+                        self.turnToLine(RC.turn_speed, RC.line)
+                        self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 18)
+                        e_offset = 0
+                    
+                    #add Checkpoint4.
+                    
+                    else:
+                        self.turnToLine(-RC.turn_speed, RC.line)
+
+                        if point2 in RC.Checkpoint5:
+                            self.driveForward(5, RC.speed)
+                            self.turnOnPoint(90, RC.turn_speed)
+                            self.driveForward(55.1, RC.speed)
+                            e_offset = -90
+                        
+                        else:
+                            self.followLine(RC.fast_speed, rc.LOW_AGGRESSION, 41)
+                            e_offset = -180
+
+                            if point2 == "Checkpoint6":
+                                self.turnToLine(RC.turn_speed, RC.line)
+                                self.followLine(RC.fast_speed, RC.LOW_AGGRESSION, 59.4)
+                                self.turnToLine(-RC.turn_speed, RC.line)
+                                self.followLine(Rc.fast_speed, RC.LOW_AGGRESSION, 24.7)
+                                e_offset = 180
 
 
