@@ -9,6 +9,7 @@ from robotContainer import robotContainer as RC
 from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
+from checkpoint2 import Checkpoint2
 
 import time
 
@@ -23,4 +24,5 @@ ev3 = EV3Brick()
 
 lifter.runTrue(-40)
 time.sleep(1)
-DriveTrain.followToLine(rc.fast_speed, rc.LOW_AGGRESSION, rc.line)
+
+Checkpoint2(self, 50, 35, 36.2, 90, -90)
