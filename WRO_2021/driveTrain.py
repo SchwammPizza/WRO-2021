@@ -7,11 +7,19 @@ import time
 Motor = motor()
 RC = rc()
 
-
 robot = DriveBase(Motor.DriveTrain.driveLeft, Motor.DriveTrain.driveRight, wheel_diameter = RC.wheel_diameter*10, axle_track = RC.wheel_distance *10 )
 robot.settings(RC.speed*10, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
 
+class instanceBuffer:
+    instance = 0
+
 class driveTrain:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = driveTrain()
+        return instanceBuffer.instance
+
     class tank_drive:
         def __init__(self):
             pass
@@ -32,24 +40,22 @@ class driveTrain:
     def driveForward(self, distance, speed):
         angle = distance*360/(pi*RC.wheel_distance)
         speed *= 10
-        print(angle)
         angle *=-1
         robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
         robot.turn(angle)
+        robot.stop()
 
     def turnOnPoint(self, degrees, speed):
         degrees *= 10
         distance = degrees*pi*RC.wheel_distance/360
-        print(speed)
         speed *= 10
-        print(distance)
         robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
         robot.straight(distance)
+        robot.stop()
 
     def turnOnWheel(self, degrees, speed, wheel):
         speed *= 10
         angle = 2*RC.wheel_distance*degrees/RC.wheel_diameter
-        print(angle)
         if wheel == "left":
             Motor.DriveTrain.driveRight.run_angle(speed, angle)
         
@@ -72,7 +78,6 @@ class driveTrain:
         else:
             Motor.DriveTrain.driveLeft.reset_angle(0)
             Motor.DriveTrain.driveRight.reset_angle(0)
-            print("Resetted DriveTrain")
             motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
             motor2 = Motor.DriveTrain.driveRight.angle()
             dist = ((motor1 + motor2) / 2) / 360
@@ -118,7 +123,6 @@ class driveTrain:
         if right < threshold:
             right = "Black"
         sensor_values = [left, right]
-        print(sensor_values)
         for i in range(len(sensor_values)):
             if sensor_values[i] in colors:
                 values[i] = 1
@@ -152,7 +156,6 @@ class driveTrain:
     def followToLine(self, speed, aggression, StopColor):
         states = self.getSensorStates(StopColor)
         while states[0]!= 1 or states[1] != 1:
-            print(states)
             states = self.getSensorStates(StopColor)
             self.followLine(speed, aggression, 0)
         self.tank_drive.stop(self)
