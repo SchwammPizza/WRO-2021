@@ -24,5 +24,5 @@ class robotContainer:
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
 
     #Obstacle
-
-    obstacleB = True
+    obstacleBlueB = None
+    obstacleGreenB = None
