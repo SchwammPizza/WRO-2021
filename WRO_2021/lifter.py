@@ -1,4 +1,9 @@
+from pybricks.parameters import Stop
 from motors import motor
+
+class LifterPositions():
+    # 0 = up, 1 = down
+    position = 0
 
 class instanceBuffer:
     instance = 0
@@ -16,7 +21,10 @@ class Lifter:
     def moveMotor(self, speed, angle):
         speed *= 9
         motor.LifterMotor.lifterMotor.run_angle(speed, angle)
-
+        
+    def resetPosition(self):
+        motor.LifterMotor.lifterMotor.run_until_stalled(-900, Stop.HOLD, None)
+        
     def runTrue(self, speed):
         speed *= 9
         motor.LifterMotor.lifterMotor.run(speed)

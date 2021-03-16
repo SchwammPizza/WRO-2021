@@ -1,4 +1,5 @@
 #!/usr/bin/env pybricks-micropython
+from RobotArm import RobotArm
 from pybricks.hubs import EV3Brick
 from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
@@ -13,16 +14,21 @@ from checkpoint2 import Checkpoint2
 
 import time
 
-gripper = Gripper()
-lifter = Lifter()
-DriveTrain = driveTrain()
+gripper = Gripper().getInstance()
+lifter = Lifter().getInstance()
+DriveTrain = driveTrain().getInstance()
+robotArm = RobotArm.getInstance()
 Motor = motor()
 rc = RC()
 
-
 ev3 = EV3Brick()
 
-lifter.runTrue(-40)
 time.sleep(1)
 
-Checkpoint2(self, 50, 35, 36.2, 90, -90)
+print("LifterPosition:  " + str(robotArm.lifterPosition))
+
+robotArm.moveToGrippingPosition()
+
+time.sleep(4)
+
+print("Resetted")
