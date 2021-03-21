@@ -12,8 +12,6 @@ class robotContainer:
     straightAcc = 20
     turnAcc = 50
     LOW_AGGRESSION = 4
-    
-    SolarDirektion = True
 
     #Checkpoint
 
@@ -30,3 +28,13 @@ class robotContainer:
     #Obstacle
     obstacleBlueB = None
     obstacleGreenB = None
+
+    #ObstacleDirektion
+    SolarDirektion = None
+
+
+    #ObstaclePicked
+    SolarPicked = [True, True]
+    BluePickedX = [True, True]
+    BluePickedY = [True, True]
+    BluePicked = BluePickedX + BluePickedY
