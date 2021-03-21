@@ -20,15 +20,18 @@ DriveTrain = driveTrain().getInstance()
 robotArm = RobotArm.getInstance()
 Motor = motor()
 rc = RC()
+checkpoint2 = Checkpoint2()
 
 ev3 = EV3Brick()
 
-time.sleep(1)
+#time.sleep(1)
 
-print("LifterPosition:  " + str(robotArm.lifterPosition))
+#print("LifterPosition:  " + str(robotArm.lifterPosition))
 
-robotArm.moveToGrippingPosition()
+#robotArm.moveToGrippingPosition()
 
-time.sleep(4)
+#time.sleep(4)
 
-print("Resetted")
+#print("Resetted")
+
+checkpoint2.YellowAGripper(True)
