@@ -411,7 +411,7 @@ class driveTrain:
                 else:
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP3"] - RC.CheckpointOnMainRoad["CP2"])
                     self.turnToLine(RC.turn_speed, RC.line)
-                    self.followLine(RC.fast_speed, 41.7)
+                    self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP2"])
                     RC.offset = 0
 
                     if point2 in RC.Checkpoint4 or point2 in RC.Checkpoint5 or point2 in RC.Checkpoint6:
@@ -633,11 +633,30 @@ class driveTrain:
         elif point1 in RC.Checkpoint5:
             if point1 == "Checkpoint5.0" and RC.offset == -90:
                 if True in RC.BluePickedX and (point2 in (RC.Checkpoint5 + RC.Checkpoint6)) or point2 not in (RC.Checkpoint6 + RC.Checkpoint5):
-                    pass
+                    if point2 == "Checkpoint4.3":
+                        self.driveForward(RC.CheckpointOnMainRoad["CP5.0.2"] - RC.CheckpointOnMainRoad["CP4"] - 20, RC.fast_speed)
+                        #continue
+                    self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP5.0.2"])
+                    if point2 == "Checkpoint4.1" or point2 == "Checkpoint4.3" or point2 not in (RC.Checkpoint5 + RC.Checkpoint6):
+                        self.turnToLine(RC.turn_speed, RC.line)
+
+                        if point2 == "Checkpoint4.1":
+                            self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP4.1"] - RC.CheckpointOn4Road["CP5"])
+                            RC.offset = 0
+                        
+                        else:
+                            self.turnToLine(RC.turn_speed, RC.line)
+                            self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP2"] - RC.CheckpointOn4Road["CP5"])
+                            #continue
+
+
+
                     
 
 #integrate 4.2 in driveCHeckpoint as endposition
-
+#Checkpointdrive elif point1 in Chechpoint2 , korektur von anfang stand mit RC. Offset
+#add 5.0.0 evry where
+#look if every wheer is 4.3 integrate
                 
                 
                     
