@@ -14,8 +14,7 @@ class Checkpoint2:
     
     def YellowAGripper(self, direction):
         #direction is right or left
-        dist = 33
-        dist2 = 41.6
+        dist = 34
         left = 90
         right = -90
 
@@ -32,12 +31,17 @@ class Checkpoint2:
         #DriveTrain.turnOnPoint(turn1, RC.turn_speed, )
         if direction == "2.2.0":
             DriveTrain.turnToLine(RC.turn_speed, RC.line)
-            #turn left
+            #(turn left)
         else:
             DriveTrain.turnToLine(-RC.turn_speed, RC.line)
-            #turn right
-        DriveTrain.driveForward(dist, RC.speed)
+            #(turn right)
+
+        #(DriveTrain.driveForward(dist, RC.speed))
+        DriveTrain.followLine(RC.speed, dist)
         DriveTrain.turnOnPoint(turn2, RC.turn_speed)
+
+        #DriveTrain.driveForward(RC.speed, 5) => RobotContainer driveForward to pick
+        DriveTrain.driveForward(5, RC.speed)
 
         #nächste 3 zeilen ersetzen (Befehle Julian) => Grippen
         #lifter.moveMotor(RC.speed, right)
@@ -48,5 +52,10 @@ class Checkpoint2:
         DriveTrain.followLine(RC.speed, dist)
         DriveTrain.turnOnPoint(turn2, RC.turn_speed)
         return 180
-        #start von 2, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
+        #start von 2 return 0, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
 
+
+
+#rechts ok
+#links drehung etwas zu wenig ca3 grad
+#links zu weit nach vorne statt 5cm 7.5cm => turnToLine angleichen bei else
