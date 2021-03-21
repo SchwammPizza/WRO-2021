@@ -25,12 +25,15 @@ class Checkpoint2:
         elif direction == "2.2.1":
             turn2 = left
             turn1 = right
-            
+
+
 
         lifter.runTrue(-RC.slow_speed)
         #DriveTrain.turnOnPoint(turn1, RC.turn_speed, )
+
         if direction == "2.2.0":
-            DriveTrain.turnToLine(RC.turn_speed, RC.line)
+            if RC.offset != 90:
+                DriveTrain.turnToLine(RC.turn_speed, RC.line)
             #(turn left)
         else:
             DriveTrain.turnToLine(-RC.turn_speed, RC.line)
@@ -48,10 +51,10 @@ class Checkpoint2:
         #gripper.moveMotor(RC.speed, right)
         #lifter.moveMotor(RC.speed, left)
 
-        DriveTrain.turnToLine(turn2, RC.turn_speed)
+        DriveTrain.driveForward(-5, RC.speed)
+        DriveTrain.turnToLine(-RC.turn_speed, RC.line)
         DriveTrain.followLine(RC.speed, dist)
-        DriveTrain.turnOnPoint(turn2, RC.turn_speed)
-        return 180
+        RC.offset = -90*(-1)**int(direction[-1])
         #start von 2 return 0, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
 
 
