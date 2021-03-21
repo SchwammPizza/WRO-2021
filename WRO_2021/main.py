@@ -34,4 +34,5 @@ ev3 = EV3Brick()
 
 #print("Resetted")
 
-checkpoint2.YellowAGripper(True)
+#checkpoint2.YellowAGripper("2.2.0")
+DriveTrain.turnToLine(-RC.turn_speed, RC.line)

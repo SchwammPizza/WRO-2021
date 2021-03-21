@@ -139,18 +139,20 @@ class driveTrain:
                 left = self.colorr(left)
                 if left == lineColor[0] or left == lineColor[1]:
                     self.tank_drive.stop(self)
-                    time.sleep(1)
-                    self.turnOnPoint(5, speed)
+                    time.sleep(0.1)
+                    self.turnOnPoint(20, speed)
                     self.tank_drive.stop(self)
                     break
         else:
             while True:
                 right = Motor.DriveTrain.driveColorRight.color()
+                Motor.DriveTrain.driveColorLeft.reflection()
                 right = str(right)
                 right = self.colorr(right)
                 if right == lineColor[0] or right == lineColor[1]:
                     self.tank_drive.stop(self)
-                    self.turnOnPoint(5, speed)
+                    time.sleep(0.1)
+                    self.turnOnPoint(-20, speed)
                     self.tank_drive.stop(self)
                     break
 
