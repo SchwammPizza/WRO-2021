@@ -152,7 +152,7 @@ class driveTrain:
                 if right == lineColor[0] or right == lineColor[1]:
                     self.tank_drive.stop(self)
                     time.sleep(0.1)
-                    self.turnOnPoint(-21, speed)
+                    self.turnOnPoint(-23, speed)
                     self.tank_drive.stop(self)
                     break
 
@@ -601,7 +601,7 @@ class driveTrain:
                         self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP2"])
                     
                     self.turnOnPoint(90*(-1)**int(point1[-1]))
-                    self.driveForward
+                    self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP2"])
 
                 
 
