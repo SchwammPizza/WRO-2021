@@ -16,8 +16,8 @@ class RobotArm:
             instance = RobotArm()
         return instance
 
-    def resetRobotArm(self):
-        self.lifter.resetPosition()
+    def moveUp(self):
+        self.lifter.moveUp()
         self.gripper.openGripper()
         self.gripperPosition = 0
         self.lifterPosition = 0
@@ -29,4 +29,14 @@ class RobotArm:
             self.lifter.moveMotor(100, 100)
         self.lifterPosition = 1
         self.gripperPosition = 0
+    
+    def grip(self):
+        if self.gripperPosition != 0:
+            self.gripper.openGripper()
+        if self.lifterPosition != 1:
+            self.lifter.moveMotor(100, 100)
+        self.lifterPosition = 1
+        self.gripper.closeGripper()
+        self.gripperPosition = 1
+    
 

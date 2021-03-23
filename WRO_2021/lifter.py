@@ -22,7 +22,7 @@ class Lifter:
         speed *= 9
         motor.LifterMotor.lifterMotor.run_angle(speed, angle)
         
-    def resetPosition(self):
+    def moveUp(self):
         motor.LifterMotor.lifterMotor.run_until_stalled(-900, Stop.HOLD, None)
         
     def runTrue(self, speed):

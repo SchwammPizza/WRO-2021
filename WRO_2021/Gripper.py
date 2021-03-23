@@ -27,6 +27,7 @@ class Gripper:
 
     def closeGripper(self):
         motor.Gripper.gripperMotor.run_until_stalled(-800, Stop.HOLD, duty_limit=None)
+        motor.Gripper.gripperMotor.hold()
 
     def runTrue(self, speed):
         speed *= 10

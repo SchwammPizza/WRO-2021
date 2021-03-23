@@ -17,7 +17,7 @@ class robotContainer:
     offset = -180
 
     Checkpoint1 = ["Checkpoint1.0", "Checkpoint1.1"]
-    Checkpoint2 = ["Checkpoint2.0", "Checkpoint2.1", "Checkpoint2.2.0", "Checkpoint2.2.1"]
+    Checkpoint2 = ["Checkpoint2", "Checkpoint2.0", "Checkpoint2.1", "Checkpoint2.2.0", "Checkpoint2.2.1"]
     Checkpoint4 = ["Checkpoint4.0", "Checkpoint4.1", "Checkpoint4.2"]
     Checkpoint5 = ["Checkpoint5.0", "Checkpoint5.1"]
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
