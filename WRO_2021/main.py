@@ -24,15 +24,17 @@ checkpoint2 = Checkpoint2()
 
 ev3 = EV3Brick()
 
-#time.sleep(1)
+time.sleep(1)
 
-#print("LifterPosition:  " + str(robotArm.lifterPosition))
+robotArm.moveToGrippingPosition()
 
-#robotArm.moveToGrippingPosition()
+time.sleep(2)
 
-#time.sleep(4)
+robotArm.grip()
 
-#print("Resetted")
-
-checkpoint2.YellowAGripper("2.2.0")
+time.sleep(4)
+robotArm.moveUp()
+time.sleep(1)
+robotArm.putDown()
+#checkpoint2.YellowAGripper("2.2.0")
 #DriveTrain.turnToLine(-RC.turn_speed, RC.line)
