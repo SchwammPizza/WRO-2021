@@ -14,7 +14,7 @@ class motor:
     
     class Energy:
         ColorRight = ColorSensor(Port.S2)
-        ColorRight = ColorSensor(Port.S1)
+        ColorLeft = ColorSensor(Port.S1)
 
     class LifterMotor:
         lifterMotor = Motor(Port.D)

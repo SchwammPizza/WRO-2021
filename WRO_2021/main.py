@@ -11,9 +11,11 @@ from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
 from checkpoint2 import Checkpoint2
+from scan import scan
 
 import time
 
+Scan = scan()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
 DriveTrain = driveTrain().getInstance()
@@ -26,15 +28,19 @@ ev3 = EV3Brick()
 
 time.sleep(1)
 
-robotArm.moveToGrippingPosition()
+robotArm.resetPosition()
 
 time.sleep(2)
 
-robotArm.grip()
+#robotArm.grip()
 
-time.sleep(4)
-robotArm.moveUp()
-time.sleep(1)
-robotArm.putDown()
+#time.sleep(4)
+#robotArm.moveUp()
+#time.sleep(1)
+#robotArm.putDown()
+
 #checkpoint2.YellowAGripper("2.2.0")
 #DriveTrain.turnToLine(-RC.turn_speed, RC.line)
+
+while True:
+    print(Scan.scan())
