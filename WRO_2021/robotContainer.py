@@ -23,19 +23,38 @@ class robotContainer:
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
 
     StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5}
-    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 20.6, "CP1.1": 33.5, "CP2": 67.3, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.0": 172.4, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5": 193}
+    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 20.6, "CP1.1": 33.5, "CP2": 67.3, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.0": 172.4, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
     CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 41.6, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43}
 
     #Obstacle
     obstacleBlueB = None
     obstacleGreenB = None
+    obstacleYellowB = None
 
     #ObstacleDirektion
     SolarDirektion = None
 
 
     #ObstaclePicked
-    SolarPicked = [True, True]
-    BluePickedX = [True, True]
-    BluePickedY = [True, True]
-    BluePicked = BluePickedX + BluePickedY
+    if obstacleYellowB:
+        SolarPicked = [True, True]
+        obstacleBlueB = False
+        obstacleGreenB = False
+    
+    elif obstacleBlueB:
+        obstacleYellowB = False
+        obstacleGreenB = False
+        BluePickedX = [True, True]
+        BluePickedY = [True, True]
+        BluePicked = BluePickedX + BluePickedY
+
+        if (not BluePickedX[0] and not BluePickedX[1]) or (not BluePickedY[0] and not BluePickedY[1]):
+            BluePickerVariabel = False
+        else:
+            BluePickerVariabel = True
+    
+    elif obstacleGreenB:
+        obstacleBlueB = False
+        obstacleYellowB = False
+
+    BluePosition = ""
