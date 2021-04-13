@@ -1,3 +1,5 @@
+from robotContainer import robotContainer
+from driveTrain import driveTrain
 from motors import motor
 
 
@@ -19,18 +21,31 @@ class scan:
     def scan_color_left():
         if scan.scan_left[0] >  scan.scan_left[1] and scan.scan_left[0] > scan.scan_left[2]:
             color = "yellow"
+            robotContainer.yellow_counter -= 1
+
         if scan.scan_left[1] > scan.scan_left[0] and scan.scan_left[1] > scan.scan_left[2]:
             color = "green"
+            robotContainer.green_counter -= 1
+
         if scan.scan_left[2] > scan.scan_left[0] and scan.scan_left[2] > scan.scan_left[1]:
             color = "blue"
+            robotContainer.blue_counter -= 1
+
 
     def scan_color_right():
         if scan.scan_right[0] >  scan.scan_right[1] and scan.scan_right[0] > scan.scan_right[2]:
             color = "yellow"
+            robotContainer.yellow_counter -=1
+
         if scan.scan_right[1] > scan.scan_right[0] and scan.scan_right[1] > scan.scan_right[2]:
             color = "green"
+            robotContainer.green_counter -= 1
+
         if scan.scan_right[2] > scan.scan_right[0] and scan.scan_right[2] > scan.scan_right[1]:
             color = "blue"
+            robotContainer.blue_counter -= 1
+
+        
 
 #scan_color_right():  umändern in scan.scan_right alles
 
