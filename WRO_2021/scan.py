@@ -27,9 +27,9 @@ class scan:
     def scan_color_right():
         if scan.scan_right[0] >  scan.scan_right[1] and scan.scan_right[0] > scan.scan_right[2]:
             color = "yellow"
-        if scan.scan_right[1] > scan.scan_right[0] and scan.scan_right[1] > scan.scan_left[2]:
+        if scan.scan_right[1] > scan.scan_right[0] and scan.scan_right[1] > scan.scan_right[2]:
             color = "green"
-        if scan.scan_left[2] > scan.scan_left[0] and scan.scan_left[2] > scan.scan_left[1]:
+        if scan.scan_right[2] > scan.scan_right[0] and scan.scan_right[2] > scan.scan_right[1]:
             color = "blue"
 
 #scan_color_right():  umändern in scan.scan_right alles

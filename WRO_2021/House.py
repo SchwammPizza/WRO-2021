@@ -20,7 +20,7 @@ class House:
         RobotArm.moveToGrippingPosition()
         Gripper.openGripper()
         RobotArm.moveUp()
-        #abmessen im haus forward
+
         DriveTrain.driveForward(7, RC.speed)
         DriveTrain.driveForward(-7, RC.speed)
 
@@ -29,11 +29,13 @@ class House:
 
     def house_scan(self):
         
-
         DriveTrain.turnOnWheel(90, RC.turn_speed, "right")
         DriveTrain.driveForward(22, RC.speed)
         DriveTrain.turnOnWheel(90, RC.turn_speed, "left")
-        scan.scan_color()
+        scan.scan_color_left() 
+        print(scan.scan_color_left())
+        scan.scan_color_right() 
+        print (scan.scan_color_right())
         
         
             
