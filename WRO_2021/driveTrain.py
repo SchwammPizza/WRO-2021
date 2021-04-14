@@ -792,6 +792,7 @@ class driveTrain:
                 self.turnToLine(RC.turn_speed, RC.line)
                 if not RC.obstacleGreenB and point2 not in RC.Checkpoint4:
                     if point2 == "Checkpoit3":
+                        pass
 
 
 
