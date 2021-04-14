@@ -22,8 +22,8 @@ class robotContainer:
     Checkpoint5 = ["Checkpoint5.0", "Checkpoint5.1"]
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
 
-    StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5}
-    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 20.6, "CP1.1": 33.5, "CP2": 67.3, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.0": 172.4, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
+    StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5, "HouseScan": 18.5, "House": 24.7}
+    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 20.6, "CP1.1": 33.5, "CP2": 67.3, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
     CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 41.6, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43}
 
     #Obstacle
