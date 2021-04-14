@@ -1,49 +1,58 @@
-from robotContainer import robotContainer
-from driveTrain import driveTrain
+from robotContainer import robotContainer as rc
 from motors import motor
 
+Motor = motor()
+RC = rc()
 
 class scan:
     def __init__(self):
         pass
 
     def scan_left(self):
-        color_list = []
-        color_sensor = motor.Energy.ColorLeft.rgb()
+        color_sensor = Motor.Energy.ColorLeft.rgb()
+        print(color_sensor)
         return color_sensor
 
     def scan_right(self):
-        color_list = []
-        color_sensor = motor.Energy.ColorRight.rgb()
+        color_sensor = Motor.Energy.ColorRight.rgb()
+        print(color_sensor)
         return color_sensor
 
 
-    def scan_color_left():
-        if scan.scan_left[0] >  scan.scan_left[1] and scan.scan_left[0] > scan.scan_left[2]:
+    def scan_color_left(self):
+        scan_left = self.scan_left()
+        if scan_left[0] >  scan_left[1] and scan_left[0] > scan_left[2]:
             color = "yellow"
-            robotContainer.yellow_counter -= 1
+            RC.yellow_counter -= 1
 
-        if scan.scan_left[1] > scan.scan_left[0] and scan.scan_left[1] > scan.scan_left[2]:
+        elif scan_left[1] > scan_left[0] and scan_left[1] > scan_left[2]:
             color = "green"
-            robotContainer.green_counter -= 1
+            RC.green_counter -= 1
 
-        if scan.scan_left[2] > scan.scan_left[0] and scan.scan_left[2] > scan.scan_left[1]:
+        elif scan_left[2] > scan_left[0] and scan_left[2] > scan_left[1]:
             color = "blue"
-            robotContainer.blue_counter -= 1
+            RC.blue_counter -= 1
+        
+        else:
+            print("ERROR")
 
 
-    def scan_color_right():
-        if scan.scan_right[0] >  scan.scan_right[1] and scan.scan_right[0] > scan.scan_right[2]:
+    def scan_color_right(self):
+        scan_right = self.scan_right()
+        if scan_right[0] >  scan_right[1] and scan_right[0] > scan_right[2]:
             color = "yellow"
-            robotContainer.yellow_counter -=1
+            RC.yellow_counter -=1
 
-        if scan.scan_right[1] > scan.scan_right[0] and scan.scan_right[1] > scan.scan_right[2]:
+        elif scan_right[1] > scan_right[0] and scan_right[1] > scan_right[2]:
             color = "green"
-            robotContainer.green_counter -= 1
+            RC.green_counter -= 1
 
-        if scan.scan_right[2] > scan.scan_right[0] and scan.scan_right[2] > scan.scan_right[1]:
+        elif scan_right[2] > scan_right[0] and scan_right[2] > scan_right[1]:
             color = "blue"
-            robotContainer.blue_counter -= 1
+            RC.blue_counter -= 1
+        
+        else:
+            print("ERROR")
 
         
 

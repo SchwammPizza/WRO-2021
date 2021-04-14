@@ -10,9 +10,10 @@ DriveTrain = driveTrain.getInstance()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
 Motor = motor()
+Scan = scan()
 RC = rc() 
 
-class House:
+class house:
     def __init__(self):
         pass
     
@@ -27,22 +28,23 @@ class House:
         #abladen, evtl. zuschieben, zurück(bis..?)
 
 
-    def house_scan(Checkpoint1["Checkpoint1.0"], Checkpoint4["Checkpoint4.1"]):
-        
-        DriveTrain.turnOnWheel(90, RC.turn_speed, "right")
-        DriveTrain.driveForward(22, RC.speed)
-        DriveTrain.turnOnWheel(90, RC.turn_speed, "left")
-        scan.scan_color_left() 
-        print(scan.scan_color_left())
-        scan.scan_color_right() 
-        print (scan.scan_color_right())
-        if rc.Checkpoint1:
-            rc.House1.append(scan.scan_color_left and scan.scan_color_right)
-        elif rc.Checkpoint4["Checkpoint4.0"]:
-            rc.House4.append(scan.scan_color_left and scan.scan_color_right)
-        elif rc.Checkpoint4["Checkpoint4.1"]:
-            rc.House6.append(scan.scan_color_left and scan.scan_color_right)
+    def house_scan(point):
+        left = Scan.scan_color_left() 
+        print(left)
+        right = Scan.scan_color_right() 
+        print (right)
+        if point == "Checkpoint1.0":
+            RC.House1.append(left) 
+            RC.House1.append(right)
+        elif point == "Checkpoint4.1":
+            RC.House4.append(left)
+            RC.House4.append(right)
+        elif point == "Checkpoint6.0":
+            RC.House6.append(left)
+            RC.House6.append(right)
 
+    
+        # testen
             
             #start vor scan, scannen, turnOnWheel right, zurück, turnOnWheel=> räder auf hauslinie
             #achtung 4.1 AA von 5.0 

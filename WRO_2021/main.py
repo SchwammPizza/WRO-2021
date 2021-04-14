@@ -1,4 +1,5 @@
 #!/usr/bin/env pybricks-micropython
+from House import house
 from RobotArm import RobotArm
 from pybricks.hubs import EV3Brick
 from pybricks.tools import wait, StopWatch, DataLog
@@ -6,7 +7,7 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile
 
 from motors import motor
-from robotContainer import robotContainer as RC
+from robotContainer import robotContainer as rc
 from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
@@ -21,8 +22,9 @@ lifter = Lifter().getInstance()
 DriveTrain = driveTrain().getInstance()
 robotArm = RobotArm.getInstance()
 Motor = motor()
-rc = RC()
+RC = rc().getInstance()
 checkpoint2 = Checkpoint2()
+House = house()
 
 ev3 = EV3Brick()
 
@@ -42,5 +44,8 @@ time.sleep(2)
 #checkpoint2.YellowAGripper("2.2.0")
 #DriveTrain.turnToLine(-RC.turn_speed, RC.line)
 
-while True:
-    print(Scan.scan())
+RC.offset = 0
+RC.obstacleGreenB = True
+
+DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint4.3")
+House.house_scan("Checkpoint4.1")
