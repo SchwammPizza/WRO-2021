@@ -1,4 +1,13 @@
+class instanceBuffer:
+    instance = 0
+
 class robotContainer:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = robotContainer()
+        return instanceBuffer.instance
+    
     wheel_diameter = 5.6
     wheel_distance = 17.325
     speed = 50
