@@ -11,7 +11,7 @@ class robotContainer:
     wheel_diameter = 5.6
     wheel_distance = 17.325
     speed = 50
-    fast_speed = 70
+    fast_speed = 50
     slow_speed = 30
     approach_speed = 20
     turn_speed = 35
@@ -20,7 +20,7 @@ class robotContainer:
     line = ["Black", "Brown"] 
     straightAcc = 20
     turnAcc = 50
-    LOW_AGGRESSION = 10
+    LOW_AGGRESSION = 13
 
     #Checkpoint
     offset = -180
@@ -32,7 +32,7 @@ class robotContainer:
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
 
     StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5, "HouseScan": 18.5, "House": 24.7}
-    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 20.6, "CP1.1": 33.5, "CP2": 67.3, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
+    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 21.5, "CP1.1": 33.5, "CP2": 67.2, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
     CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 41.6, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43}
 
     #Obstacle

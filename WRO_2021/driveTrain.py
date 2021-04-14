@@ -65,8 +65,9 @@ class driveTrain:
             Motor.DriveTrain.driveLeft.run_angle(speed, angle)
 
     def followLine(self, speed, distance):
+        distance -= 3.5
         def lineDrive():
-            threshold = 70
+            threshold = 35
             leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
             if(leftReflected < threshold):
                 self.tank_drive.on(self, speed, speed + RC.LOW_AGGRESSION)
@@ -140,7 +141,7 @@ class driveTrain:
                 if left == lineColor[0] or left == lineColor[1]:
                     self.tank_drive.stop(self)
                     time.sleep(0.1)
-                    self.turnOnPoint(20, speed)
+                    self.turnOnPoint(45, speed)
                     self.tank_drive.stop(self)
                     break
         else:
@@ -152,7 +153,7 @@ class driveTrain:
                 if right == lineColor[0] or right == lineColor[1]:
                     self.tank_drive.stop(self)
                     time.sleep(0.1)
-                    self.turnOnPoint(-23, speed)
+                    self.turnOnPoint(-21, speed)
                     self.tank_drive.stop(self)
                     break
 

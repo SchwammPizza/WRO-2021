@@ -49,3 +49,5 @@ RC.obstacleGreenB = True
 
 DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint4.3")
 House.house_scan("Checkpoint4.1")
+
+#DriveTrain.followLine(RC.fast_speed, 100)
