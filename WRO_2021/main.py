@@ -44,10 +44,14 @@ time.sleep(2)
 #checkpoint2.YellowAGripper("2.2.0")
 #DriveTrain.turnToLine(-RC.turn_speed, RC.line)
 
-RC.offset = 0
-RC.obstacleGreenB = True
 
-DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint4.3")
-House.house_scan("Checkpoint4.1")
+# RC.offset = 0
+# RC.obstacleGreenB = True
+#DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint4.3")
+#House.house_scan("Checkpoint4.1")
 
-#DriveTrain.followLine(RC.fast_speed, 100)
+#DriveTrain.turnOnPoint(-90, RC.turn_speed)
+#DriveTrain.driveForward(RC.fast_speed, 100)
+
+DriveTrain.turnOnPoint(20*360, RC.turn_speed)
+#DriveTrain.driveForward(100, RC.speed)
