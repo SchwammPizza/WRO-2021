@@ -39,7 +39,7 @@ class driveTrain:
         pass
 
     def driveForward(self, distance, speed):
-        angle = distance*360/(pi*RC.wheel_distance)
+        angle = distance*360/(pi*RC.wheel_diameter)
         speed *= 10
         angle *=-1
         robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
@@ -792,8 +792,38 @@ class driveTrain:
             else:
                 self.turnToLine(RC.turn_speed, RC.line)
                 if not RC.obstacleGreenB and point2 not in RC.Checkpoint4:
-                    if point2 == "Checkpoit3":
-                        pass
+                    if point2 == "Checkpoint3":
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"] - RC.CheckpointOnMainRoad["CP3"])
+                        self.turnToLine(RC.turn_speed, RC.line)
+                        RC.offset = 180
+                        return
+                
+                    elif point2 in RC.Checkpoint1:
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"] - RC.CheckpointOnMainRoad["CP1.0"])
+                        self.turnToLine(RC.turn_speed, RC.line)
+                        self.followLine(RC.fast_speed, RC.StandardDistances["House"])
+                        RC.offset = 180
+                        return
+                    
+                    elif point2 in RC.Checkpoint2:
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"] - RC.CheckpointOnMainRoad["CP2"])
+                        self.turnToLine(RC.turn_speed, RC.line)
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"] - RC.CheckpointOnMainRoad["CP2"])
+                        RC.offset = 0
+                        return
+                    
+                    elif point2 == "Checkpoint0":
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"])
+                        self.turnToLine(RC.turn_speed, RC.line)
+                        self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
+                        self.driveForward(RC.StandardDistances["CP0.1"], RC.fast_speed)
+                        return
+                
+                else:
+                    self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP6.0"] - RC.CheckpointOnMainRoad["CP4"])
+                    
+
+                        
 
 
 
@@ -803,6 +833,9 @@ class driveTrain:
 # Checkpointdrive elif point1 in Chechpoint2 , korektur von anfang stand mit RC.Offset
 # look if every wheer is 4.3 integrate as start and endposition
 # rekursiv call at point 5.1 when point2 is 5.0 to go to the right position
+# add ad finischpoints return
+# look for everywhere 1.1
+# look if you can go x.y to x.q
 
 
 
