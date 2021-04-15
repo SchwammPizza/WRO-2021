@@ -38,14 +38,6 @@ class driveTrain:
     def __init__(self):
         pass
 
-    # def driveForward(self, distance, speed):
-    #     angle = distance/(pi*RC.wheel_distance)
-    #     speed *= 10
-    #     angle *=-1
-    #     robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
-    #     robot.turn(angle)
-    #     robot.stop()
-
     def driveForward(self, distance, speed):
         Motor.DriveTrain.driveLeft.reset_angle(0)
         Motor.DriveTrain.driveRight.reset_angle(0)
@@ -64,14 +56,19 @@ class driveTrain:
                 dist *= -1
         self.tank_drive.stop(self)
         
-
+    # def turnOnPoint(self, degrees, speed):
+    #     degrees *= 10
+    #     distance = degrees*pi*RC.wheel_distance/360
+    #     speed *= 10
+    #     robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
+    #     robot.straight(distance)
+    #     robot.stop()
+    
     def turnOnPoint(self, degrees, speed):
-        degrees *= 10
-        distance = degrees*pi*RC.wheel_distance/360
-        speed *= 10
-        robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
-        robot.straight(distance)
-        robot.stop()
+        rotation = (degrees * RC.wheel_distance) / (360 * RC.wheel_diameter)
+        Motor.DriveTrain.driveLeft.run_angle(speed, rotation)
+        Motor.DriveTrain.driveLeft.run_angle(speed, -rotation)
+        self.tank_drive.stop(self)
 
     def turnOnWheel(self, degrees, speed, wheel):
         speed *= 10
