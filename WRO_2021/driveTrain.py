@@ -65,9 +65,21 @@ class driveTrain:
     #     robot.stop()
     
     def turnOnPoint(self, degrees, speed):
+        Motor.DriveTrain.driveLeft.reset_angle(0)
+        Motor.DriveTrain.driveRight.reset_angle(0)
+        motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
+        motor2 = Motor.DriveTrain.driveRight.angle()
+        dist = ((motor1 + motor2) / 2) / 360
         rotation = (degrees * RC.wheel_distance) / (360 * RC.wheel_diameter)
-        Motor.DriveTrain.driveLeft.run_angle(speed, rotation)
-        Motor.DriveTrain.driveLeft.run_angle(speed, -rotation)
+        if dist <= 0:
+            dist *= -1
+        self.tank_drive.on(self, -speed, speed)
+        while rotation > dist:
+            motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
+            motor2 = Motor.DriveTrain.driveRight.angle()
+            dist = ((motor1 + motor2) / 2) / 360
+            if dist <= 0:
+                dist *= -1
         self.tank_drive.stop(self)
 
     def turnOnWheel(self, degrees, speed, wheel):
