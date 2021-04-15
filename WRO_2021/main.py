@@ -53,5 +53,7 @@ time.sleep(2)
 #DriveTrain.turnOnPoint(-90, RC.turn_speed)
 #DriveTrain.driveForward(RC.fast_speed, 100)
 
-DriveTrain.turnOnPoint(20*360, RC.turn_speed)
+DriveTrain.turnOnPoint(10 * 360, 100)
+
+time.sleep(5)
 #DriveTrain.driveForward(100, RC.speed)
