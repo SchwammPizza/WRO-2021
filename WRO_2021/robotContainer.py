@@ -9,7 +9,7 @@ class robotContainer:
         return instanceBuffer.instance
     
     wheel_diameter = 5.6 
-    wheel_distance = 19.44
+    wheel_distance = 17.95
     speed = 50
     fast_speed = 50
     slow_speed = 30
