@@ -59,6 +59,7 @@ class driveTrain:
     def turnOnPoint(self, degrees, speed):
         print("Turn on point initialized")
         speed *= degrees/(abs(degrees))
+        degrees = abs(degrees)
         Motor.DriveTrain.driveLeft.reset_angle(0)
         Motor.DriveTrain.driveRight.reset_angle(0)
         motor1 = Motor.DriveTrain.driveLeft.angle() 
