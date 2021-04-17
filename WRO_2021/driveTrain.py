@@ -32,8 +32,8 @@ class driveTrain:
             Motor.DriveTrain.driveRight.run(rightSpeed)
         
         def stop(self):
-            Motor.DriveTrain.driveLeft.stop()
-            Motor.DriveTrain.driveRight.stop()
+            Motor.DriveTrain.driveLeft.hold()
+            Motor.DriveTrain.driveRight.hold()
 
     def __init__(self):
         pass
@@ -55,17 +55,10 @@ class driveTrain:
             if dist <= 0:
                 dist *= -1
         self.tank_drive.stop(self)
-        
-    # def turnOnPoint(self, degrees, speed):
-    #     degrees *= 10
-    #     distance = degrees*pi*RC.wheel_distance/360
-    #     speed *= 10
-    #     robot.settings(speed, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
-    #     robot.straight(distance)
-    #     robot.stop()
-    
+  
     def turnOnPoint(self, degrees, speed):
         print("Turn on point initialized")
+        speed *= degrees/(abs(degrees))
         Motor.DriveTrain.driveLeft.reset_angle(0)
         Motor.DriveTrain.driveRight.reset_angle(0)
         motor1 = Motor.DriveTrain.driveLeft.angle() 
@@ -85,8 +78,7 @@ class driveTrain:
             print(dist, rotation)
             #print("Wheel distance = " + str(dist), "DesiredRotation = " + str(rotation))
 
-        Motor.DriveTrain.driveLeft.hold()
-        Motor.DriveTrain.driveRight.hold()
+        self.tank_drive.stop(self)
 
     def turnOnWheel(self, degrees, speed, wheel):
         speed *= 10
@@ -556,7 +548,7 @@ class driveTrain:
 
                 elif point2 == "Checkpoint1.1":
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP1.1"])
-                    self.turnOnPoint(-90, )
+                    self.turnOnPoint(-90, RC.turn_speed)
                     RC.offset = 0
 
                 elif point2 == "Checkpoint1.0":
