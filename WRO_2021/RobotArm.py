@@ -40,6 +40,14 @@ class RobotArm:
         self.lifterPosition = 1
         self.gripperPosition = 0
     
+    def moveToPickupAPosition(self):
+        if self.gripperPosition == 1:
+            self.gripper.openGripper()
+        if self.lifterPosition == 0:
+            self.lifter.moveMotor(100, 115)
+        self.lifterPosition = 1
+        self.gripperPosition = 0
+
     def grip(self):
         if self.gripperPosition != 0:
             self.gripper.openGripper()
