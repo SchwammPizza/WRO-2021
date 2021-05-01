@@ -35,6 +35,8 @@ class scan:
         
         else:
             print("ERROR")
+        
+        return color
 
 
     def scan_color_right(self):
@@ -54,9 +56,11 @@ class scan:
         else:
             print("ERROR")
 
+        return color
+
         
 
-#scan_color_right():  umändern in scan.scan_right alles
+
 
         # color = color_sensor.color()
         # while len(color_list) < 20:
