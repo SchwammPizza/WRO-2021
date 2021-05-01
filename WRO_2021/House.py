@@ -1,3 +1,4 @@
+from pybricks.parameters import Color
 from RobotArm import RobotArm
 from driveTrain import driveTrain
 from Gripper import Gripper
@@ -28,13 +29,13 @@ class house:
         #abladen, evtl. zuschieben, zurück(bis..?)
 
 
-    def house_scan(point):
+    def house_scan(self, point):
         left = Scan.scan_color_left() 
         print(left)
         right = Scan.scan_color_right() 
-        print (right)
+        print(right)
         if point == "Checkpoint1.0":
-            RC.House1.append(left) 
+            RC.House1.append(left)
             RC.House1.append(right)
         elif point == "Checkpoint4.1":
             RC.House4.append(left)
