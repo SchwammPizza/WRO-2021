@@ -215,8 +215,8 @@ class driveTrain:
 
             if point1 == "Checkpoint1.1":
                 if direktion == -1:
-                    if RC.YellowPicked[1] or (point2 in RC.Checkpoint2) or (point2 in RC.Checkpoint4 and ):
-
+                    if RC.YellowPicked[1] or (point2 in RC.Checkpoint2) or (point2 in RC.Checkpoint4 and True):
+                        pass
                         
 
             if point2 == "Checkpoint0":
