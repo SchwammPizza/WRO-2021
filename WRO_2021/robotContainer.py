@@ -33,10 +33,11 @@ class robotContainer:
 
     Mainroad5 = {"CP5.0.1": 157.4, "CP5.02": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 193}
     Mainroad4_2 = {"CP4.2.0": 95, "CP4.2.1": 104.4, "CP4.2.2": 124.4, "CP4.2.3": 113.9}
+    _4road1_1 = {"CP1.1.0": 39.2, "CP1.1.1": 29.8, "CP1.1.2": 10, "CP1.1.3": 19.2}
 
-    StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5, "HouseScan": 18.5, "House": 24.7}
+    StandardDistances = {"CP0.0": 47.5, "CP0.1": 12.5, "HouseScan": 18.5, "House": 24.7, "CP4.3": 11.4}
     CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 21.5, "CP1.1": 33.5, "CP2": 67.2, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3} + Mainroad5 + Mainroad4_2
-    CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 41.6, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43}
+    CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 41.6, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43.1} + _4road1_1
 
     #Obstacle
     obstacleBlueB = None
@@ -44,32 +45,31 @@ class robotContainer:
     obstacleYellowB = None
 
     #ObstacleDirektion
-    SolarDirektion = None
-
+    YellowDirektion = None
 
     #ObstaclePicked
-    if obstacleYellowB:
-        SolarPicked = [True, True]
-        obstacleBlueB = False
-        obstacleGreenB = False
+    YellowPicked = None
+    BluePicked = None
+    GreenPicked = None
     
-    elif obstacleBlueB:
-        obstacleYellowB = False
-        obstacleGreenB = False
-        BluePickedX = [True, True]
-        BluePickedY = [True, True]
-        BluePicked = BluePickedX + BluePickedY
-
-        if (not BluePickedX[0] and not BluePickedX[1]) or (not BluePickedY[0] and not BluePickedY[1]):
-            BluePickerVariabel = False
-        else:
-            BluePickerVariabel = True
-    
-    elif obstacleGreenB:
-        obstacleBlueB = False
-        obstacleYellowB = False
+    def obstacles(self):
+        if self.obstacleYellowB:
+            self.YellowPicked = [True, True]
+            self.obstacleBlueB = False
+            self.obstacleGreenB = False
+        
+        elif self.obstacleBlueB:
+            self.obstacleYellowB = False
+            self.obstacleGreenB = False
+            self.BluePicked = [True, True]
+        
+        elif self.obstacleGreenB:
+            self.obstacleBlueB = False
+            self.obstacleYellowB = False
+            self.GreenPicked = [True, True]
 
     BluePosition = ""
+    GreenPosition = ""
 
     # Houses
     blue_counter = 2
