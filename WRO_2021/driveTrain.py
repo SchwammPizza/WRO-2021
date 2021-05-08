@@ -57,7 +57,6 @@ class driveTrain:
         self.tank_drive.stop(self)
   
     def turnOnPoint(self, degrees, speed):
-        print("Turn on point initialized")
         speed *= degrees/(abs(degrees))
         degrees = abs(degrees)
         Motor.DriveTrain.driveLeft.reset_angle(0)
@@ -76,8 +75,6 @@ class driveTrain:
             dist = (motor1 + motor2) / 2 / 360
             if dist <= 0:
                 dist *= -1
-            print(dist, rotation)
-            #print("Wheel distance = " + str(dist), "DesiredRotation = " + str(rotation))
 
         self.tank_drive.stop(self)
 
@@ -92,14 +89,19 @@ class driveTrain:
             Motor.DriveTrain.driveLeft.run_angle(speed, angle)
 
     def followLine(self, speed, distance):
-        distance -= 3.5
+        #distance -= 3.5
         def lineDrive():
             threshold = 35
             leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
+            rightReflected = Motor.DriveTrain.driveColorRight.reflection()
+            
             if(leftReflected < threshold):
                 self.tank_drive.on(self, speed, speed + RC.LOW_AGGRESSION)
             else:
-                self.tank_drive.on(self, speed + RC.LOW_AGGRESSION, speed)
+                if(rightReflected < threshold):
+                    self.tank_drive.on(self, speed + RC.LOW_AGGRESSION, speed)
+                else:
+                    self.tank_drive.on(self, speed, speed)
 
         if distance == 0:
             lineDrive()
