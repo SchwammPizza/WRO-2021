@@ -24,6 +24,7 @@ class RobotArm:
             self.lifter.moveUp()
         if self.gripperPosition == 1:
             self.gripper.openGripper()
+        self.gripper.zeroAngle()
         self.gripperPosition = 0
         self.lifterPosition = 0
 
@@ -70,3 +71,8 @@ class RobotArm:
         self.gripperPosition = 0
         self.lifterPosition = 1
 
+    def getGripperAngle(self):
+        return self.gripper.getAngle()
+
+    def isGripperClosed(self):
+        return self.gripper.getAngle() >= 100

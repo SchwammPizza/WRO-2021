@@ -57,7 +57,6 @@ class driveTrain:
         self.tank_drive.stop(self)
   
     def turnOnPoint(self, degrees, speed):
-        print("Turn on point initialized")
         speed *= degrees/(abs(degrees))
         degrees = abs(degrees)
         Motor.DriveTrain.driveLeft.reset_angle(0)
@@ -76,8 +75,6 @@ class driveTrain:
             dist = (motor1 + motor2) / 2 / 360
             if dist <= 0:
                 dist *= -1
-            print(dist, rotation)
-            #print("Wheel distance = " + str(dist), "DesiredRotation = " + str(rotation))
 
         self.tank_drive.stop(self)
 
