@@ -1,11 +1,13 @@
+from RobotArm import RobotArm
 from driveTrain import driveTrain
 from Gripper import Gripper
 from lifter import Lifter
 from robotContainer import robotContainer as rc
 
 DriveTrain = driveTrain.getInstance()
-gripper = Gripper().getInstance()
-lifter = Lifter().getInstance()
+gripper = Gripper.getInstance()
+lifter = Lifter.getInstance()
+robotArm = RobotArm.getInstance()
 RC = rc()
 
 class Checkpoint2:
@@ -50,6 +52,8 @@ class Checkpoint2:
         #lifter.moveMotor(RC.speed, right)
         #gripper.moveMotor(RC.speed, right)
         #lifter.moveMotor(RC.speed, left)
+        robotArm.grip()
+        robotArm.moveUp()
 
         DriveTrain.driveForward(-5, RC.speed)
         DriveTrain.turnToLine(-RC.turn_speed, RC.line)
