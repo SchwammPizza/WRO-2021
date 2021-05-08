@@ -1,3 +1,4 @@
+from robotContainer import robotContainer
 from Gripper import Gripper, GripperPositions
 from lifter import Lifter, LifterPositions
 import time
@@ -37,7 +38,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(100, 100)
+            self.lifter.moveMotor(100, robotContainer.getInstance().lifterDistance)
         self.lifterPosition = 1
         self.gripperPosition = 0
     
@@ -45,7 +46,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(100, 115)
+            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 115)
         self.lifterPosition = 1
         self.gripperPosition = 0
 
@@ -53,7 +54,7 @@ class RobotArm:
         if self.gripperPosition != 0:
             self.gripper.openGripper()
         if self.lifterPosition != 1:
-            self.lifter.moveMotor(100, 100)
+            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, robotContainer.getInstance().lifterDistance)
         self.lifterPosition = 1
         self.gripper.closeGripper()
         self.gripperPosition = 1
@@ -65,7 +66,7 @@ class RobotArm:
     
     def putDown(self):
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(100, 100)
+            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 100)
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         self.gripperPosition = 0
@@ -75,4 +76,4 @@ class RobotArm:
         return self.gripper.getAngle()
 
     def isGripperClosed(self):
-        return self.gripper.getAngle() >= 100
+        return self.gripper.getAngle() <= -110

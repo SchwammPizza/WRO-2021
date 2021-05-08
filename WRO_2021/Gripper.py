@@ -34,7 +34,7 @@ class Gripper:
         motor.Gripper.gripperMotor.run(speed)
 
     def zeroAngle(self):
-        motor.Gripper.gripperMotor.reset_angle()
+        motor.Gripper.gripperMotor.reset_angle(0)
 
     def getAngle(self):
         return motor.Gripper.gripperMotor.angle()

@@ -28,6 +28,10 @@ class robotContainer:
     line = ["Black", "Brown"] 
     LOW_AGGRESSION = 13
 
+    #RobotArm
+    lifterSpeed = 50
+    lifterDistance = 105
+
     #Checkpoint
     offset = -180
 
