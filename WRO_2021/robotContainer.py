@@ -8,8 +8,11 @@ class robotContainer:
             instanceBuffer.instance = robotContainer()
         return instanceBuffer.instance
     
+    #Drive Train Specs
     wheel_diameter = 5.3 
-    wheel_distance = 17.149
+    wheel_distance = 16.25
+
+    #speed
     speed = 50
     fast_speed = 50
     slow_speed = 30
@@ -17,10 +20,16 @@ class robotContainer:
     turn_speed = 35
     turnOnWheel_speed = 50
     slowturn_speed = 10
+
+    # acceleration
     line = ["Black", "Brown"] 
     straightAcc = 20
     turnAcc = 50
     LOW_AGGRESSION = 13
+
+    #RobotArm
+    lifterSpeed = 50
+    lifterDistance = 105
 
     #Checkpoint
     offset = -180
@@ -39,9 +48,6 @@ class robotContainer:
     obstacleBlueB = None
     obstacleGreenB = None
     obstacleYellowB = None
-
-    #ObstacleDirektion
-    YellowDirektion = None
 
     #ObstaclePicked
     YellowPicked = None
@@ -66,6 +72,7 @@ class robotContainer:
 
     BluePosition = ""
     GreenPosition = ""
+    YellowPosition = ""
 
     # Houses
     blue_counter = 2
