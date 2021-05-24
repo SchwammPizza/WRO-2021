@@ -88,7 +88,7 @@ class driveTrain:
             Motor.DriveTrain.driveLeft.run_angle(speed, angle)
 
     def followLine(self, speed, distance):
-        distance -= 3.5
+        #distance -= 3.5
         def lineDrive():
             threshold = 35
             leftReflected = Motor.DriveTrain.driveColorLeft.reflection()

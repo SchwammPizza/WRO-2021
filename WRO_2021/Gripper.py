@@ -32,3 +32,9 @@ class Gripper:
     def runTrue(self, speed):
         speed *= 10
         motor.Gripper.gripperMotor.run(speed)
+
+    def zeroAngle(self):
+        motor.Gripper.gripperMotor.reset_angle(0)
+
+    def getAngle(self):
+        return motor.Gripper.gripperMotor.angle()
