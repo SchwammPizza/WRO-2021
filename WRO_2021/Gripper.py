@@ -23,11 +23,15 @@ class Gripper:
         motor.Gripper.gripperMotor.run_angle(speed, angle)
 
     def openGripper(self):
+        motor.Gripper.gripperMotor.stop()
         motor.Gripper.gripperMotor.run_until_stalled(800, Stop.HOLD, duty_limit=None)
 
     def closeGripper(self):
         motor.Gripper.gripperMotor.run_until_stalled(-800, Stop.HOLD, duty_limit=None)
         motor.Gripper.gripperMotor.hold()
+    
+    def gripGripper(self):
+        motor.Gripper.gripperMotor.run(-1200)
 
     def runTrue(self, speed):
         speed *= 10
