@@ -50,27 +50,33 @@ class robotContainer:
     obstacleBlueB = None
     obstacleGreenB = None
     obstacleYellowB = None
+    obstacleBlueA = True
+    obstacleYellowA = True
+    obstacleGreenA = True
 
-    #ObstaclePicked
-    YellowPicked = None
-    BluePicked = None
-    GreenPicked = None
+    #ObstaclePickedB
+    YellowPickedA = [True, True]
+    BluePickedA = [True, True]
+    GreenPickedA = [True, True]
+    YellowPickedB = None
+    BluePickedB = None
+    GreenPickedB = None
     
     def obstacles(self):
         if self.obstacleYellowB:
-            self.YellowPicked = [True, True]
+            self.YellowPickedB = [True, True]
             self.obstacleBlueB = False
             self.obstacleGreenB = False
         
         elif self.obstacleBlueB:
             self.obstacleYellowB = False
             self.obstacleGreenB = False
-            self.BluePicked = [True, True]
+            self.BluePickedB = [True, True]
         
         elif self.obstacleGreenB:
             self.obstacleBlueB = False
             self.obstacleYellowB = False
-            self.GreenPicked = [True, True]
+            self.GreenPickedB = [True, True]
 
     BluePosition = ""
     GreenPosition = ""
