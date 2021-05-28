@@ -10,7 +10,7 @@ class robotContainer:
     
     #Drive Train Specs
     wheel_diameter = 5.3 
-    wheel_distance = 16.25
+    wheel_distance = 16.6
 
     #speed
     speed = 50
