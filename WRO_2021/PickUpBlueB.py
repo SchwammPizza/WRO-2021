@@ -1,6 +1,7 @@
 from RobotArm import RobotArm
 from driveTrain import driveTrain;
 from robotContainer import robotContainer
+import time
 
 class instanceBuffer:
     m_instance = 0
@@ -21,8 +22,9 @@ class pickupBlueB:
     def checkBlocks(self):
         self.driveTrain.followLine(self.rc.slow_speed, 11)
         self.robotArm.grip()
+        time.sleep(1)
         self.robotArm.moveUp()
         self.robotArm.gripper.closeGripper()
         print(self.robotArm.getGripperAngle())
         print("Is the gripper Closed {}".format(self.robotArm.isGripperClosed()))
-        self.driveTrain.driveForward(10, -self.rc.slow_speed)
+        self.driveTrain.driveForward(11, -self.rc.slow_speed)
