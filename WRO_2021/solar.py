@@ -30,61 +30,48 @@ class solar:
 
         # dist wheel hinten = 11.5
         # dist mitte bis mitte gripper = 12
-        left = 90 
-        right = -90 
+        left = 90
+        right = -90
 
         DriveTrain.turnOnPoint(right, RC.turn_speed)
         DriveTrain.turnOnWheel(left, RC.turn_speed, "left")
-        DriveTrain.driveForward(1, RC.speed)
-            # DriveTrain.followLine(RC.speed, dist_2_2)
-            # DriveTrain.turnOnPoint(left, RC.turn_speed)
+        DriveTrain.driveForward(1.5, RC.speed)
 
         robotArm.grip()
-        time.sleep(0.25)
+        time.sleep(0.3)
         robotArm.moveUp()
-        DriveTrain.driveForward(10, RC.speed)
+        DriveTrain.driveForward(11, RC.speed)
         DriveTrain.turnOnPoint(left, RC.turn_speed)
         DriveTrain.driveForward(10, -RC.speed)
         robotArm.putDown()
         robotArm.resetPosition()
-        time.sleep(2)
-        print("back")
+
         DriveTrain.driveForward(10, -RC.speed)
-        time.sleep(2)
         DriveTrain.turnOnPoint(left, RC.turn_speed)
-        time.sleep(2)
-    
-    #forward 19.2 falsch, in forward + turnOnWheel
-        DriveTrain.driveForward(19.125, RC.speed)
-        time.sleep(2)
+        DriveTrain.driveForward(19, RC.speed)
         DriveTrain.turnOnPoint(right, RC.speed)
-        time.sleep(2)
-        DriveTrain.followLine(RC.speed, 28.125-8.125)
-        time.sleep(2)
-    # : durch turnonwheel? 
-    #DriveTrain.turnOnWheel(right, RC.turn_speed, "right")
-        
-        DriveTrain.turnOnWheel(-90, RC.turn_speed, "right")
-        time.sleep(2)
-        DriveTrain.driveForward(1, RC.turn_speed)
-        time.sleep(2)
+        DriveTrain.driveForward(9+10+10, RC.speed)
+        DriveTrain.turnOnWheel(right, RC.turn_speed, "right")
+
         robotArm.grip()
+        time.sleep(0.1)
         robotArm.moveUp()
         DriveTrain.driveForward(10, RC.speed)
         DriveTrain.turnOnPoint(right, RC.turn_speed)
-        DriveTrain.driveForward(10, -RC.speed)
+        DriveTrain.driveForward(8.5, -RC.speed)
         robotArm.putDown()
-        DriveTrain.driveForward(-58.5, RC.speed)
-        DriveTrain.turnOnPoint(left, RC.turn_speed)
-        # evtl DriveTrain.driveForward()
+        robotArm.resetPosition()
 
-           #zsm nehmen mit dist_2_2 von links
-        #mitte bis auf linie kommt 31.5
-        
-
-    # back, turn left, forwrd, right, forward, links ->speiegelverkehrt
-
-
-
-    # nach linkssolar 2.2.0 gedreht direkt zu startfeld -> ende
-    #falls an 2.2.1 startet -> ...
+        #1
+        # DriveTrain.driveForward(56.5, -RC.speed)
+        # DriveTrain.driveForward(2, RC.speed)
+        # DriveTrain.turnOnPoint(right, RC.turn_speed)
+        # DriveTrain.followLine(RC.speed, 30)
+        # DriveTrain.driveForward(50, -RC.speed)
+        # robotArm.resetPosition() 
+    
+        #2
+        DriveTrain.driveForward(42, -RC.speed)
+        DriveTrain.turnOnWheel(-45, RC.turn_speed, "left")
+        DriveTrain.turnOnPoint(-45, RC.turn_speed)
+        DriveTrain.driveForward(2.5, -RC.speed)

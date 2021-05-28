@@ -1,4 +1,5 @@
 #!/usr/bin/env pybricks-micropython
+from solar import solar
 from House import house
 from RobotArm import RobotArm
 from pybricks.hubs import EV3Brick
@@ -25,14 +26,15 @@ Motor = motor()
 RC = rc().getInstance()
 checkpoint2 = Checkpoint2()
 House = house()
+Solar = solar()
 
 ev3 = EV3Brick()
 
-time.sleep(1)
+#time.sleep(1)
 
 robotArm.resetPosition()
 
-time.sleep(2)
+#time.sleep(2)
 
 #robotArm.grip()
 
@@ -50,10 +52,20 @@ time.sleep(2)
 #DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint4.3")
 #House.house_scan("Checkpoint4.1")
 
-#DriveTrain.turnOnPoint(-90, RC.turn_speed)
-#DriveTrain.driveForward(RC.fast_speed, 100)
 
-DriveTrain.turnOnPoint(90, rc.turn_speed)
+#DriveTrain.turnOnPoint(90, rc.turn_speed)
 
-time.sleep(5)
+#time.sleep(5)
 #DriveTrain.driveForward(100, RC.speed)
+
+#Solar.grip_solar()
+
+#DriveTrain.turnOnPoint(360, RC.turnOnWheel_speed)
+    #(optimal 16.5)
+
+DriveTrain.turnOnWheel(360, RC.turn_speed, "left")
+    # turn wheel
+    # left left zu wenig(0.5-1) (16.6 wheel dist optimal status battery 7)
+    # rigth right (perfekt)
+    # left right (etw zu wenig max. 0.5)
+    # right left (etw zu wenig max. 0.5)
