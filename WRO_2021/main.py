@@ -1,12 +1,14 @@
 #!/usr/bin/env pybricks-micropython
-from solar import solar
-from House import house
-from RobotArm import RobotArm
+# Roboter
 from pybricks.hubs import EV3Brick
 from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile
 
+# eigene
+from solar import solar
+from House import house
+from RobotArm import RobotArm
 from motors import motor
 from robotContainer import robotContainer as rc
 from driveTrain import driveTrain
@@ -17,15 +19,15 @@ from scan import scan
 
 import time
 
-Scan = scan()
+Scan = scan().getInstance()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
 DriveTrain = driveTrain().getInstance()
 robotArm = RobotArm.getInstance()
-Motor = motor()
+Motor = motor().getInstance()
 RC = rc().getInstance()
-checkpoint2 = Checkpoint2()
-House = house()
+checkpoint2 = Checkpoint2().getInstance()
+House = house().getInstance()
 Solar = solar()
 
 ev3 = EV3Brick()
