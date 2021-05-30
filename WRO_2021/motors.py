@@ -3,8 +3,16 @@ from pybricks.ev3devices import (Motor, ColorSensor)
 from pybricks.parameters import Port
 from pybricks.hubs import EV3Brick
 
-# Write your program here
+class instanceBuffer:
+    instance = 0
+
 class motor:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = motor()
+        return instanceBuffer.instance
+
     ev3 = EV3Brick()
     class DriveTrain:
         driveLeft = Motor(Port.C)
