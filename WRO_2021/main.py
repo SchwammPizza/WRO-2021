@@ -1,5 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 # Roboter
+from buttonPickUp import buttonPickUp
 from pybricks.hubs import EV3Brick
 from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
@@ -14,7 +15,7 @@ from robotContainer import robotContainer as rc
 from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
-from checkpoint2 import Checkpoint2
+from checkpoint2 import BP, Checkpoint2
 from scan import scan
 
 import time
@@ -62,12 +63,20 @@ robotArm.resetPosition()
 
 #Solar.grip_solar()
 
-#DriveTrain.turnOnPoint(360, RC.turnOnWheel_speed)
+# DriveTrain.turnOnPoint(360, RC.turnOnWheel_speed)
     #(optimal 16.5)
 
-DriveTrain.turnOnWheel(360, RC.turn_speed, "left")
+# DriveTrain.turnOnWheel(360, RC.turn_speed, "left")
     # turn wheel
     # left left zu wenig(0.5-1) (16.6 wheel dist optimal status battery 7)
     # rigth right (perfekt)
     # left right (etw zu wenig max. 0.5)
     # right left (etw zu wenig max. 0.5)
+
+
+# time.sleep(1)
+# BP.pickUp()
+# time.sleep(20)
+# robotArm.putDown()
+
+DriveTrain.driveChekpoints("Checkpoint0", "Checkpoint3")

@@ -198,12 +198,15 @@ class driveTrain:
             return
         
         elif point1 == "Checkpoint0":
-            self.followToLine(RC.fast_speed, RC.LOW_AGGRESSION, RC.line)
+            self.followToLine(RC.fast_speed, RC.line)
             self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
             angle = math.asin(RC.wheel_distance/RC.wheel_distance-1)
             distance = 18 - ((RC.wheel_distance)**2 - (RC.wheel_distance-1)**2)**0.5
+            time.sleep(3)
             self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
+            time.sleep(3)
             self.turnOnWheel(angle, RC.turnOnWheel_speed, "right")
+            time.sleep(3)
             self.driveForward(distance, RC.fast_speed)
             RC.offset = 180
             return
