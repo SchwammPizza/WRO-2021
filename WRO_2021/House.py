@@ -21,7 +21,7 @@ class house:
     @staticmethod
     def getInstance():
         if instanceBuffer.instance == 0:
-            instanceBuffer.instance = Gripper()
+            instanceBuffer.instance = house()
         return instanceBuffer.instance
 
     def __init__(self):
@@ -46,12 +46,18 @@ class house:
         if point == "Checkpoint1.0":
             RC.House1.append(left)
             RC.House1.append(right)
+            DriveTrain.turnOnWheel(-190, RC.turn_speed, "left")
+            DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
+            DriveTrain.turnOnPoint(10, RC.turn_speed)
         elif point == "Checkpoint4.1":
             RC.House4.append(left)
             RC.House4.append(right)
         elif point == "Checkpoint6.0":
             RC.House6.append(left)
             RC.House6.append(right)
+            DriveTrain.turnOnWheel(-190, RC.turn_speed, "left")
+            DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
+            DriveTrain.turnOnPoint(10, RC.turn_speed)
 
     
         # testen

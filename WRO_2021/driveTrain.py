@@ -201,7 +201,7 @@ class driveTrain:
             self.followToLine(RC.fast_speed, RC.line)
             self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
             angle = math.asin(RC.wheel_distance/RC.wheel_distance-1)
-            distance = 18 - ((RC.wheel_distance)**2 - (RC.wheel_distance-1)**2)**0.5
+            distance = 22 - ((RC.wheel_distance)**2 - (RC.wheel_distance-1)**2)**0.5 # 22 aotte 18 sein
             time.sleep(3)
             self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
             time.sleep(3)
