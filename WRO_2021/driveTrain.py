@@ -5,6 +5,7 @@ from math import fabs, pi
 import math
 import time
 
+# Motor = motor().getInstance()
 Motor = motor()
 RC = rc().getInstance()
 
@@ -64,7 +65,7 @@ class driveTrain:
         motor1 = Motor.DriveTrain.driveLeft.angle() 
         motor2 = Motor.DriveTrain.driveRight.angle()
         dist = ((motor1 + motor2) / 2) / 360
-        rotation = (degrees * RC.wheel_distance) / (360 * RC.wheel_diameter)
+        rotation = (degrees * RC.wheel_distance_turn_on_point) / (360 * RC.wheel_diameter)
         if dist <= 0:
             dist *= -1
 

@@ -33,25 +33,33 @@ class solar:
         left = 90
         right = -90
 
-        DriveTrain.turnOnPoint(right, RC.turn_speed)
-        DriveTrain.turnOnWheel(left, RC.turn_speed, "left")
-        DriveTrain.driveForward(1.5, RC.speed)
 
-        robotArm.grip()
-        time.sleep(0.3)
-        robotArm.moveUp()
-        DriveTrain.driveForward(11, RC.speed)
-        DriveTrain.turnOnPoint(left, RC.turn_speed)
-        DriveTrain.driveForward(10, -RC.speed)
-        robotArm.putDown()
-        robotArm.resetPosition()
+#1: Alles:
+        # DriveTrain.turnOnPoint(right, RC.turn_speed)
+        # DriveTrain.turnOnWheel(left, RC.turn_speed, "left")
+        # DriveTrain.driveForward(1.5, RC.speed)
 
-        DriveTrain.driveForward(10, -RC.speed)
+        # robotArm.grip()
+        # time.sleep(0.3)
+        # robotArm.moveUp()
+        # DriveTrain.driveForward(11, RC.speed)
+        # DriveTrain.turnOnPoint(left, RC.turn_speed)
+        # DriveTrain.driveForward(10, -RC.speed)
+        # robotArm.putDown()
+        # robotArm.resetPosition()
+
+        # DriveTrain.driveForward(10, -RC.speed)
+        # DriveTrain.turnOnPoint(left, RC.turn_speed)
+        # DriveTrain.driveForward(19, RC.speed)
+        # DriveTrain.turnOnPoint(right, RC.speed)
+        # DriveTrain.driveForward(9+10+10, RC.speed)
+        # DriveTrain.turnOnWheel(right, RC.turn_speed, "right")
+
+
+#2: 1 Solarzelle + back Startfeld
         DriveTrain.turnOnPoint(left, RC.turn_speed)
-        DriveTrain.driveForward(19, RC.speed)
-        DriveTrain.turnOnPoint(right, RC.speed)
-        DriveTrain.driveForward(9+10+10, RC.speed)
         DriveTrain.turnOnWheel(right, RC.turn_speed, "right")
+        DriveTrain.driveForward(1.5, RC.speed)
 
         robotArm.grip()
         time.sleep(0.1)
