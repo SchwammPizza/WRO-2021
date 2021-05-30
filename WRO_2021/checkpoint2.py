@@ -3,14 +3,25 @@ from driveTrain import driveTrain
 from Gripper import Gripper
 from lifter import Lifter
 from robotContainer import robotContainer as rc
+from buttonPickUp import buttonPickUp as bP
 
+BP = bP().getInstance()
 DriveTrain = driveTrain.getInstance()
 gripper = Gripper.getInstance()
 lifter = Lifter.getInstance()
 robotArm = RobotArm.getInstance()
-RC = rc()
+RC = rc().getInstance()
+
+class instanceBuffer:
+    instance = 0
 
 class Checkpoint2:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = Checkpoint2()
+        return instanceBuffer.instance
+
     def __init__(self):
         pass
     
@@ -52,8 +63,7 @@ class Checkpoint2:
         #lifter.moveMotor(RC.speed, right)
         #gripper.moveMotor(RC.speed, right)
         #lifter.moveMotor(RC.speed, left)
-        robotArm.grip()
-        robotArm.moveUp()
+        BP.pickUp()
 
         DriveTrain.driveForward(-5, RC.speed)
         DriveTrain.turnToLine(-RC.turn_speed, RC.line)

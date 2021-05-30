@@ -10,11 +10,20 @@ from scan import scan
 DriveTrain = driveTrain.getInstance()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
-Motor = motor()
-Scan = scan()
-RC = rc() 
+Motor = motor().getInstance()
+Scan = scan().getInstance()
+RC = rc().getInstance()
+
+class instanceBuffer:
+    instance = 0
 
 class house:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = Gripper()
+        return instanceBuffer.instance
+
     def __init__(self):
         pass
     

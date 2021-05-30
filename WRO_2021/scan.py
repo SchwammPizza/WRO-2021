@@ -2,9 +2,18 @@ from robotContainer import robotContainer as rc
 from motors import motor
 
 Motor = motor()
-RC = rc()
+RC = rc().getInstance()
+
+class instanceBuffer:
+    instance = 0
 
 class scan:
+    @staticmethod
+    def getInstance():
+        if instanceBuffer.instance == 0:
+            instanceBuffer.instance = scan()
+        return instanceBuffer.instance
+
     def __init__(self):
         pass
 
