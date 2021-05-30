@@ -68,6 +68,7 @@ class RobotArm:
             self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 100)
         if self.gripperPosition == 1:
             self.gripper.openGripper()
+        self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 20)
         self.gripperPosition = 0
         self.lifterPosition = 1
 
