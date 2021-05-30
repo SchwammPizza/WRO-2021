@@ -27,7 +27,7 @@ class Gripper:
         motor.Gripper.gripperMotor.run_until_stalled(1000, Stop.HOLD, duty_limit=None)
 
     def closeGripper(self):
-        motor.Gripper.gripperMotor.run_until_stalled(-800, Stop.HOLD, duty_limit=None)
+        motor.Gripper.gripperMotor.run_until_stalled(-1200, Stop.HOLD, duty_limit=None)
         motor.Gripper.gripperMotor.hold()
     
     def gripGripper(self):
