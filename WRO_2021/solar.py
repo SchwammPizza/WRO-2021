@@ -6,8 +6,8 @@ from driveTrain import driveTrain
 from lifter import Lifter
 from Gripper import Gripper
 
-Motor = motor()
-RC = rc()
+Motor = motor().getInstance()
+RC = rc().getInstance()
 robotArm = RobotArm.getInstance()
 DriveTrain = driveTrain().getInstance()
 gripper = Gripper().getInstance()

@@ -5,8 +5,7 @@ from math import pi
 import math
 import time
 
-# Motor = motor().getInstance()
-Motor = motor()
+Motor = motor().getInstance()
 RC = rc().getInstance()
 
 robot = DriveBase(Motor.DriveTrain.driveLeft, Motor.DriveTrain.driveRight, wheel_diameter = RC.wheel_diameter*10, axle_track = RC.wheel_distance *10 )
