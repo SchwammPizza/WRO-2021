@@ -197,3 +197,8 @@ class pickUp:
         elif point == "Checkpoint5.1":
             pass
 
+        elif point == "Checkpoint1.1":
+            if RC.offset == 0:
+                if RC.YellowPickedA[1]:
+                    pass
+
