@@ -32,21 +32,6 @@ class pickUp:
             DriveTrain.turnOnPoint(88 * ((side == "right") * 2 - 1), RC.turn_speed)
             DriveTrain.driveForward(12.5, RC.getInstance().slow_speed)
     
-    class pickupBlueB:
-        def __init__(self):
-            pass
-
-        #TODO: Add the autocompletion for the virtual field
-        def checkBlocks(self):
-            DriveTrain.followLine(RC.slow_speed, 11)
-            RA.grip()
-            time.sleep(1)
-            RA.moveUp()
-            RA.gripper.closeGripper()
-            print(RA.getGripperAngle())
-            print("Is the gripper Closed {}".format(RA.isGripperClosed()))
-            DriveTrain.driveForward(11, -RC.slow_speed)
-    
     class Checkpoint2:
         def __init__(self):
             pass
@@ -164,6 +149,27 @@ class pickUp:
             time.sleep(0.25)
             RA.moveUp()
     
+    class pickupGreenA:
+        def __init__(self):
+            pass
+
+        @staticmethod
+        def switchSide(side):
+            if (side == "right"):
+                return "left"
+            return "right"
+
+        #side in left or right
+        def pickUp(self, side):
+            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, side)
+            DriveTrain.turnOnPoint(89 * ((side == "left") * 2 - 1), RC.turn_speed)
+            RA.moveToPickupAPosition()
+            DriveTrain.driveForward(13, RC.getInstance().slow_speed)
+            RA.moveUp()
+            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, self.switchSide(side))
+            DriveTrain.turnOnPoint(88 * ((side == "right") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(4.5, RC.getInstance().slow_speed)
+    
     def picker(self, point):
         if point == "Checkpoint2.2":
             if RC.YellowPickedA[0]:
@@ -178,4 +184,16 @@ class pickUp:
 
             if not True in RC.YellowPickedA:
                 RC.obstacleBlueA = False
-            
+        
+        elif point == "Checkpoint3": # anguugen
+            self.pickupGreenA.pickUp()
+
+            GameBord.stickColor = "Green"
+            GameBord.stickLoaden = True
+
+            if not True in RC.GreenPickedA:
+                RC.obstacleGreenA = False
+        
+        elif point == "Checkpoint5.1":
+            pass
+
