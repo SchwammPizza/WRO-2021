@@ -52,6 +52,14 @@ class gameBord:
             return False
     
     def calculateNextMove(self, point): # returns Values ["Checkpoint", Number of action]
+        if point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"]:
+            if point == "Checkpoint1.0":
+                pp = 0
+            elif point == "Checkpoint4.1":
+                pp = 1
+            else:
+                pp = 2
+
         if ([self.stickColor, self.gripperColor] in self.HouseScann or [self.gripperColor, self.stickColor] in self.HouseScann): # 0
             if [self.stickColor, self.gripperColor] in self.HouseScann:
                 x = self.HouseScann.index([self.stickColor, self.gripperColor])
@@ -176,11 +184,69 @@ class gameBord:
                             return ("Checkpoint1.1", 2)
                         else:
                             return ("Checkpoint2", 2)
-           
+        
+        elif point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"] and not self.HouseFulld[pp] and (pp == 0 and (not self.HouseScann == ["Blue", "Blue"] or not ("Blue" in self.HouseScann[0] and "None" in self.HouseScann[0])) or pp == 1 or pp == 2 and ("Blue" in self.HouseScann[2] and not self.HouseScann[1] == [None, None])): # 2
+            if point == "Checkpoint1.0":
+                if "Yellow" in self.HouseScann[0]:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                
+                elif "Green" in self.HouseScann[0]:
+                    if RC.obstacleGreenA:
+                        return ("Checkpoint3", 2)
+                    else:
+                        return ("Checkpoint4.2", 2)
+                
+                else:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+            
+            elif point == "Checkpoint4.1":
+                if "Yellow" in self.HouseScann[1]:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+                
+                elif "Green" in self.HouseScann[1] and RC.obstacleGreenB:
+                    return ("Checkpoint4.2", 2)
+                
+                elif "Yellow" in self.HouseScann[1]:
+                    if RC.obstacleYellowA:
+                        return ("Checkpoint2", 2)
+                    else:
+                        return ("Checkpoint1.1", 2)
+                
+                else:
+                    return ("Checkpoint3", 2)
+            
+            elif point == "Checkpoint6.0":
+                if "Yellow" in self.HouseScann[2]:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+                
+                elif "Green" in self.HouseScann[2]:
+                    if RC.obstacleGreenA:
+                        return ("Checkpoint3", 2)
+                    else:
+                        return ("Checkpoint4.2", 2)
+                
+                else:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                    
         elif [None, None] in self.HouseScann:
             if point in RC.Checkpoint2 + ["Checkpoint1.1", "Checkpoint3", "Checkpoint0"] or point == "Checkpoint4.2" and RC.offset == 90:
                 if self.HouseScann[0] == [None, None]:
-                    return ("Checkpoint1.3", 3) # 3 = haus verlangen scannen
+                    return ("Checkpoint1.0", 3) # 3 = haus verlangen scannen
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint4.3", 3)
                 elif self.HouseScann[2] == [None, None]:
@@ -192,7 +258,7 @@ class gameBord:
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint6.1", 3)
                 elif self.HouseScann[2] == [None, None]:
-                    return ("Checkpoint1.3", 3)
+                    return ("Checkpoint1.0", 3)
             
             else:
                 if self.HouseScann[0] == [None, None]:
@@ -200,7 +266,7 @@ class gameBord:
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint4.3", 3)
                 elif self.HouseScann[2] == [None, None]:
-                    return ("Checkpoint1.3", 3)
+                    return ("Checkpoint1.0", 3)
         
         else:
             return ("Checkpoint2.1", 4)

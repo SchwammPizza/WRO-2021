@@ -38,7 +38,7 @@ point = "Checkpoint0"
 
 while True:
     turn = GB.calculateNextMove(point)
-    
+    print(turn)
     if turn[1] == 0:
         DriveTrain.driveChekpoints(point, turn[0])
         Hous.put_down()
@@ -51,7 +51,7 @@ while True:
     
     elif turn[1] == 2:
         DriveTrain.driveChekpoints(point, turn[0])
-        # noch machen klasse die automatisch weitergibt
+        PU.picker(turn[0])
         point = turn[0]
     
     elif turn[1] == 3:

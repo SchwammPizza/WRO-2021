@@ -162,7 +162,6 @@ class pickUp:
             DriveTrain.driveForward(-7.4, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
 
-    
     def picker(self, point):
         if point == "Checkpoint2.2":
             if RC.YellowPickedA[0]:
