@@ -7,6 +7,7 @@ from robotContainer import robotContainer as rc
 from motors import motor
 from scan import scan
 
+
 DriveTrain = driveTrain.getInstance()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
@@ -47,8 +48,9 @@ class house:
             RC.House1.append(left)
             RC.House1.append(right)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
+            DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
-            DriveTrain.turnOnPoint(10, RC.turn_speed)
+            DriveTrain.turnOnPoint(5, RC.turn_speed)
         elif point == "Checkpoint4.1":
             RC.House4.append(left)
             RC.House4.append(right)
@@ -56,8 +58,9 @@ class house:
             RC.House6.append(left)
             RC.House6.append(right)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
+            DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
-            DriveTrain.turnOnPoint(10, RC.turn_speed)
+            DriveTrain.turnOnPoint(5, RC.turn_speed)
 
     
         # testen
