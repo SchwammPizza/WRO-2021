@@ -11,27 +11,6 @@ RA = RobotArm().getInstance()
 DriveTrain = driveTrain().getInstance()
 
 class pickUp:
-    class pickupBlueA:
-        def __init__(self):
-            pass
-
-        @staticmethod
-        def switchSide(side):
-            if (side == "right"):
-                return "left"
-            return "right"
-
-        #side in left or right
-        def pickUp(self, side):
-            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, side)
-            DriveTrain.turnOnPoint(89 * ((side == "left") * 2 - 1), RC.turn_speed)
-            RA.moveToPickupAPosition()
-            DriveTrain.driveForward(5, RC.getInstance().slow_speed)
-            RA.moveUp()
-            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, self.switchSide(side))
-            DriveTrain.turnOnPoint(88 * ((side == "right") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(12.5, RC.getInstance().slow_speed)
-    
     class Checkpoint2:
         def __init__(self):
             pass
@@ -149,26 +128,40 @@ class pickUp:
             time.sleep(0.25)
             RA.moveUp()
     
-    class pickupGreenA:
+    class pickupA:
         def __init__(self):
             pass
 
-        @staticmethod
-        def switchSide(side):
-            if (side == "right"):
-                return "left"
-            return "right"
-
         #side in left or right
-        def pickUp(self, side):
-            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, side)
-            DriveTrain.turnOnPoint(89 * ((side == "left") * 2 - 1), RC.turn_speed)
+        def pickUpG(self, side):
+            DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(9.4, RC.fast_speed)
+            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             RA.moveToPickupAPosition()
-            DriveTrain.driveForward(13, RC.getInstance().slow_speed)
+            DriveTrain.driveForward(6, RC.fast_speed)
             RA.moveUp()
-            DriveTrain.turnOnWheel(90, -RC.turnOnWheel_speed, self.switchSide(side))
-            DriveTrain.turnOnPoint(88 * ((side == "right") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(4.5, RC.getInstance().slow_speed)
+            DriveTrain.driveForward(-6, RC.fast_speed)
+            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(-9.4, RC.fast_speed)
+            DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+        
+        def pickUpB(self, side):
+            if abs(RC.offset) == 90:
+                DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1) * RC.offset(abs(RC.offset)), RC.turn_speed)
+            elif RC.offset == 0 and side == "right":
+                DriveTrain.turnOnPoint(180, RC.turn_speed)
+            elif RC.offset == 180 and side == "left":
+                DriveTrain.turnOnPoint(180, RC.turn_speed)
+            DriveTrain.driveForward(7.4, RC.fast_speed)
+            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            RA.moveToPickupAPosition()
+            DriveTrain.driveForward(6, RC.fast_speed)
+            RA.moveUp()
+            DriveTrain.driveForward(-6, RC.fast_speed)
+            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(-7.4, RC.fast_speed)
+            DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+
     
     def picker(self, point):
         if point == "Checkpoint2.2":
@@ -185,20 +178,65 @@ class pickUp:
             if not True in RC.YellowPickedA:
                 RC.obstacleBlueA = False
         
-        elif point == "Checkpoint3": # anguugen
-            self.pickupGreenA.pickUp()
+        elif point == "Checkpoint3": 
+            if RC.GreenPickedA[0]:
+                self.pickupA.pickUpG(self, "right")
+            else:
+                self.pickupA.pickUpG(self, "left")
 
             GameBord.stickColor = "Green"
-            GameBord.stickLoaden = True
+            GameBord.stickLoaden += 1
 
             if not True in RC.GreenPickedA:
                 RC.obstacleGreenA = False
         
         elif point == "Checkpoint5.1":
-            pass
+            if RC.BluePickedA[0]:
+                self.pickupA.pickUpB(self, "right")
+            else:
+                self.pickupA.pickUpB(self, "left")
+
+            GameBord.stickColor = "Blue"
+            GameBord.stickLoaden += 1
+
+            if not True in RC.BluePickedA:
+                RC.obstacleBlueA = False
 
         elif point == "Checkpoint1.1":
             if RC.offset == 0:
                 if RC.YellowPickedA[1]:
-                    pass
+                    DriveTrain.driveForward(RC.CheckpointOn4Road["CP1.1.2"], RC.fast_speed)
+                else:
+                    DriveTrain.driveForward(RC.CheckpointOn4Road["CP1.1.3"], RC.fast_speed)
+            else:
+                if RC.YellowPickedA[0]:
+                    DriveTrain.driveForward(RC.CheckpointOn4Road["CP1.1.0"], RC.fast_speed)
+                else:
+                    DriveTrain.driveForward(RC.CheckpointOn4Road["CP1.1.1"], RC.fast_speed)
 
+            self.buttonPickUp.pickUp(self)
+
+            GameBord.gripperColor = "Yellow"
+            GameBord.gripperLoaden = True
+
+            if not True in RC.YellowPickedB:
+                RC.obstacleYellowB = False
+        
+        elif point == "Checkpoint4.2":
+            self.buttonPickUp.pickUp(self)
+
+            GameBord.gripperLoaden = True
+            GameBord.gripperColor = "Green"
+
+            if not True in RC.GreenPickedB:
+                RC.obstacleGreenB = False
+            
+        elif point == "Checkpoint5.0":
+            self.buttonPickUp.pickUp(self)
+
+            GameBord.gripperColor = "Blue"
+            GameBord.gripperLoaden = True
+
+            if not True in RC.BluePickedB:
+                RC.obstacleBlueB = False
+                        

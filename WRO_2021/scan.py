@@ -31,15 +31,15 @@ class scan:
     def scan_color_left(self):
         scan_left = self.scan_left()
         if scan_left[0] >  scan_left[1] and scan_left[0] > scan_left[2]:
-            color = "yellow"
+            color = "Yellow"
             RC.yellow_counter -= 1
 
         elif scan_left[1] > scan_left[0] and scan_left[1] > scan_left[2]:
-            color = "green"
+            color = "Green"
             RC.green_counter -= 1
 
         elif scan_left[2] > scan_left[0] and scan_left[2] > scan_left[1]:
-            color = "blue"
+            color = "Blue"
             RC.blue_counter -= 1
         
         else:
@@ -51,15 +51,15 @@ class scan:
     def scan_color_right(self):
         scan_right = self.scan_right()
         if scan_right[0] >  scan_right[1] and scan_right[0] > scan_right[2]:
-            color = "yellow"
+            color = "Yellow"
             RC.yellow_counter -=1
 
         elif scan_right[1] > scan_right[0] and scan_right[1] > scan_right[2]:
-            color = "green"
+            color = "Green"
             RC.green_counter -= 1
 
         elif scan_right[2] > scan_right[0] and scan_right[2] > scan_right[1]:
-            color = "blue"
+            color = "Blue"
             RC.blue_counter -= 1
         
         else:
