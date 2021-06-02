@@ -8,6 +8,7 @@ from robotContainer import robotContainer as rc
 from motors import motor
 from scan import scan
 
+import time
 
 DriveTrain = driveTrain.getInstance()
 gripper = Gripper().getInstance()
@@ -54,8 +55,9 @@ class house:
         if point == "Checkpoint1.0":
             GameBord.HouseScann[0][0] = left
             GameBord.HouseScann[0][1] = right
+            time.sleep(0.2)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
-            DriveTrain.driveForward(-1, RC.speed)
+            DriveTrain.driveForward(-0.5, RC.speed)
             DriveTrain.followLine(RC.speed, 20) # drivetrain zeile 204
             DriveTrain.turnOnPoint(10, RC.turn_speed)
             RC.offset = 0

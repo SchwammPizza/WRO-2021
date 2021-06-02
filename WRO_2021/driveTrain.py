@@ -176,8 +176,8 @@ class driveTrain:
         elif point1 == "Checkpoint0":
             self.followToLine(RC.fast_speed, RC.line)
             self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
-            angle = math.acos((RC.wheel_distance - 1)/RC.wheel_distance) * 180/pi
-            distance = 18 - ((RC.wheel_distance)**2 - (RC.wheel_distance-1)**2)**0.5 # 22 aotte 18 sein
+            angle = math.acos((RC.wheel_distance - 0.5)/RC.wheel_distance) * 180/pi
+            distance = 18 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 # 22 aotte 18 sein
             self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
             self.turnOnWheel(angle, -RC.turnOnWheel_speed, "right")
             self.driveForward(distance, RC.fast_speed)
