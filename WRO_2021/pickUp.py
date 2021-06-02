@@ -1,3 +1,4 @@
+from pybricks.parameters import Direction
 from battery import GameBord
 from driveTrain import driveTrain
 from RobotArm import RobotArm
@@ -30,18 +31,24 @@ class pickUp:
             lifter.runTrue(-RC.slow_speed)
 
             if direction == "2.2.0":
-                if RC.offset != 90:
-                    DriveTrain.turnToLine(RC.turn_speed, RC.line)
-                #(turn left)
-            else:
-                DriveTrain.turnToLine(-RC.turn_speed, RC.line)
-                #(turn right)
-
+                if RC.offset == 0:
+                    DriveTrain.turnOnPoint(90, RC.turn_speed)
+                elif abs(RC.offset) == 180:
+                    DriveTrain.turnOnPoint(-90, RC.turn_speed)
+                elif RC.offset == -90:
+                    DriveTrain.turnOnPoint(180, RC.turn_speed)
+            elif direction == "2.2.0":
+                if RC.offset == 0:
+                    DriveTrain.turnOnPoint(-90, RC.turn_speed)
+                elif abs(RC.offset) == 180:
+                    DriveTrain.turnOnPoint(90, RC.turn_speed)
+                elif RC.offset == 90:
+                    DriveTrain.turnOnPoint(180, RC.turn_speed)
             
             DriveTrain.followLine(RC.speed, dist)
             DriveTrain.turnOnPoint(turn2, RC.turn_speed)
 
-            #DriveTrain.driveForward(RC.speed, 5) => RobotContainer driveForward to pick
+            # DriveTrain.driveForward(RC.speed, 5) => RobotContainer driveForward to pick
             DriveTrain.driveForward(5, RC.speed)
 
             pickUp.buttonPickUp.pickUp()
@@ -53,18 +60,6 @@ class pickUp:
             #start von 2 return 0, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
 
         def grip_solar(self):
-            dist_2_2 = 8.5 + 3.5
-            #3.5 = Korrektur
-            #8.5 = -> mitte solarfläche
-            # dist_forward = 5.0 -> to grip
-            # dist_back from grip = 13
-
-            # dist wand linie = 22.7
-
-            # dist left von 2.1 = 18.7
-
-            # dist wheel hinten = 11.5
-            # dist mitte bis mitte gripper = 12
             left = 90
             right = -90
 
@@ -135,14 +130,14 @@ class pickUp:
         #side in left or right
         def pickUpG(self, side):
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(9, RC.fast_speed)
+            DriveTrain.driveForward(8.7, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            RA.moveToPickupAPosition()
+            RA.moveToPickupAGPosition()
             DriveTrain.driveForward(6, RC.fast_speed)
             RA.moveUp()
             DriveTrain.driveForward(-6, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(9, RC.fast_speed)
+            DriveTrain.driveForward(8.7, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
         
         def pickUpB(self, side):
@@ -153,11 +148,11 @@ class pickUp:
             elif RC.offset == 180 and side == "left":
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
             DriveTrain.driveForward(7.4, RC.fast_speed)
-            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            RA.moveToPickupAPosition()
-            DriveTrain.driveForward(6, RC.fast_speed)
+            DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            RA.moveToPickupABPosition()
+            DriveTrain.driveForward(5, RC.fast_speed)
             RA.moveUp()
-            DriveTrain.driveForward(-6, RC.fast_speed)
+            DriveTrain.driveForward(-5, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.driveForward(-7.4, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
