@@ -78,6 +78,18 @@ class robotContainer:
             self.obstacleBlueB = False
             self.obstacleYellowB = False
             self.GreenPickedB = [True, True]
+        
+        elif not (self.obstacleGreenB and self.obstacleBlueB):
+            self.YellowPickedB = [True, True]
+            self.obstacleYellowB = True
+        
+        elif not (self.obstacleYellowB and self.obstacleBlueB):
+            self.GreenPickedB = [True, True]
+            self.obstacleGreenB = True
+        
+        elif not (self.obstacleYellowB and self.obstacleGreenB):
+            self.BluePickedB = [True, True]
+            self.obstacleBlueB= True
 
     BluePosition = ""
     GreenPosition = ""

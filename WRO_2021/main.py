@@ -60,6 +60,10 @@ while True:
         DriveTrain.driveChekpoints(point, turn[0])
         Hous.house_scan(turn[0])
         point = turn[0]
+        if point == "Checkpoint4.3":
+            point = "Checkpoint4.1"
+        elif point == "Checkpoint6.1":
+            point = "Checkpoint6.0"
     
     elif turn[1] == 4:
         DriveTrain.driveChekpoints(point, turn[0])

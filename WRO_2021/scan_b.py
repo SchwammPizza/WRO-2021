@@ -12,7 +12,7 @@ class scan_b:
     def __init__(self) -> None:
         pass
 
-    def scan_bs(self, point):
+    def scan_bs(self, point, hold=False):
         anglemotor = Motor.Gripper.gripperMotor.angle()
         RA.moveToGrippingPosition()
         RA.grip()
@@ -21,7 +21,10 @@ class scan_b:
         anglemotor = Motor.Gripper.gripperMotor.angle()
         print(anglemotor)
         if anglemotor >= -115:
-            RA.moveUp()
+            if not hold:
+                RA.resetPosition()
+            else:
+                RA.moveUp()
             if point == "Checkpoint1.1":
                 RC.obstacleYellowB = True
                 RC.obstacles()
@@ -35,10 +38,13 @@ class scan_b:
             RA.resetPosition()
             if point == "Checkpoint1.1":
                 RC.obstacleYellowB = False
+                RC.obstacles()
             elif point == "Checkpoint4.2":
                 RC.obstacleGreenB = False
+                RC.obstacles()
             elif point == "Checkpoint5.0":
                 RC.obstacleBlueB = False
+                RC.obstacles()
         
         
 
