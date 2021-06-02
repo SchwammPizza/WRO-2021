@@ -87,7 +87,3 @@ class robotContainer:
     blue_counter = 2
     green_counter = 2
     yellow_counter = 2
-
-    House1 = []
-    House4 = []
-    House6 = []

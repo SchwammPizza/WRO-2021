@@ -43,6 +43,7 @@ class scan:
             RC.blue_counter -= 1
         
         else:
+            color = "None"
             print("ERROR")
         
         return color
