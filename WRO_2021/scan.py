@@ -67,7 +67,7 @@ class scan:
 
         return color
 
-        
+        #left unten else print error, right unten else solor = none
 
 
 

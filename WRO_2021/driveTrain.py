@@ -699,7 +699,7 @@ class driveTrain:
                 
                 else:
                     if point1 == "Checkpoint4.1":
-                        self.followLine(RC.fast_speed, RC.CheckpointOn4Road["4.1"] - RC.CheckpointOn4Road["CP2"])
+                        self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP4.1"] - RC.CheckpointOn4Road["CP2"])
                     else:
                         if point1 == "Checkpoint4.0" and abs(RC.offset) == 180:
                             self.turnOnPoint(180, RC.turn_speed)
