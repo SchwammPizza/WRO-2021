@@ -594,8 +594,6 @@ class driveTrain:
                             self.driveForward(RC.StandardDistances["CP4.2"] + RC.CheckpointOn4Road["CP4.2"] + RC.StandardDistances["House"], RC.fast_speed)
                             RC.offset = 180
                             return
-                        
-                        
 
                 else:
                         self.driveForward(-5, RC.fast_speed)
@@ -730,6 +728,9 @@ class driveTrain:
                 lookdirektion = 1
             else:
                 lookdirektion = -1
+            
+            if point1 == "Checkpoint5.1":
+                RC.BluePosition = "1"
             
             if point2 in RC.Checkpoint5:
                 if point1 == "Checkpoint5.0" and not RC.BluePickedB[1]:

@@ -52,19 +52,19 @@ class house:
         right = Scan.scan_color_right() 
         print(right)
         if point == "Checkpoint1.0":
-            GameBord.HouseScann[0] = left
-            GameBord.HouseScann[0] = right
+            GameBord.HouseScann[0][0] = left
+            GameBord.HouseScann[0][1] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(-1, RC.speed)
             DriveTrain.followLine(RC.speed, 20) # drivetrain zeile 204
             DriveTrain.turnOnPoint(10, RC.turn_speed)
             RC.offset = 0
         elif point == "Checkpoint4.3":
-            GameBord.HouseScann[1] = left
-            GameBord.HouseScann[1] = right
+            GameBord.HouseScann[1][0] = left
+            GameBord.HouseScann[1][1] = right
         elif point == "Checkpoint6.1":
-            GameBord.HouseScann[2] = left
-            GameBord.HouseScann[2] = right
+            GameBord.HouseScann[2][0] = left
+            GameBord.HouseScann[2][1] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
