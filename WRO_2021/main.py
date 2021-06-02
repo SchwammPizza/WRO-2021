@@ -36,6 +36,8 @@ ev3 = EV3Brick()
 robotArm.resetPosition()
 point = "Checkpoint0"
 
+# DriveTrain.turnOnPoint(90, RC.turn_speed)
+
 while True:
     turn = GB.calculateNextMove(point)
     print(turn)
@@ -64,3 +66,6 @@ while True:
         PU.Checkpoint2.grip_solar()
         point = turn[0]
         break
+    
+    time.sleep(3)
+    print(point)

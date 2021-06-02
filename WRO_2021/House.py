@@ -1,3 +1,4 @@
+from battery import GameBord
 from pybricks.parameters import Color
 from RobotArm import RobotArm
 from driveTrain import driveTrain
@@ -45,18 +46,19 @@ class house:
         right = Scan.scan_color_right() 
         print(right)
         if point == "Checkpoint1.0":
-            RC.House1.append(left)
-            RC.House1.append(right)
+            GameBord.HouseScann[0].append(left)
+            GameBord.HouseScann[0].append(right)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
-            DriveTrain.driveForward(1, RC.speed)
-            DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
-            DriveTrain.turnOnPoint(5, RC.turn_speed)
-        elif point == "Checkpoint4.1":
-            RC.House4.append(left)
-            RC.House4.append(right)
-        elif point == "Checkpoint6.0":
-            RC.House6.append(left)
-            RC.House6.append(right)
+            DriveTrain.driveForward(-1, RC.speed)
+            DriveTrain.followLine(RC.speed, 20) # drivetrain zeile 204
+            DriveTrain.turnOnPoint(10, RC.turn_speed)
+            RC.offset = 0
+        elif point == "Checkpoint4.3":
+            GameBord.HouseScann[1].append(left)
+            GameBord.HouseScann[1].append(right)
+        elif point == "Checkpoint6.1":
+            GameBord.HouseScann[2].append(left)
+            GameBord.HouseScann[2].append(right)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204

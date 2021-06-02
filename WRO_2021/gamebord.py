@@ -76,7 +76,7 @@ class gameBord:
         elif self.gripperLoaden and self.stickLoaden == 2 or self.stickLoaden > 0 and self.gripperLoaden and not (RC.obstacleYellowA or RC.obstacleBlueA or RC.obstacleGreenA or RC.obstacleYellowB or RC.obstacleBlueB or RC.obstacleGreenB): # 1
             return ("Checkpoint4.0", 1) # 1 = Abladen bei Batterie
         
-        elif self.stickLoaden == 2 or self.gripperLoaden: # 2
+        elif self.stickLoaden > 0 or self.gripperLoaden: # 2
             if not False in self.HouseFulld: # alle häuser abgeliferet
                 if self.lookIfSthOnPoint(point) and point in ["Checkpoint3", "Checkpoint5.1"]:
                     return (point, 2)
@@ -249,7 +249,7 @@ class gameBord:
                     return ("Checkpoint1.0", 3) # 3 = haus verlangen scannen
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint4.3", 3)
-                elif self.HouseScann[2] == [None, None]:
+                else:
                     return ("Checkpoint6.1", 3)
             
             elif point == "Checkpoint1.0" or (point == "Checkpoint5.0" and not RC.BluePickedB[0]) or (point == "Checkpoint5.1" and not RC.obstacleBlueB):
@@ -257,7 +257,7 @@ class gameBord:
                     return ("Checkpoint4.3", 3) 
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint6.1", 3)
-                elif self.HouseScann[2] == [None, None]:
+                else:
                     return ("Checkpoint1.0", 3)
             
             else:
@@ -265,7 +265,7 @@ class gameBord:
                     return ("Checkpoint6.1", 3) 
                 elif self.HouseScann[1] == [None, None]:
                     return ("Checkpoint4.3", 3)
-                elif self.HouseScann[2] == [None, None]:
+                else:
                     return ("Checkpoint1.0", 3)
         
         else:
