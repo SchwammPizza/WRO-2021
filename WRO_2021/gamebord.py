@@ -17,9 +17,9 @@ class gameBord:
 
     # variabeln
     stickLoaden = 0
-    stickColor = ""
+    stickColor = "None"
     gripperLoaden = False
-    gripperColor = ""
+    gripperColor = "None"
     HouseFulld = [False for x in range(3)]
     HouseScann = [[None, None] for x in range(3)]
 
@@ -51,7 +51,140 @@ class gameBord:
         else:
             return False
     
-    def calculateNextMove(self, point): # returns Values ["Checkpoint", Number of action]
+    def stickcolorKnow(self, point, i):
+        print(self.gripperColor, self.stickColor, self.HouseScann[0])
+        if self.HouseScann[i][0] == self.stickColor:
+            if self.HouseScann[i][1] == "Green":
+                if RC.obstacleGreenB:
+                    return ("Checkpoint4.2", 2)
+                else:
+                    return ("Checkpoint3", 2)
+            
+            elif self.HouseScann[i][1] == "Yellow":
+                if point in RC.Checkpoint1 + ["Checkpoint3"]:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                else:
+                    if RC.obstacleYellowA:
+                        return ("Checkpoint2", 2)
+                    elif RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+            
+            else:
+                if point in RC.Checkpoint6:
+                    if RC.obstacleBlueA:
+                        return ("Checkpoint5.1", 2)
+                    elif RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                else:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+        
+        elif self.HouseScann[i][1] == self.stickColor:
+            if self.HouseScann[i][0] == "Green":
+                if RC.obstacleGreenB:
+                    return ("Checkpoint4.2", 2)
+                else:
+                    return ("Checkpoint3", 2)
+            
+            elif self.HouseScann[i][0] == "Yellow":
+                if point in RC.Checkpoint1 + ["Checkpoint3"]:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                else:
+                    if RC.obstacleYellowA:
+                        return ("Checkpoint2", 2)
+                    elif RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+            
+            else:
+                if point in RC.Checkpoint6:
+                    if RC.obstacleBlueA:
+                        return ("Checkpoint5.1", 2)
+                    elif RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                else:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+
+        else:
+            return False
+
+    def grippercolorKnow(self, point, i):
+        if self.HouseScann[i][0] == self.gripperColor:
+            if self.HouseScann[i][1] == "Green":
+                if RC.obstacleGreenB:
+                    return ("Checkpoint4.2", 2)
+                else:
+                    return ("Checkpoint3", 2)
+            
+            elif self.HouseScann[i][1] == "Yellow":
+                if point in RC.Checkpoint1 + ["Checkpoint3"]:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                else:
+                    if RC.obstacleYellowA:
+                        return ("Checkpoint2", 2)
+                    elif RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+            
+            else:
+                if point in RC.Checkpoint6:
+                    if RC.obstacleBlueA:
+                        return ("Checkpoint5.1", 2)
+                    elif RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                else:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+        
+        elif self.HouseScann[i][1] == self.gripperColor:
+            if self.HouseScann[i][0] == "Green":
+                if RC.obstacleGreenB:
+                    return ("Checkpoint4.2", 2)
+                else:
+                    return ("Checkpoint3", 2)
+            
+            elif self.HouseScann[i][0] == "Yellow":
+                if point in RC.Checkpoint1 + ["Checkpoint3"]:
+                    if RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+                    else:
+                        return ("Checkpoint2", 2)
+                else:
+                    if RC.obstacleYellowA:
+                        return ("Checkpoint2", 2)
+                    elif RC.obstacleYellowB:
+                        return ("Checkpoint1.1", 2)
+            
+            else:
+                if point in RC.Checkpoint6:
+                    if RC.obstacleBlueA:
+                        return ("Checkpoint5.1", 2)
+                    elif RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                else:
+                    if RC.obstacleBlueB:
+                        return ("Checkpoint5.0", 2)
+                    else:
+                        return ("Checkpoint5.1", 2)
+
+        else:
+            return False
+
+    def calculateNextMove(self, point, x=-1): # returns Values ["Checkpoint", Number of action]
         if point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"]:
             if point == "Checkpoint1.0":
                 pp = 0
@@ -73,10 +206,11 @@ class gameBord:
             else:
                 return ("Checkpoint6.0", 0)
         
-        elif self.gripperLoaden and self.stickLoaden == 2 or self.stickLoaden > 0 and self.gripperLoaden and not (RC.obstacleYellowA or RC.obstacleBlueA or RC.obstacleGreenA or RC.obstacleYellowB or RC.obstacleBlueB or RC.obstacleGreenB): # 1
+        elif (self.gripperLoaden and self.stickLoaden == 2 or self.stickLoaden > 0 and self.gripperLoaden) and not (RC.obstacleYellowA or RC.obstacleBlueA or RC.obstacleGreenA or RC.obstacleYellowB or RC.obstacleBlueB or RC.obstacleGreenB): # 1
             return ("Checkpoint4.0", 1) # 1 = Abladen bei Batterie
         
         elif self.stickLoaden > 0 or self.gripperLoaden: # 2
+            print(0)
             if not False in self.HouseFulld: # alle häuser abgeliferet
                 if self.lookIfSthOnPoint(point) and point in ["Checkpoint3", "Checkpoint5.1"]:
                     return (point, 2)
@@ -157,6 +291,7 @@ class gameBord:
                     return ("Checkpoint4.0", 1)
 
             else:
+                print(1)
                 if self.HouseFulld.count(True) == 1:
                     if self.HouseFulld.index(True) == 0:
                         x = 0
@@ -184,7 +319,60 @@ class gameBord:
                             return ("Checkpoint1.1", 2)
                         else:
                             return ("Checkpoint2", 2)
-        
+
+                else:
+                    print(2)
+                    if self.HouseScann[0] != [None, None] and x != 0:
+                        print(3)
+                        if self.stickLoaden > 0:
+                            print(4)
+                            y = self.stickcolorKnow(point, 0)
+
+                            if not y:
+                                self.calculateNextMove(point, x=0)
+                            
+                            else:
+                                print(5)
+                                return y
+
+                        else:
+                            y = self.grippercolorKnow(point, 0)
+
+                            if not y:
+                                self.calculateNextMove(point, x=0)
+
+                    if self.HouseScann[1] != [None, None] and x != 1:
+                        if self.stickLoaden > 0:
+                            y = self.stickcolorKnow(point, 1)
+
+                            if not y:
+                                self.calculateNextMove(point, x=1)
+                            
+                            else:
+                                return y
+
+                        else:
+                            y = self.grippercolorKnow(point, 1)
+
+                            if not y:
+                                self.calculateNextMove(point, x=1)
+                    
+                    elif self.HouseScann[2] != [None, None] and x != 2:
+                        if self.stickLoaden > 0:
+                            y = self.stickcolorKnow(point, 2)
+
+                            if not y:
+                                self.calculateNextMove(point, x=2)
+                            
+                            else:
+                                return y
+
+                        else:
+                            y = self.grippercolorKnow(point, 2)
+
+                            if not y:
+                                self.calculateNextMove(point, x=2)
+
         elif point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"] and not self.HouseFulld[pp] and (pp == 0 and (not self.HouseScann == ["Blue", "Blue"] or not ("Blue" in self.HouseScann[0] and "None" in self.HouseScann[0])) or pp == 1 or pp == 2 and ("Blue" in self.HouseScann[2] and not self.HouseScann[1] == [None, None])): # 2
             if point == "Checkpoint1.0":
                 if "Yellow" in self.HouseScann[0]:

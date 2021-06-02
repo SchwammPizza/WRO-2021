@@ -44,7 +44,6 @@ class scan:
         
         else:
             color = "None"
-            print("ERROR")
         
         return color
 

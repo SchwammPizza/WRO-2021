@@ -24,7 +24,7 @@ class batery:
         DriveTrain.driveForward(-6.3, RC.fast_speed)
         RC.offset = 180
         GameBord.stickLoaden = False
-        GameBord.stickColor = ""
+        GameBord.stickColor = "None"
         GameBord.gripperLoaden = False
-        GameBord.gripperColor = ""
+        GameBord.gripperColor = "None"
         return

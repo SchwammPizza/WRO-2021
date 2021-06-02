@@ -36,6 +36,12 @@ class house:
 
         DriveTrain.driveForward(7, RC.speed)
         DriveTrain.driveForward(-7, RC.speed)
+        DriveTrain.turnOnPoint(180, RC.turn_speed)
+
+        GameBord.stickColor = "None"
+        GameBord.stickLoaden = 0
+        GameBord.gripperColor = "None"
+        GameBord.gripperLoaden = False
 
         #abladen, evtl. zuschieben, zurück(bis..?)
 
@@ -46,19 +52,19 @@ class house:
         right = Scan.scan_color_right() 
         print(right)
         if point == "Checkpoint1.0":
-            GameBord.HouseScann[0].append(left)
-            GameBord.HouseScann[0].append(right)
+            GameBord.HouseScann[0] = left
+            GameBord.HouseScann[0] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(-1, RC.speed)
             DriveTrain.followLine(RC.speed, 20) # drivetrain zeile 204
             DriveTrain.turnOnPoint(10, RC.turn_speed)
             RC.offset = 0
         elif point == "Checkpoint4.3":
-            GameBord.HouseScann[1].append(left)
-            GameBord.HouseScann[1].append(right)
+            GameBord.HouseScann[1] = left
+            GameBord.HouseScann[1] = right
         elif point == "Checkpoint6.1":
-            GameBord.HouseScann[2].append(left)
-            GameBord.HouseScann[2].append(right)
+            GameBord.HouseScann[2] = left
+            GameBord.HouseScann[2] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
