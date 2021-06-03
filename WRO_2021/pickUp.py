@@ -130,35 +130,35 @@ class pickUp:
         #side in left or right
         def pickUpG(self, side):
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(8.7, RC.fast_speed)
+            DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             RA.moveToPickupAGPosition()
-            DriveTrain.driveForward(6, RC.fast_speed)
-            RA.moveUp()
-            DriveTrain.driveForward(-6, RC.fast_speed)
+            DriveTrain.driveForward(5.5, RC.fast_speed)
+            RA.moveUp(speed=200)
+            DriveTrain.driveForward(-5.5, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(8.7, RC.fast_speed)
+            DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
         
         def pickUpB(self, side):
             if abs(RC.offset) == 90:
-                DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1) * RC.offset/abs(RC.offset), RC.turn_speed)
+                DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1) * RC.offset/abs(RC.offset), RC.turn_speed)
             elif RC.offset == 0 and side == "right":
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
             elif RC.offset == 180 and side == "left":
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
             DriveTrain.driveForward(7, RC.fast_speed)
-            DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1), RC.turn_speed)
             RA.moveToPickupABPosition()
             DriveTrain.driveForward(5, RC.fast_speed)
             RA.moveUp()
             DriveTrain.driveForward(-5, RC.fast_speed)
-            DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(-7, RC.fast_speed)
+            DriveTrain.turnOnPoint(-90 * ((side == "right") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(7, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
 
     def picker(self, point):
-        if point == "Checkpoint2.2":
+        if point == "Checkpoint2":
             if RC.YellowPickedA[0]:
                 self.Checkpoint2.YellowAGripper(self, "2.2.0")
                 RC.YellowPickedA[0] = False

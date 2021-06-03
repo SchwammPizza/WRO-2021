@@ -33,9 +33,9 @@ class RobotArm:
         self.gripperPosition = 0
         self.lifterPosition = 0
 
-    def moveUp(self):
+    def moveUp(self, speed=300):
         if self.lifterPosition == 1:
-            self.lifter.moveUp()
+            self.lifter.moveUp(speed)
         self.lifterPosition = 0
 
     def moveToGrippingPosition(self):
@@ -50,7 +50,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 110)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 107)
         self.lifterPosition = 1
         self.gripperPosition = 0
 

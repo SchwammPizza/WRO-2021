@@ -22,8 +22,8 @@ class Lifter:
         speed *= 9
         motor.LifterMotor.lifterMotor.run_angle(speed, angle)
         
-    def moveUp(self):
-        motor.LifterMotor.lifterMotor.run_until_stalled(-300, Stop.HOLD, None)
+    def moveUp(self, speed=300):
+        motor.LifterMotor.lifterMotor.run_until_stalled(-speed, Stop.HOLD, None)
         
     def runTrue(self, speed):
         speed *= 9

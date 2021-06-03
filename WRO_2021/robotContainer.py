@@ -32,7 +32,7 @@ class robotContainer:
 
     #RobotArm
     lifterSpeed = 50
-    lifterDistance = 99
+    lifterDistance = 95
 
     #Checkpoint
     offset = -180
