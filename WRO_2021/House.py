@@ -65,6 +65,11 @@ class house:
         elif point == "Checkpoint4.3":
             GameBord.HouseScann[1][0] = left
             GameBord.HouseScann[1][1] = right
+            DriveTrain.turnOnWheel(-90, RC.turnOnWheel_speed, "left")
+            DriveTrain.driveForward(2.5, -RC.speed)
+            DriveTrain.turnOnWheel(-90, RC.turnOnWheel_speed, "left")
+            DriveTrain.driveForward(12, -RC.speed)
+            DriveTrain.driveForward(3.5, RC.speed)
         elif point == "Checkpoint6.1":
             GameBord.HouseScann[2][0] = left
             GameBord.HouseScann[2][1] = right
