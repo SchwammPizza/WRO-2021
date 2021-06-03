@@ -19,12 +19,12 @@ class Lifter:
         pass
 
     def moveMotor(self, speed, angle):
-        speed *= 9
+        speed *= -9
         motor.LifterMotor.lifterMotor.run_angle(speed, angle)
         
     def moveUp(self, speed=300):
-        motor.LifterMotor.lifterMotor.run_until_stalled(-speed, Stop.HOLD, None)
+        motor.LifterMotor.lifterMotor.run_until_stalled(speed, Stop.HOLD, None)
         
     def runTrue(self, speed):
-        speed *= 9
+        speed *= -9
         motor.LifterMotor.lifterMotor.run(speed)
