@@ -73,16 +73,12 @@ class gameBord:
                         return ("Checkpoint1.1", 2)
             
             else:
-                if point in RC.Checkpoint6:
-                    if RC.obstacleBlueA:
-                        return ("Checkpoint5.1", 2)
-                    elif RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
+                if RC.obstacleBlueB == None:
+                    return ("Checkpoint5.0", 5)
+                if RC.obstacleBlueB:
+                    return ("Checkpoint5.0", 2)
                 else:
-                    if RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
-                    else:
-                        return ("Checkpoint5.1", 2)
+                    return ("Checkpoint5.1", 2)
         
         elif self.HouseScann[i][1] == self.stickColor:
             if self.HouseScann[i][0] == "Green":
@@ -104,16 +100,12 @@ class gameBord:
                         return ("Checkpoint1.1", 2)
             
             else:
-                if point in RC.Checkpoint6:
-                    if RC.obstacleBlueA:
-                        return ("Checkpoint5.1", 2)
-                    elif RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
+                if RC.obstacleBlueB == None:
+                    return ("Checkpoint5.0", 5)
+                if RC.obstacleBlueB:
+                    return ("Checkpoint5.0", 2)
                 else:
-                    if RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
-                    else:
-                        return ("Checkpoint5.1", 2)
+                    return ("Checkpoint5.1", 2)
 
         else:
             return False
@@ -139,16 +131,12 @@ class gameBord:
                         return ("Checkpoint1.1", 2)
             
             else:
-                if point in RC.Checkpoint6:
-                    if RC.obstacleBlueA:
-                        return ("Checkpoint5.1", 2)
-                    elif RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
+                if RC.obstacleBlueB == None:
+                    return ("Checkpoint5.0", 5)
+                if RC.obstacleBlueB:
+                    return ("Checkpoint5.0", 2)
                 else:
-                    if RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
-                    else:
-                        return ("Checkpoint5.1", 2)
+                    return ("Checkpoint5.1", 2)
         
         elif self.HouseScann[i][1] == self.gripperColor:
             if self.HouseScann[i][0] == "Green":
@@ -170,16 +158,12 @@ class gameBord:
                         return ("Checkpoint1.1", 2)
             
             else:
-                if point in RC.Checkpoint6:
-                    if RC.obstacleBlueA:
-                        return ("Checkpoint5.1", 2)
-                    elif RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
+                if RC.obstacleBlueB == None:
+                    return ("Checkpoint5.0", 5)
+                if RC.obstacleBlueB:
+                    return ("Checkpoint5.0", 2)
                 else:
-                    if RC.obstacleBlueB:
-                        return ("Checkpoint5.0", 2)
-                    else:
-                        return ("Checkpoint5.1", 2)
+                    return ("Checkpoint5.1", 2)
 
         else:
             return False
