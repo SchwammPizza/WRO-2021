@@ -961,7 +961,7 @@ class driveTrain:
                 self.turnOnPoint(-90, RC.turn_speed)
                 self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP6.0"])
                 self.turnOnPoint(90, RC.turn_speed)
-                self.driveForward(RC.CheckpointOn4Road["CP5"], RC.turn_speed)
+                self.driveForward(RC.CheckpointOn4Road["CP5"], RC.fast_speed)
                 self.turnOnPoint(-90*(int(point2[-1]) - 1), RC.turn_speed)
                 RC.offset = -90*(int(point2[-1]) - 1)
                 if point2 == "Checkpoint5.0":
