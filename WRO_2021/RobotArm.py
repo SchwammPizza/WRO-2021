@@ -23,10 +23,11 @@ class RobotArm:
         return InstanceBuffer.instance
 
     def resetPosition(self):
-        if self.lifterPosition == 1:
-            lifter.moveUp()
         if self.gripperPosition == 1:
             gripper.openGripper()
+        if self.lifterPosition == 1:
+            lifter.moveUp()
+        
         gripper.zeroAngle()
         self.gripperPosition = 0
         self.lifterPosition = 0
@@ -39,13 +40,17 @@ class RobotArm:
     def moveToGrippingPosition(self):
         if self.gripperPosition == 1:
             gripper.openGripper()
-        if self.lifterPosition == 0:
-            lifter.moveMotor(100, RC.lifterDistance)
+        if self.lifterPosition in [0, 2]:
+            if self.lifterPosition == 2:
+                lifter.moveMotor(100, RC.lifterDistance - 100)
+            else:
+                lifter.moveMotor(100, RC.lifterDistance)
         self.lifterPosition = 1
         self.gripperPosition = 0
     
     def moveToTransportPosition(self, speed):
         lifter.moveMotor(-speed, 100)
+        self.lifterPosition = 2
     
     def moveToPickupAGPosition(self):
         if self.gripperPosition == 1:

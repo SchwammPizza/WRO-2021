@@ -40,7 +40,9 @@ class driveTrain:
             speed *= -1
             distance *= -1
         if speed < 0:
-            distance -= 1
+            distance -= distance/25
+        elif speed > 0:
+            distance -= distance/50
         Motor.DriveTrain.driveLeft.reset_angle(0)
         Motor.DriveTrain.driveRight.reset_angle(0)
         motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
@@ -92,7 +94,7 @@ class driveTrain:
     def followLine(self, speed, distance):
         wheel_diameter = 5.45
         def lineDrive():
-            threshold = 65
+            threshold = 70
             leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
             rightReflected = Motor.DriveTrain.driveColorRight.reflection()
 
@@ -176,9 +178,9 @@ class driveTrain:
             self.followToLine(RC.fast_speed, RC.line)
             self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
             angle = math.acos((RC.wheel_distance - 0.5)/RC.wheel_distance) * 180/pi
-            distance = 18 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 # 22 aotte 18 sein
+            distance = 19 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 
             self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
-            self.turnOnWheel(angle+2, -RC.turnOnWheel_speed, "right")
+            self.turnOnWheel(angle, -RC.turnOnWheel_speed, "right")
             self.driveForward(distance, RC.fast_speed)
             RC.offset = 180
             return
