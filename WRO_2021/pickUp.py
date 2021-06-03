@@ -130,14 +130,14 @@ class pickUp:
         #side in left or right
         def pickUpG(self, side):
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(8.5, RC.fast_speed)
+            DriveTrain.driveForward(8.7, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             RA.moveToPickupAGPosition()
             DriveTrain.driveForward(6, RC.fast_speed)
             RA.moveUp()
             DriveTrain.driveForward(-6, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(8.5, RC.fast_speed)
+            DriveTrain.driveForward(8.7, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
         
         def pickUpB(self, side):

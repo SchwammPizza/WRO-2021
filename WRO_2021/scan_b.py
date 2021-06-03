@@ -14,13 +14,14 @@ class scan_b:
 
     def scan_bs(self, point, hold=False):
         anglemotor = Motor.Gripper.gripperMotor.angle()
+        print(anglemotor)
         RA.moveToGrippingPosition()
         RA.grip()
         
         time.sleep(0.5)
         anglemotor = Motor.Gripper.gripperMotor.angle()
         print(anglemotor)
-        if anglemotor >= -115:
+        if anglemotor >= -110:
             if not hold:
                 RA.resetPosition()
             else:

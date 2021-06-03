@@ -50,7 +50,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 115)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 110)
         self.lifterPosition = 1
         self.gripperPosition = 0
 

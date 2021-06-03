@@ -210,7 +210,6 @@ class gameBord:
             return ("Checkpoint4.0", 1) # 1 = Abladen bei Batterie
         
         elif self.stickLoaden > 0 or self.gripperLoaden: # 2
-            print(0)
             if not False in self.HouseFulld: # alle häuser abgeliferet
                 if self.lookIfSthOnPoint(point) and point in ["Checkpoint3", "Checkpoint5.1"]:
                     return (point, 2)
@@ -291,7 +290,6 @@ class gameBord:
                     return ("Checkpoint4.0", 1)
 
             else:
-                print(1)
                 if self.HouseFulld.count(True) == 1:
                     if self.HouseFulld.index(True) == 0:
                         x = 0
@@ -321,18 +319,14 @@ class gameBord:
                             return ("Checkpoint2", 2)
 
                 else:
-                    print(2)
                     if self.HouseScann[0] != [None, None] and x != 0:
-                        print(3)
                         if self.stickLoaden > 0:
-                            print(4)
                             y = self.stickcolorKnow(point, 0)
 
                             if not y:
                                 self.calculateNextMove(point, x=0)
                             
                             else:
-                                print(5)
                                 return y
 
                         else:
