@@ -58,8 +58,8 @@ class house:
             GameBord.HouseScann[0][1] = right
             time.sleep(0.2)
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
-            DriveTrain.driveForward(-0.5, RC.speed)
-            DriveTrain.followLine(RC.speed, 20) # drivetrain zeile 204
+            DriveTrain.driveForward(1.5, RC.speed)
+            DriveTrain.followLine(RC.speed, 19) # drivetrain zeile 204
             DriveTrain.turnOnPoint(10, RC.turn_speed)
             RC.offset = 0
         elif point == "Checkpoint4.3":
