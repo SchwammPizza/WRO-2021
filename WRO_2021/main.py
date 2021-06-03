@@ -1,5 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 # Roboter
+from scan import scan
 from pybricks.hubs import EV3Brick
 
 # eigene
@@ -9,9 +10,13 @@ from driveTrain import driveTrain
 from battery import batery
 from gamebord import gameBord as gB
 from pickUp import pickUp as pU
+from scan_b import scan_b
+from robotContainer import robotContainer as rc
 
 import time
 
+RC = rc().getInstance()
+SB = scan_b()
 PU = pU()
 GB = gB().getInstance()
 DriveTrain = driveTrain().getInstance()
@@ -55,6 +60,14 @@ while True:
         PU.Checkpoint2.grip_solar()
         point = turn[0]
         break
+
+    elif turn[1] == 5:
+        DriveTrain.driveChekpoints(point, turn[0], tada=turn[1])
+        SB.scan_bs(turn[0], hold=True)
+        if not RC.obstacleBlueB:
+            DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", tada=6)
+            PU.picker("Checkpoint5.1")
+            point = "Checkpoint5.1"
     
     time.sleep(0.1)
     print(point)
