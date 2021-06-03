@@ -40,7 +40,7 @@ class driveTrain:
             speed *= -1
             distance *= -1
         if speed < 0:
-            distance -= 2.5
+            distance -= 1
         Motor.DriveTrain.driveLeft.reset_angle(0)
         Motor.DriveTrain.driveRight.reset_angle(0)
         motor1 = -1 * Motor.DriveTrain.driveLeft.angle()

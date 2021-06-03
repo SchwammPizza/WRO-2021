@@ -96,7 +96,8 @@ class pickUp:
             RA.moveUp()
             DriveTrain.driveForward(10, RC.speed)
             DriveTrain.turnOnPoint(right, RC.turn_speed)
-            DriveTrain.driveForward(8.5, -RC.speed)
+            DriveTrain.driveForward(12.5, -RC.speed)
+            time.sleep(0.5)
             RA.putDown()
             RA.resetPosition()
 
@@ -109,7 +110,7 @@ class pickUp:
             # RA.resetPosition() 
         
             #2
-            DriveTrain.driveForward(42, -RC.speed)
+            DriveTrain.driveForward(38, -RC.speed)
             DriveTrain.turnOnWheel(-45, RC.turn_speed, "left")
             DriveTrain.turnOnPoint(-45, RC.turn_speed)
             DriveTrain.driveForward(2.5, -RC.speed)
@@ -132,10 +133,10 @@ class pickUp:
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(-3, RC.fast_speed)
             RA.moveToPickupAGPosition()
-            DriveTrain.driveForward(5.5, RC.fast_speed)
-            RA.moveUp(speed=200)
-            DriveTrain.driveForward(-5.5, RC.fast_speed)
+            DriveTrain.driveForward(3, RC.fast_speed)
+            RA.moveToTransportPosition(150)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
@@ -147,15 +148,16 @@ class pickUp:
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
             elif RC.offset == 180 and side == "left":
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
-            DriveTrain.driveForward(7, RC.fast_speed)
+            DriveTrain.driveForward(7.3, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(-4, RC.fast_speed)
             RA.moveToPickupABPosition()
-            DriveTrain.driveForward(5, RC.fast_speed)
-            RA.moveUp()
-            DriveTrain.driveForward(-5, RC.fast_speed)
-            DriveTrain.turnOnPoint(-90 * ((side == "right") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(7, RC.fast_speed)
+            DriveTrain.driveForward(3, RC.fast_speed)
+            RA.moveToTransportPosition(150)
+            DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(7.3, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            DriveTrain.driveForward(1, RC.fast_speed)
 
     def picker(self, point):
         if point == "Checkpoint2":
