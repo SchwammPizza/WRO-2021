@@ -1,5 +1,4 @@
-from battery import GameBord
-from pybricks.parameters import Color
+from gamebord import gameBord
 from RobotArm import RobotArm
 from driveTrain import driveTrain
 from Gripper import Gripper
@@ -10,12 +9,14 @@ from scan import scan
 
 import time
 
+GameBord = gameBord().getInstance()
 DriveTrain = driveTrain.getInstance()
 gripper = Gripper().getInstance()
 lifter = Lifter().getInstance()
 Motor = motor().getInstance()
 Scan = scan().getInstance()
 RC = rc().getInstance()
+RA = RobotArm().getInstance()
 
 class instanceBuffer:
     instance = 0
@@ -31,9 +32,9 @@ class house:
         pass
     
     def put_down(self):
-        RobotArm.moveToGrippingPosition()
-        Gripper.openGripper()
-        RobotArm.moveUp()
+        RA.moveToGrippingPosition()
+        gripper.openGripper()
+        RA.moveUp()
 
         DriveTrain.driveForward(7, RC.speed)
         DriveTrain.driveForward(-7, RC.speed)

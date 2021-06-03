@@ -1,18 +1,12 @@
-from House import DriveTrain
 from scan_b import scan_b
-from pybricks.robotics import DriveBase
 from motors import motor
 from robotContainer import robotContainer as rc 
-from math import pi 
+from math import pi
 import math
-import time
 
 SB = scan_b()
 Motor = motor().getInstance()
 RC = rc().getInstance()
-
-robot = DriveBase(Motor.DriveTrain.driveLeft, Motor.DriveTrain.driveRight, wheel_diameter = RC.wheel_diameter*10, axle_track = RC.wheel_distance *10 )
-robot.settings(RC.speed*10, RC.straightAcc*10, RC.turn_speed*10, RC.turnAcc*10)
 
 class instanceBuffer:
     instance = 0

@@ -1,15 +1,19 @@
-from robotContainer import robotContainer
-from Gripper import Gripper, GripperPositions
-from lifter import Lifter, LifterPositions
+from robotContainer import robotContainer as rc
+from Gripper import Gripper
+from lifter import Lifter
 import time
+
+gripper = Gripper().getInstance()
+lifter = Lifter().getInstance()
+RC = rc().getInstance()
 
 class InstanceBuffer:
     instance = 0
 
 class RobotArm:
     def __init__(self):
-        self.gripper = Gripper.getInstance()
-        self.lifter = Lifter.getInstance()
+        self.gripper = gripper.getInstance()
+        self.lifter = lifter.getInstance()
         self.lifterPosition = 1
         self.gripperPosition = 1
         self.resetPosition()
@@ -38,7 +42,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(100, robotContainer.getInstance().lifterDistance)
+            self.lifter.moveMotor(100, RC.getInstance().lifterDistance)
         self.lifterPosition = 1
         self.gripperPosition = 0
     
@@ -46,7 +50,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 115)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 115)
         self.lifterPosition = 1
         self.gripperPosition = 0
 
@@ -54,7 +58,7 @@ class RobotArm:
         if self.gripperPosition == 1:
             self.gripper.openGripper()
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 140)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 140)
         self.lifterPosition = 1
         self.gripperPosition = 0
 
@@ -62,7 +66,7 @@ class RobotArm:
         if self.gripperPosition != 0:
             self.gripper.openGripper()
         if self.lifterPosition != 1:
-            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, robotContainer.getInstance().lifterDistance)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, RC.getInstance().lifterDistance)
         self.lifterPosition = 1
         time.sleep(0.5)
         self.gripper.gripGripper()
@@ -75,10 +79,10 @@ class RobotArm:
     
     def putDown(self):
         if self.lifterPosition == 0:
-            self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 100)
+            self.lifter.moveMotor(RC.getInstance().lifterSpeed, 100)
         if self.gripperPosition == 1:
             self.gripper.openGripper()
-        self.lifter.moveMotor(robotContainer.getInstance().lifterSpeed, 20)
+        self.lifter.moveMotor(RC.getInstance().lifterSpeed, 20)
         self.gripperPosition = 0
         self.lifterPosition = 1
 

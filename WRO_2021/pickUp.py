@@ -1,11 +1,11 @@
-from pybricks.parameters import Direction
-from battery import GameBord
+from gamebord import gameBord
 from driveTrain import driveTrain
 from RobotArm import RobotArm
 from robotContainer import robotContainer as rc
 from lifter import Lifter
 import time
 
+GameBord = gameBord().getInstance()
 lifter = Lifter().getInstance()
 RC = rc().getInstance()
 RA = RobotArm().getInstance()
