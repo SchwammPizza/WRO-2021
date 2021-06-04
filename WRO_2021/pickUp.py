@@ -138,7 +138,7 @@ class pickUp:
             time.sleep(0.3)
             DriveTrain.driveForward(6, RC.fast_speed)
             RA.moveToTransportPosition(150)
-            DriveTrain.driveForward(-3, RC.fast_speed)
+            DriveTrain.driveForward(-3.5, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)

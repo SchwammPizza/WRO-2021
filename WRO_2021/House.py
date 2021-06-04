@@ -31,7 +31,7 @@ class house:
     def __init__(self):
         pass
     
-    def put_down(self):
+    def put_down(self, point):
         RA.moveToGrippingPosition()
         gripper.openGripper()
         RA.moveUp()
@@ -44,6 +44,8 @@ class house:
         GameBord.stickLoaden = 0
         GameBord.gripperColor = "None"
         GameBord.gripperLoaden = False
+        if point != "Checkpoint4.1":
+            DriveTrain.followToLine(RC.fast_speed, RC.line)
 
         #abladen, evtl. zuschieben, zurück(bis..?)
 
