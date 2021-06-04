@@ -168,7 +168,48 @@ class gameBord:
         else:
             return False
 
-    def calculateNextMove(self, point, x=-1): # returns Values ["Checkpoint", Number of action]
+    def lookHosue(self, point, i):
+        if point in RC.Checkpoint1+RC.Checkpoint4+["Checkpoint0"]:
+            if "Green" in self.HouseScann[i]:
+                if RC.obstacleGreenB and not self.gripperLoaden:
+                    return ("Checkpoint4.2", 2)
+                return ("Checkpoint3", 2)
+            elif "Yellow" in self.HouseScann[i]:
+                if RC.obstacleYellowB:
+                    return ("Checkpoint1.1", 2)
+                return ("Checkpoint2", 2)
+            else:
+                if RC.obstacleBlueB and not self.gripperLoaden:
+                    return ("Checkpoint5.0", 2)
+                return ("Checkpoint5.1", 2)
+        elif point in RC.Checkpoint2:
+            if "Yellow" in self.HouseScann[i]:
+                if RC.obstacleYellowB:
+                    return ("Checkpoint1.1", 2)
+                return ("Checkpoint2", 2)
+            elif "Green" in self.HouseScann[i]:
+                if RC.obstacleGreenB and not self.gripperLoaden:
+                    return ("Checkpoint4.2", 2)
+                return ("Checkpoint3", 2)
+            else:
+                if RC.obstacleBlueB and not self.gripperLoaden:
+                    return ("Checkpoint5.0", 2)
+                return ("Checkpoint5.1", 2)
+        else:
+            if "Yellow" in self.HouseScann[i]:
+                if RC.obstacleBlueB and not self.gripperLoaden:
+                    return ("Checkpoint5.0", 2)
+                return ("Checkpoint5.1", 2)
+            elif "Green" in self.HouseScann[i]:
+                if RC.obstacleGreenB and not self.gripperLoaden:
+                    return ("Checkpoint4.2", 2)
+                return ("Checkpoint3", 2)
+            else:
+                if RC.obstacleYellowB:
+                    return ("Checkpoint1.1", 2)
+                return ("Checkpoint2", 2)
+
+    def calculateNextMove(self, point, x=-1, live=False): # returns Values ["Checkpoint", Number of action]
         if point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"]:
             if point == "Checkpoint1.0":
                 pp = 0
@@ -434,6 +475,55 @@ class gameBord:
                 else:
                     return ("Checkpoint1.0", 3)
         
+        elif [self.gripperColor, self.stickColor].count("None") == 2:
+            if self.HouseScann.count([None, None]) == 2:
+                for i in range(3):
+                    if self.HouseScann[i] != [None, None] and not self.HouseFulld[i]:
+                        x = self.lookHosue(point, i)
+                del i
+                return x
+
+            else:
+                if point in RC.Checkpoint1+RC.Checkpoint4+["Checkpoint0"]:
+                    if "Green" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleGreenB and not self.gripperLoaden:
+                            return ("Checkpoint4.2", 2)
+                        return ("Checkpoint3", 2)
+                    elif "Yellow" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleYellowB:
+                            return ("Checkpoint1.1", 2)
+                        return ("Checkpoint2", 2)
+                    else:
+                        if RC.obstacleBlueB and not self.gripperLoaden:
+                            return ("Checkpoint5.0", 2)
+                        return ("Checkpoint5.1", 2)
+                elif point in RC.Checkpoint2:
+                    if "Yellow" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleYellowB:
+                            return ("Checkpoint1.1", 2)
+                        return ("Checkpoint2", 2)
+                    elif "Green" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleGreenB and not self.gripperLoaden:
+                            return ("Checkpoint4.2", 2)
+                        return ("Checkpoint3", 2)
+                    else:
+                        if RC.obstacleBlueB and not self.gripperLoaden:
+                            return ("Checkpoint5.0", 2)
+                        return ("Checkpoint5.1", 2)
+                else:
+                    if "Yellow" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleBlueB and not self.gripperLoaden:
+                            return ("Checkpoint5.0", 2)
+                        return ("Checkpoint5.1", 2)
+                    elif "Green" in self.HouseScann[0]+self.HouseScann[1]+self.HouseScann[2]:
+                        if RC.obstacleGreenB and not self.gripperLoaden:
+                            return ("Checkpoint4.2", 2)
+                        return ("Checkpoint3", 2)
+                    else:
+                        if RC.obstacleYellowB:
+                            return ("Checkpoint1.1", 2)
+                        return ("Checkpoint2", 2)
+        
         else:
-            return ("Checkpoint2.1", 4)
+            return ("Checkpoint2", 4)
             
