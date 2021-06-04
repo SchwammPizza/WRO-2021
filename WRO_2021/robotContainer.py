@@ -15,11 +15,11 @@ class robotContainer:
 
     #speed
     speed = 50
-    fast_speed = 50
+    fast_speed = 65
     slow_speed = 30
     approach_speed = 20
-    turn_speed = 35
-    turnOnWheel_speed = 50
+    turn_speed = 40
+    turnOnWheel_speed = 80
     slowturn_speed = 10
 
     # acceleration

@@ -29,6 +29,8 @@ class driveTrain:
             Motor.DriveTrain.driveRight.run(rightSpeed)
         
         def stop(self):
+            Motor.DriveTrain.driveLeft.stop()
+            Motor.DriveTrain.driveRight.stop()
             Motor.DriveTrain.driveLeft.hold()
             Motor.DriveTrain.driveRight.hold()
 
@@ -36,29 +38,32 @@ class driveTrain:
         pass
 
     def driveForward(self, distance, speed):
-        if distance < 0:
-            speed *= -1
-            distance *= -1
-        if speed < 0:
-            distance -= distance/25
-        elif speed > 0:
-            distance -= distance/50
-        Motor.DriveTrain.driveLeft.reset_angle(0)
-        Motor.DriveTrain.driveRight.reset_angle(0)
-        motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
-        motor2 = Motor.DriveTrain.driveRight.angle()
-        dist = ((motor1 + motor2) / 2) / 360
-        rotations = distance / (RC.wheel_diameter * pi)
-        if dist <= 0:
-            dist *= -1
-        self.tank_drive.on(self, speed, speed)
-        while rotations > dist:
+        if distance != 0:
+            if distance < 0:
+                speed *= -1
+                distance *= -1
+            # if speed < 0:
+            #     distance += -7*10**(-9)*distance**5 + 2*10**(-6)*distance**4 + 0.0003*distance**3 + 0.0125*distance**2 + 0.2545*distance - 0.6649
+            # elif speed > 0:
+            #     distance -= distance/50
+            if speed < 0:
+                distance -= 1.5
+            Motor.DriveTrain.driveLeft.reset_angle(0)
+            Motor.DriveTrain.driveRight.reset_angle(0)
             motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
             motor2 = Motor.DriveTrain.driveRight.angle()
             dist = ((motor1 + motor2) / 2) / 360
+            rotations = distance / (RC.wheel_diameter * pi)
             if dist <= 0:
                 dist *= -1
-        self.tank_drive.stop(self)
+            self.tank_drive.on(self, speed, speed)
+            while rotations > dist:
+                motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
+                motor2 = Motor.DriveTrain.driveRight.angle()
+                dist = ((motor1 + motor2) / 2) / 360
+                if dist <= 0:
+                    dist *= -1
+            self.tank_drive.stop(self)
   
     def turnOnPoint(self, degrees, speed):
         speed *= degrees/(abs(degrees))

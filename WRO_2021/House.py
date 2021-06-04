@@ -59,7 +59,7 @@ class house:
             time.sleep(0.2)
             DriveTrain.turnOnWheel(-200, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(1.5, RC.speed)
-            DriveTrain.followLine(RC.speed, 19.3) # drivetrain zeile 204
+            DriveTrain.followLine(RC.speed, 16.7) # drivetrain zeile 204
             DriveTrain.turnOnPoint(10, RC.turn_speed)
             RC.offset = 0
         elif point == "Checkpoint4.3":

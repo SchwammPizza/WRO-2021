@@ -23,9 +23,6 @@ DriveTrain = driveTrain().getInstance()
 robotArm = RobotArm.getInstance()
 Hous = house().getInstance()
 
-ev3 = EV3Brick()
-
-robotArm.resetPosition()
 point = "Checkpoint0"
 
 while True:
@@ -69,5 +66,4 @@ while True:
             PU.picker("Checkpoint5.1")
             point = "Checkpoint5.1"
     
-    time.sleep(0.1)
     print(point)
