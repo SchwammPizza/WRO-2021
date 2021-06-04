@@ -12,6 +12,7 @@ from gamebord import gameBord as gB
 from pickUp import pickUp as pU
 from scan_b import scan_b
 from robotContainer import robotContainer as rc
+from solar2 import solar2
 
 import time
 
@@ -25,10 +26,28 @@ Hous = house().getInstance()
 
 point = "Checkpoint0"
 RC.obstacleBlueB = True
-RC.obstacles()
-GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
+RC.obstacleGreenB = True
+# GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
 
-while True:
+# DriveTrain.driveForward(30, RC.fast_speed)
+# DriveTrain.driveForward(-30, RC.fast_speed)
+point2 = "Checkpoint2"
+point4 = "Checkpoint4.0"
+
+DriveTrain.driveChekpoints(point, point2)
+PU.picker(point2)
+DriveTrain.driveChekpoints(point2, point4)
+batery.putDown()
+DriveTrain.driveChekpoints(point4, point2)
+PU.picker(point2)
+DriveTrain.driveChekpoints(point2, point4)
+batery.putDown()
+DriveTrain.driveChekpoints(point4, point2)
+solar2.solar2(solar2)
+DriveTrain.driveChekpoints(point2, point)
+
+
+while False:
     turn = GB.calculateNextMove(point)
     print(turn)
     if turn[1] == 0:

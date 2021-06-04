@@ -224,6 +224,11 @@ class pickUp:
         elif point == "Checkpoint4.2":
             self.buttonPickUp.pickUp(self)
 
+            if RC.BluePosition in ["0.4", "0.2"]:
+                RC.BluePickedB[1] = False
+            else:
+                RC.BluePickedB[0] = False
+
             GameBord.gripperLoaden = True
             GameBord.gripperColor = "Green"
 
@@ -232,6 +237,11 @@ class pickUp:
             
         elif point == "Checkpoint5.0":
             self.buttonPickUp.pickUp(self)
+
+            if RC.BluePosition in ["0.4", "0.2"]:
+                RC.BluePickedB[1] = False
+            else:
+                RC.BluePickedB[0] = False
 
             GameBord.gripperColor = "Blue"
             GameBord.gripperLoaden = True
