@@ -620,13 +620,14 @@ class driveTrain:
                     self.driveForward(RC.CheckpointOn4Road["CP5"], RC.fast_speed)
                     self.turnOnPoint(-90*(int(point2[-1]) - 1), RC.turn_speed)
                     RC.offset = -90*(int(point2[-1]) - 1)
-                    if point1 == "Checkpoint5.0":
+                    if point2 == "Checkpoint5.0":
                         print(4)
-                        if RC.obstacleBlueB[1]:
+                        if RC.BluePickedB[1]:
+                            print(5)
                             self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5.0.4"], RC.fast_speed)
                             RC.BluePosition = "0.4"
                             print("Here 0.4")
-                        elif RC.obstacleBlueB[0]:
+                        elif RC.BluePickedB[0]:
                             self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5.0.3"], RC.fast_speed)
                             RC.BluePosition = "0.3"
                     return
