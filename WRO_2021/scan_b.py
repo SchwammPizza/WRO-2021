@@ -67,5 +67,7 @@ class scan_b:
                 RC.obstacleBlueB = False
                 RC.obstacles()
         
+
+
         
 
