@@ -30,15 +30,8 @@ class solar2:
         time.sleep(0.5)
         gripper.moveMotor(10, -30)
         lifter.moveUp()
+        dt.driveForward(8.75, -40)
 
 
-    def gripper_solar3(self):
-        gripper.moveMotor(30, -60)
-
-    def solar_3(self):
-        dt.driveForward(11.5, 25)
-        self.lifter_solar()
-        self.gripper_solar3()
-        dt.driveForward()
-
+ 
 
