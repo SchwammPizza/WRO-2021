@@ -24,6 +24,9 @@ robotArm = RobotArm.getInstance()
 Hous = house().getInstance()
 
 point = "Checkpoint0"
+RC.obstacleBlueB = True
+RC.obstacles()
+GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
 
 while True:
     turn = GB.calculateNextMove(point)
@@ -65,5 +68,7 @@ while True:
             DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", tada=6)
             PU.picker("Checkpoint5.1")
             point = "Checkpoint5.1"
+        else:
+            point = turn[0]
     
     print(point)

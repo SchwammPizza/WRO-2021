@@ -50,21 +50,21 @@ class RobotArm:
     
     def moveToTransportPosition(self, speed):
         lifter.moveMotor(-speed, 100)
-        self.lifterPosition = 2
+        self.lifterPosition = 100
     
     def moveToPickupAGPosition(self):
         if self.gripperPosition == 1:
             gripper.openGripper()
-        if self.lifterPosition == 0:
-            lifter.moveMotor(RC.lifterSpeed, 139)
+        if self.lifterPosition != 1:
+            lifter.moveMotor(RC.lifterSpeed, 139 - self.lifterPosition)
         self.lifterPosition = 1
         self.gripperPosition = 0
 
     def moveToPickupABPosition(self):
         if self.gripperPosition == 1:
             gripper.openGripper()
-        if self.lifterPosition == 0:
-            lifter.moveMotor(RC.lifterSpeed, 155)
+        if self.lifterPosition != 1:
+            lifter.moveMotor(RC.lifterSpeed, 155 - self.lifterPosition)
         self.lifterPosition = 1
         self.gripperPosition = 0
 
@@ -72,7 +72,7 @@ class RobotArm:
         if self.gripperPosition != 0:
             gripper.openGripper()
         if self.lifterPosition != 1:
-            lifter.moveMotor(RC.lifterSpeed, RC.getInstance().lifterDistance)
+            lifter.moveMotor(RC.lifterSpeed, RC.getInstance().lifterDistance - self.lifterPosition)
         self.lifterPosition = 1
         time.sleep(0.5)
         gripper.gripGripper()
