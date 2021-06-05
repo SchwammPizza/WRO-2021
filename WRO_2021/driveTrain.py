@@ -1,10 +1,8 @@
-from scan_b import scan_b
 from motors import motor
 from robotContainer import robotContainer as rc 
 from math import pi
 import math
 
-SB = scan_b()
 Motor = motor().getInstance()
 RC = rc().getInstance()
 

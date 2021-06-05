@@ -3,6 +3,7 @@ from driveTrain import driveTrain as dt
 from lifter import Lifter
 from Gripper import Gripper 
 from robotContainer import robotContainer as rc
+import time
 
 Motor = motor()
 DT = dt()
@@ -11,18 +12,19 @@ gripper = Gripper()
 RC = rc()
 
 class schaufel():
-    def __init__(self) -> None:
-        lifter.moveMotor(RC.speed, -180)
+    def __init__(self):
+        pass
 
     @staticmethod
     def schnapp():
         lifter.runTrue(RC.speed)
+        time.sleep(1.5)
     
     @staticmethod
     def entschnapp():
-        Motor.VorneMotor.VorneMotor.run_angle(RC.speed*9, 90)
-        Motor.VorneMotor.VorneMotor.hold()
+        Motor.VorneMotor.VorneMotor.run(-RC.speed)
 
+    @staticmethod
     def battery_heben():
         DT.driveForward(12, -RC.speed)
         lifter.moveMotor(RC.speed, -10)
