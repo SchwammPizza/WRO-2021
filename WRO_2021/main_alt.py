@@ -1,92 +1,46 @@
 #!/usr/bin/env pybricks-micropython
-# Roboter
 
-# eigene
+from schaufel import schaufel
 from driveTrain import driveTrain
-from solar2 import solar2
+from robotContainer import robotContainer as rc
 
-Solar2 = solar2()
 DriveTrain = driveTrain().getInstance()
+RC = rc().getInstance()
+S = schaufel()
 
-point = "Checkpoint0"
-# RC.obstacleBlueB = True
-# RC.obstacleGreenB = True
-# # GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
-
-# DriveTrain.driveForward(30, RC.fast_speed)
-# DriveTrain.driveForward(-30, RC.fast_speed)
-point2 = "Checkpoint2"
-point4 = "Checkpoint4.0"
-
-DriveTrain.driveChekpoints(point, point2)
-Solar2.solar2()
-DriveTrain.driveChekpoints(point2, point)
-
-while False:
-    turn = GB.calculateNextMove(point)
-    print(turn)
-    if turn[1] == 0:
-        DriveTrain.driveChekpoints(point, turn[0])
-        Hous.put_down()
-        point = turn[0]
-    
-    elif turn[1] == 1:
-        DriveTrain.driveChekpoints(point, turn[0])
-        batery.putDown()
-        point = turn[0]
-    
-    elif turn[1] == 2:
-        DriveTrain.driveChekpoints(point, turn[0])
-        PU.picker(turn[0])
-        point = turn[0]
-    
-    elif turn[1] == 3:
-        DriveTrain.driveChekpoints(point, turn[0])
-        Hous.house_scan(turn[0])
-        point = turn[0]
-        if point == "Checkpoint4.3":
-            point = "Checkpoint4.1"
-        elif point == "Checkpoint6.1":
-            point = "Checkpoint6.0"
-    
-    elif turn[1] == 4:
-        DriveTrain.driveChekpoints(point, turn[0])
-        PU.Checkpoint2.grip_solar()
-        point = turn[0]
-        break
-
-    elif turn[1] == 5:
-        DriveTrain.driveChekpoints(point, turn[0], tada=turn[1])
-        SB.scan_bs(turn[0], hold=True)
-        if not RC.obstacleBlueB:
-            DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", tada=6)
-            PU.picker("Checkpoint5.1")
-            point = "Checkpoint5.1"
-        else:
-            point = turn[0]
-    
-    print(point)
-
-# from Gripper import Gripper
-# gripper = Gripper()
-# from lifter import Lifter
-# lifter = Lifter()
-
-# lifter.moveUp()
-# gripper.closeGripper()
-# lifter.moveMotor(50, -RC.lifterDistance)
-
-# DriveTrain.driveChekpoints(point, "Checkpoint2")
-
-# from solar2 import solar2
-# Solar2 = solar2()
-# Solar2.solar2()
-
-# from solar2 import solar2
-# Solar2 =solar2()
-# Solar2.drive_solar()
-
-
-
-
-# PU.Checkpoint2.YellowAGripper()
+# zu gelben Hausding
+DriveTrain.followToLine(RC.fast_speed, RC.line)
+DriveTrain.followLine(RC.fast_speed, 47)
+DriveTrain.driveForward(12, RC.fast_speed)
+S.schnapp()
+#zurück zu 0
+DriveTrain.turnOnPoint(180, RC.turn_speed)
+S.entschnapp()
+DriveTrain.driveForward(12, RC.fast_speed)
+DriveTrain.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
+DriveTrain.driveForward(7, RC.fast_speed)
+#abgeladen
+DriveTrain.followToLine(-RC.fast_speed, RC.line)
+DriveTrain.turnOnPoint(180, RC.turn_speed)
+DriveTrain.followLine(RC.fast_speed, 24)
+DriveTrain.turnOnPoint(90, RC.fast_speed)
+DriveTrain.driveForward(22, RC.fast_speed)
+S.schnapp()
+DriveTrain.driveForward(46, RC.fast_speed)
+DriveTrain.turnOnPoint(-90, RC.turn_speed)
+DriveTrain.followLine(RC.fast_speed, 8.5)
+DriveTrain.turnOnPoint(90, RC.turn_speed)
+S.entschnapp()
+DriveTrain.driveForward(30, RC.fast_speed)
+S.schnapp()
+DriveTrain.driveForward(39.8, RC.fast_speed)
+DriveTrain.turnOnPoint(90, RC.fast_speed)
+DriveTrain.followLine(RC.fast_speed, 21)
+DriveTrain.turnOnPoint(-90, RC.turn_speed)
+S.entschnapp()
+DriveTrain.driveForward(25, RC.fast_speed)
+S.schnapp()
+DriveTrain.followToLine(-RC.fast_speed, RC.line)
+DriveTrain.turnOnPoint(-90, RC.fast_speed)
+DriveTrain.followLine(RC.fast_speed, 24.5)
+#battery
