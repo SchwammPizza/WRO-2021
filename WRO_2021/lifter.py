@@ -30,4 +30,4 @@ class Lifter:
         
     def runTrue(self, speed):
         speed *= -9
-        motor.LifterMotor.lifterMotor.run(speed)
+        motor.VorneMotor.VorneMotor.run(-speed)

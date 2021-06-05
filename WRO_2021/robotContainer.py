@@ -14,7 +14,7 @@ class robotContainer:
     wheel_distance_turn_on_point = 16.3
 
     #speed
-    speed = 50
+    speed = 85
     fast_speed = 65
     slow_speed = 30
     approach_speed = 20
