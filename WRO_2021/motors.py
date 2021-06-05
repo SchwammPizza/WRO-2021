@@ -24,8 +24,8 @@ class motor:
     #     ColorRight = ColorSensor(Port.S2)
     #     ColorLeft = ColorSensor(Port.S1)
 
-    # class LifterMotor:
-    #     lifterMotor = Motor(Port.D)
+    class VorneMotor:
+        VorneMotor = Motor(Port.A)
 
-    # class Gripper:
-    #     gripperMotor = Motor(Port.A)
+    class HintenMotor:
+        HintenMotor = Motor(Port.D)

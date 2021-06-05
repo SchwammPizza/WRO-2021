@@ -22,14 +22,11 @@ class Lifter:
         speed *= -9
         print(2)
         print(speed, angle)
-        # motor.LifterMotor.lifterMotor.run_angle(speed, -angle)
-        a = motor.LifterMotor.lifterMotor.angle()
-        print(a-angle)
-        motor.LifterMotor.lifterMotor.run_target(speed, a-angle)
+        motor.VorneMotor.VorneMotor.run_angle(speed, -angle)
         print("4213")
         
     def moveUp(self, speed=300):
-        motor.LifterMotor.lifterMotor.run_until_stalled(speed, Stop.HOLD, None)
+        motor.VorneMotor.VorneMotor.run_until_stalled(speed, Stop.HOLD, None)
         
     def runTrue(self, speed):
         speed *= -9

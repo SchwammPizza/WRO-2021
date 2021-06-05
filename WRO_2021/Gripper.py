@@ -20,25 +20,25 @@ class Gripper:
 
     def moveMotor(self, speed, angle):
         speed *= 10
-        motor.Gripper.gripperMotor.run_angle(speed, angle)
+        motor.HintenMotor.HintenMotor.run_angle(speed, angle)
 
     def openGripper(self):
-        motor.Gripper.gripperMotor.stop()
-        motor.Gripper.gripperMotor.run_until_stalled(1000, Stop.HOLD, duty_limit=None)
+        motor.HintenMotor.HintenMotor.stop()
+        motor.HintenMotor.HintenMotor.run_until_stalled(1000, Stop.HOLD, duty_limit=None)
 
     def closeGripper(self):
-        motor.Gripper.gripperMotor.run_until_stalled(-1200, Stop.HOLD, duty_limit=None)
-        motor.Gripper.gripperMotor.hold()
+        motor.HintenMotor.HintenMotor.run_until_stalled(-1200, Stop.HOLD, duty_limit=None)
+        motor.HintenMotor.HintenMotor.hold()
     
     def gripGripper(self):
-        motor.Gripper.gripperMotor.run(-1200)
+        motor.HintenMotor.HintenMotor.run(-1200)
 
     def runTrue(self, speed):
         speed *= 10
-        motor.Gripper.gripperMotor.run(speed)
+        motor.HintenMotor.HintenMotor.run(speed)
 
     def zeroAngle(self):
-        motor.Gripper.gripperMotor.reset_angle(0)
+        motor.HintenMotor.HintenMotor.reset_angle(0)
 
     def getAngle(self):
-        return motor.Gripper.gripperMotor.angle()
+        return motor.HintenMotor.HintenMotor.angle()
