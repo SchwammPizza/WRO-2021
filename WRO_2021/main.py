@@ -20,15 +20,16 @@ import time
 RC = rc().getInstance()
 SB = scan_b()
 PU = pU()
+Solar2 = solar2()
 GB = gB().getInstance()
 DriveTrain = driveTrain().getInstance()
-robotArm = RobotArm.getInstance()
+# robotArm = RobotArm.getInstance()
 Hous = house().getInstance()
 
 point = "Checkpoint0"
-RC.obstacleBlueB = True
-RC.obstacleGreenB = True
-# GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
+# RC.obstacleBlueB = True
+# RC.obstacleGreenB = True
+# # GB.HouseScann = [["Green", "Blue"], ["Yellow", "Green"], ["Blau", "None"]]
 
 # DriveTrain.driveForward(30, RC.fast_speed)
 # DriveTrain.driveForward(-30, RC.fast_speed)
@@ -44,8 +45,9 @@ PU.picker(point2)
 DriveTrain.driveChekpoints(point2, point4)
 batery.putDown()
 DriveTrain.driveChekpoints(point4, point2)
-solar2.solar2(solar2)
+Solar2.solar2()
 DriveTrain.driveChekpoints(point2, point)
+
 
 
 while False:
@@ -101,3 +103,28 @@ while False:
 # lifter.moveUp()
 # gripper.closeGripper()
 # lifter.moveMotor(50, -RC.lifterDistance)
+
+# DriveTrain.driveChekpoints(point, "Checkpoint2")
+
+# from solar2 import solar2
+# Solar2 = solar2()
+# Solar2.solar2()
+
+# from solar2 import solar2
+# Solar2 =solar2()
+# Solar2.drive_solar()
+
+from lifter import Lifter
+lifter = Lifter()
+from Gripper import Gripper
+gripper = Gripper()
+from RobotArm import RobotArm as ra
+RA = ra().getInstance()
+
+lifter.moveUp()
+RA.moveToGrippingPosition()
+gripper.closeGripper()
+lifter.moveUp()
+
+
+# PU.Checkpoint2.YellowAGripper()

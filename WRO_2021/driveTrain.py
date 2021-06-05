@@ -262,7 +262,7 @@ class driveTrain:
                 self.turnOnPoint(90, RC.turn_speed)
                 self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP2"])
                 self.turnOnPoint(90, RC.turn_speed)
-                self.followToLine(RC.fast_speed, RC.line)
+                self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP2"])
                 RC.offset = 0
                 return
 
