@@ -16,7 +16,7 @@ class schaufel():
 
     @staticmethod
     def schnapp():
-        lifter.moveMotor(RC.speed, 90)
+        lifter.runTrue(RC.speed)
     
     @staticmethod
     def entschnapp():
@@ -24,9 +24,13 @@ class schaufel():
         Motor.VorneMotor.VorneMotor.hold()
 
     def battery_heben():
-        DT.driveForward()
-        lifter.moveMotor(RC.speed, 10)
-        DT.driveForward()
+        DT.driveForward(12, -RC.speed)
+        lifter.moveMotor(RC.speed, -10)
+        DT.driveForward(5, RC.speed)
+        lifter.moveMotor(RC.speed, 20)
+        DT.driveForward(20, -RC.speed)
+        lifter.moveMotor(RC.speed, -50)
+        
 
 
     def grabBlueA(self):
