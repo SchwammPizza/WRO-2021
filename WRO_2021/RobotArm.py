@@ -70,12 +70,16 @@ class RobotArm:
 
     def grip(self):
         if self.gripperPosition != 0:
+            print(1)
             gripper.openGripper()
         if self.lifterPosition != 1:
-            lifter.moveMotor(RC.lifterSpeed, RC.getInstance().lifterDistance - self.lifterPosition)
+            print(2)
+            lifter.moveMotor(RC.lifterSpeed, RC.lifterDistance)
         self.lifterPosition = 1
         time.sleep(0.5)
+        print(3)
         gripper.gripGripper()
+        print(4)
         self.gripperPosition = 1
 
     def release(self):

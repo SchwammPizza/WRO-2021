@@ -50,13 +50,15 @@ class pickUp:
 
             # DriveTrain.driveForward(RC.speed, 5) => RobotContainer driveForward to pick
             DriveTrain.driveForward(5, RC.speed)
-
-            pickUp.buttonPickUp.pickUp()
+            print("Du Hurensohn")
+            pickUp.buttonPickUp.pickUp(pickUp)
+            print("Flo isch e Hure")
 
             DriveTrain.driveForward(-5, RC.speed)
-            DriveTrain.turnToLine(-RC.turn_speed, RC.line)
+            DriveTrain.turnOnPoint(right, RC.turn_speed)
             DriveTrain.followLine(RC.speed, dist)
             RC.offset = -90*(-1)**int(direction[-1])
+            print("Drekiger hure")
             #start von 2 return 0, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
 
         def grip_solar(self):
@@ -120,9 +122,12 @@ class pickUp:
             pass
 
         def pickUp(self):
+            print("Flo")
             RA.grip()
+            print("isch")
             time.sleep(0.25)
             RA.moveUp()
+            print("Hurig")
     
     class pickupA:
         def __init__(self):

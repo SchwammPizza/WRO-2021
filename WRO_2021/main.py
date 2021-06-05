@@ -13,6 +13,7 @@ from pickUp import pickUp as pU
 from scan_b import scan_b
 from robotContainer import robotContainer as rc
 from solar2 import solar2
+from motors import motor
 
 import time
 
@@ -91,3 +92,12 @@ while False:
             point = turn[0]
     
     print(point)
+
+# from Gripper import Gripper
+# gripper = Gripper()
+# from lifter import Lifter
+# lifter = Lifter()
+
+# lifter.moveUp()
+# gripper.closeGripper()
+# lifter.moveMotor(50, -RC.lifterDistance)
