@@ -20,12 +20,12 @@ class motor:
         driveColorLeft = ColorSensor(Port.S4)
         driveColorRight = ColorSensor(Port.S3)
     
-    class Energy:
-        ColorRight = ColorSensor(Port.S2)
-        ColorLeft = ColorSensor(Port.S1)
+    # class Energy:
+    #     ColorRight = ColorSensor(Port.S2)
+    #     ColorLeft = ColorSensor(Port.S1)
 
-    class LifterMotor:
-        lifterMotor = Motor(Port.D)
+    # class LifterMotor:
+    #     lifterMotor = Motor(Port.D)
 
-    class Gripper:
-        gripperMotor = Motor(Port.A)
+    # class Gripper:
+    #     gripperMotor = Motor(Port.A)

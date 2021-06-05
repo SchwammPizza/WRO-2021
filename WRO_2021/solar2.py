@@ -1,3 +1,4 @@
+
 from lifter import Lifter
 from Gripper import Gripper
 from robotContainer import robotContainer as rc
@@ -24,15 +25,8 @@ class solar2:
         gripper.moveMotor(50, -81)
 
     def solar2(self):
-        self.lifter_solar()
-        self.gripper_solar()
-        dt.driveForward(8.75, 20)
-        time.sleep(0.3)
-        gripper.moveMotor(10, 23)
-        time.sleep(0.5)
-        gripper.moveMotor(10, -30)
-        lifter.moveUp()
-        dt.driveForward(8.75, -40)
+        dt.driveForward(8.75, RC.fast_speed)
+        dt.driveForward(-8.75, RC.fast_speed)
 
     def drive_solar(self):
         left = 90

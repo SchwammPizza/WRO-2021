@@ -19,7 +19,7 @@ class Lifter:
         pass
 
     def moveMotor(self, speed, angle):
-        speed *= 9
+        speed *= -9
         print(2)
         print(speed, angle)
         # motor.LifterMotor.lifterMotor.run_angle(speed, -angle)
