@@ -44,26 +44,3 @@ class schaufel():
         self.schnapp()
         DT.driveForward(70, RC.speed)
         self.entschnapp()
-
-
-
-    def grabBlueA(self):
-        pass
-        # drive to blue 
-        # => optimieren
-
-        # DT.turnOnPoint(-90, RC.speed)
-        # DT.driveForward(-18, RC.speed)
-        # lifter.moveMotor(-RC.lifterSpeed, 75)
-        # DT.driveForward(6, RC.speed)
-        # lifter.moveMotor(RC.lifterSpeed, 50) 
-        # DT.driveForward(12, RC.speed)
-        # DT.turnOnPoint(90, RC.turn_speed)
-        # DT.driveForward(17, RC.speed)
-        # DT.turnOnPoint(-90, RC.speed)
-        # DT.driveForward(-18, RC.speed)
-
-        # evtl oben lassen falls irgendwo reintun
-        # sonst:
-        # mehr zurückfahren um abladen+einnehmen
-        # lifter.moveMotor()
