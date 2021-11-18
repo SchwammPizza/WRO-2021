@@ -32,11 +32,11 @@ class robotContainer:
     # LOW_AGGRESSION = 13
     # HIGH_AGGRESSION = 15
     # LOW_AGGRESSION = 10
-    LOW_AGGRESSION = 13
-    HIGH_AGGRESSION = 18
+    # LOW_AGGRESSION = 13
+    # HIGH_AGGRESSION = 18
     #RobotArm
     lifterSpeed = 50
-    lifterDistance = 95+38
+    lifterDistance = 133 #95+38
 
     #Checkpoint
     offset = -180
@@ -47,8 +47,8 @@ class robotContainer:
     Checkpoint5 = ["Checkpoint5.0", "Checkpoint5.1"]
     Checkpoint6 = ["Checkpoint6.0", "Checkpoint6.1"]
 
-    StandardDistances = {"CP0.0": 48, "CP0.1": 12.5, "HouseScan": 18.5, "House": 24.7, "CP4.3": 11.4, "CP4.2": 19}
-    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 21.5, "CP1.1": 33.5, "CP2": 67.2, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.1": 157.4, "CP5.0.2": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 190.3, "CP4.2.0": 95, "CP4.2.1": 104.4, "CP4.2.2": 124.4, "CP4.2.3": 113.9}
+    StandardDistances = {"CP0.0": 48, "CP0.1": 12.5, "HouseScan": 18.5, "House": 20, "CP4.3": 11.4, "CP4.2": 19}
+    CheckpointOnMainRoad = {"CP0": 0, "CP1.0": 21.5, "CP1.1": 33.5, "CP2": 67.2, "CP3": 82.1, "CP4": 135.4, "CP6.1": 164.3, "CP6.0": 184.3, "CP5.0.1": 157.4, "CP5.0.2": 166.4, "CP5.0.3": 177.2, "CP5.0.4": 187, "CP5.1": 192.3, "CP4.2.0": 95, "CP4.2.1": 104.4, "CP4.2.2": 124.4, "CP4.2.3": 113.9}
     CheckpointOn4Road = {"CP4.0": 0, "CP5": 36.8, "CP2": 40, "CP4.1": 59, "CP4.2": 14, "CP4.3": 43.1, "CP1.1.0": 39.2, "CP1.1.1": 29.8, "CP1.1.2": 10, "CP1.1.3": 19.2}
 
     #Obstacle

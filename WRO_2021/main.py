@@ -10,6 +10,7 @@ import time
 from pybricks import parameters
 from pybricks.parameters import Color
 from pybricks.hubs import EV3Brick
+from RobotArm import RobotArm
 from driveTrain import driveTrain
 from motors import motor
 from solar2 import solar2
@@ -44,12 +45,7 @@ time.sleep(1)
 
 brick.light.on(Color.GREEN)
 
-DriveTrain.driveChekpoints(point, "Checkpoint0")
-Hous.house_scan("Checkpoint0")
-DriveTrain.driveChekpoints("Checkpoint1.0", "Checkpoint2")
-DriveTrain.drive
-
-while False:
+while True:
     turn = GB.calculateNextMove(point)
     print(turn)
     if turn[1] == 0:

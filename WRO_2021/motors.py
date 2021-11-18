@@ -28,6 +28,10 @@ class motor:
         ColorRight = ColorSensor(Port.S2)
         ColorLeft = ColorSensor(Port.S1)
 
-    class Lifter: Lifter = Motor(Port.A)
+    class Lifter: 
+        Lifter = Motor(Port.A)
+        Lifter.control.limits(1000, 1000, 100)
 
-    class Gripper: Gripper = Motor(Port.D)
+    class Gripper: 
+        Gripper = Motor(Port.D)
+        Gripper.control.limits(1000, 1000, 100)

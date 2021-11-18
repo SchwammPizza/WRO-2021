@@ -33,12 +33,11 @@ class house:
         pass
     
     def put_down(self, point):
-        RA.moveToGrippingPosition()
-        gripper.openGripper()
+        RA.putDown()
+        DriveTrain.driveForward(-3.5, RC.speed)
         RA.moveUp()
 
-        DriveTrain.driveForward(7, RC.speed)
-        DriveTrain.driveForward(-7, RC.speed)
+        DriveTrain.driveForward(3.5, RC.speed)
         DriveTrain.turnOnPoint(180, RC.turn_speed)
 
         GameBord.stickColor = "None"
@@ -47,6 +46,8 @@ class house:
         GameBord.gripperLoaden = False
         if point != "Checkpoint4.1":
             DriveTrain.followToLine(RC.fast_speed, RC.line)
+        
+        RC.offset = 0
 
         #abladen, evtl. zuschieben, zurück(bis..?)
 
