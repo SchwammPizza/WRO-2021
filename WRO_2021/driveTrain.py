@@ -1,10 +1,12 @@
+import time
 from motors import motor
 from robotContainer import robotContainer as rc 
+from scan_b import scan_b as sb
 from math import pi
-import math
 
-Motor = motor().getInstance()
-RC = rc().getInstance()
+Motor = motor.getInstance()
+SB = sb()
+RC = rc.getInstance()
 
 class instanceBuffer:
     instance = 0
@@ -25,6 +27,35 @@ class driveTrain:
             rightSpeed *= 10
             Motor.DriveTrain.driveLeft.run(-leftSpeed)
             Motor.DriveTrain.driveRight.run(rightSpeed)
+
+        def on_degrees(self, speedLeft, speedRight, degrees):
+            speedLeft *= -10
+            speedRight *= 10
+            
+            Motor.DriveTrain.driveLeft.run_angle(speedLeft, degrees, wait=False)
+            Motor.DriveTrain.driveRight.run_angle(speedRight, degrees, wait=True)
+
+            Motor.DriveTrain.driveLeft.stop()
+            Motor.DriveTrain.driveRight.stop()
+            Motor.DriveTrain.driveLeft.hold()
+            Motor.DriveTrain.driveRight.hold()
+
+            # def runLeft(speed, deg):
+            #     Motor.DriveTrain.driveLeft.run_angle(speed, deg)
+
+            # def runRight(speed, deg):
+            #     Motor.DriveTrain.driveRight.run_angle(speed, deg)
+
+            # leftWorker = Thread(target = runLeft, args = [speedLeft, degrees]).start()
+            # rightWorker = Thread(target = runRight, args = [speedRight, degrees]).start()
+            # leftWorker.start()
+            # rightWorker.start()
+
+            # leftWorker.join()
+            # rightWorker.join()
+            # print("Finished")
+            # # Motor.DriveTrain.driveLeft.run_angle(speedLeft, degrees)
+            # Motor.DriveTrain.driveRight.run_angle(speedRight, degrees)
         
         def stop(self):
             Motor.DriveTrain.driveLeft.stop()
@@ -46,42 +77,51 @@ class driveTrain:
             #     distance -= distance/50
             if speed < 0:
                 distance -= 1.5
-            Motor.DriveTrain.driveLeft.reset_angle(0)
-            Motor.DriveTrain.driveRight.reset_angle(0)
-            motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
-            motor2 = Motor.DriveTrain.driveRight.angle()
-            dist = ((motor1 + motor2) / 2) / 360
-            rotations = distance / (RC.wheel_diameter * pi)
-            if dist <= 0:
-                dist *= -1
-            self.tank_drive.on(self, speed, speed)
-            while rotations > dist:
-                motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
-                motor2 = Motor.DriveTrain.driveRight.angle()
-                dist = ((motor1 + motor2) / 2) / 360
-                if dist <= 0:
-                    dist *= -1
-            self.tank_drive.stop(self)
+
+            # Motor.DriveTrain.driveLeft.reset_angle(0)
+            # Motor.DriveTrain.driveRight.reset_angle(0)
+            # motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
+            # motor2 = Motor.DriveTrain.driveRight.angle()
+
+            # dist = ((motor1 + motor2) / 2) / 360
+
+            # rotations = distance / (RC.wheel_diameter * pi)
+            degrees = distance / (RC.wheel_diameter * pi) * 360
+            self.tank_drive.on_degrees(self, speed, speed, degrees)
+
+            # if dist <= 0:
+            #     dist *= -1
+            # self.tank_drive.on(self, speed, speed)
+
+            # while rotations > dist:
+            #     motor1 = -1 * Motor.DriveTrain.driveLeft.angle()
+            #     motor2 = Motor.DriveTrain.driveRight.angle()
+            #     dist = ((motor1 + motor2) / 2) / 360
+            #     if dist <= 0:
+            #         dist *= -1
+            # self.tank_drive.stop(self)
   
     def turnOnPoint(self, degrees, speed):
         speed *= degrees/(abs(degrees))
         degrees = abs(degrees)
-        Motor.DriveTrain.driveLeft.reset_angle(0)
-        Motor.DriveTrain.driveRight.reset_angle(0)
-        motor1 = Motor.DriveTrain.driveLeft.angle() 
-        motor2 = Motor.DriveTrain.driveRight.angle()
-        dist = ((motor1 + motor2) / 2) / 360
-        rotation = (degrees * RC.wheel_distance_turn_on_point) / (360 * RC.wheel_diameter)
-        if dist <= 0:
-            dist *= -1
+        # Motor.DriveTrain.driveLeft.reset_angle(0)
+        # Motor.DriveTrain.driveRight.reset_angle(0)
+        # motor1 = Motor.DriveTrain.driveLeft.angle() 
+        # motor2 = Motor.DriveTrain.driveRight.angle()
+        # dist = ((motor1 + motor2) / 2) / 360
+        # rotation = (degrees * RC.wheel_distance_turn_on_point) / (360 * RC.wheel_diameter)
+        degrees = (degrees * RC.wheel_distance_turn_on_point) / RC.wheel_diameter
+        # if dist <= 0:
+        #     dist *= -1
 
-        self.tank_drive.on(self, -speed, speed)
-        while rotation > dist:
-            motor1 = Motor.DriveTrain.driveLeft.angle()
-            motor2 = Motor.DriveTrain.driveRight.angle()
-            dist = (motor1 + motor2) / 2 / 360
-            if dist <= 0:
-                dist *= -1
+        self.tank_drive.on_degrees(self, -speed, speed, degrees)
+        # self.tank_drive.on(self, -speed, speed)
+        # while rotation > dist:
+        #     motor1 = Motor.DriveTrain.driveLeft.angle()
+        #     motor2 = Motor.DriveTrain.driveRight.angle()
+        #     dist = (motor1 + motor2) / 2 / 360
+        #     if dist <= 0:
+        #         dist *= -1
 
         self.tank_drive.stop(self)
 
@@ -97,15 +137,22 @@ class driveTrain:
     def followLine(self, speed, distance):
         wheel_diameter = 5.45
         def lineDrive():
-            threshold = 70
+            hardThreshold = 50
+            softThreshold = 70
             leftReflected = Motor.DriveTrain.driveColorLeft.reflection()
             rightReflected = Motor.DriveTrain.driveColorRight.reflection()
 
-            if(leftReflected < threshold):
-                self.tank_drive.on(self, speed, speed + RC.LOW_AGGRESSION)
+            if(leftReflected < softThreshold):
+                if (leftReflected < hardThreshold):
+                    self.tank_drive.on(self, speed, speed + RC.HIGH_AGGRESSION)
+                else:
+                    self.tank_drive.on(self, speed, speed + RC.LOW_AGGRESSION)
             else:
-                if(rightReflected < threshold):
-                    self.tank_drive.on(self, speed + RC.LOW_AGGRESSION, speed)
+                if(rightReflected < softThreshold):
+                    if (rightReflected < hardThreshold):
+                        self.tank_drive.on(self, speed + RC.HIGH_AGGRESSION, speed)
+                    else:
+                        self.tank_drive.on(self, speed + RC.LOW_AGGRESSION, speed)
                 else:
                     self.tank_drive.on(self, speed, speed)
 
@@ -152,12 +199,12 @@ class driveTrain:
     def getSensorStates(self, colors):
         #returns if both sensors match to the color
         values = [0, 0]
-        threshold = 70
+        hardThreshold = 70
         left = Motor.DriveTrain.driveColorLeft.reflection()
-        if left < threshold:
+        if left < hardThreshold:
             left = "Black"
         right = Motor.DriveTrain.driveColorRight.reflection()
-        if right < threshold:
+        if right < hardThreshold:
             right = "Black"
         sensor_values = [left, right]
         for i in range(len(sensor_values)):
@@ -237,11 +284,12 @@ class driveTrain:
             if point2 == "Checkpoint1.0":
                 self.followToLine(RC.fast_speed, RC.line)
                 self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
-                angle = math.acos((RC.wheel_distance - 0.5)/RC.wheel_distance) * 180/pi
-                distance = 19 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 
-                self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
-                self.turnOnWheel(angle, -RC.turnOnWheel_speed, "right")
-                self.driveForward(distance, RC.fast_speed)
+                # angle = math.acos((RC.wheel_distance - 0.5)/RC.wheel_distance) * 180/pi
+                # distance = 20 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 
+                # self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
+                # self.turnOnWheel(angle, -RC.turnOnWheel_speed, "right")
+                # self.driveForward(distance, RC.fast_speed)
+                self.driveForward(21,RC.fast_speed)
                 RC.offset = 180
                 return
             
@@ -282,7 +330,9 @@ class driveTrain:
                     self.driveForward(RC.CheckpointOn4Road["CP1.1" + RC.YellowPosition], -RC.fast_speed * direktion)
 
             if point2 == "Checkpoint0":
-                self.turnOnPoint(90 ,RC.turn_speed*direktion)
+                
+                if abs(RC.offset) != 90: self.turnOnPoint(90 ,RC.turn_speed*direktion)
+                elif RC.offset == -90: self.turnOnPoint(180, RC.turn_speed)
                 self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP1." + point1[-1]])
                 self.turnOnPoint(90, -RC.turn_speed)
                 self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
@@ -290,7 +340,7 @@ class driveTrain:
                 return
 
             else:
-                self.turnOnPoint(90, -RC.turn_speed*direktion)
+                if abs(RC.offset) != 90: self.turnOnPoint(90, -RC.turn_speed*direktion)
                 
                 if point2 == "Checkpoin1.1":
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP1.1"] - RC.CheckpointOnMainRoad["CP1.0"])
@@ -947,7 +997,7 @@ class driveTrain:
                         RC.BluePosition = "0.3"
                         return
 
-            elif ((point1 == "Checkpoint5.0" and not RC.BluePickedB[0]) or (point1 == "Checkpoint5.1" and not RC.BluePickedB)) and point2 not in RC.Checkpoint6:  # wenn der Roboter in Richtung 90 fahren soll
+            elif ((point1 == "Checkpoint5.0" and not RC.BluePickedB[0] and not RC.obstacleBlueB == None) or (point1 == "Checkpoint5.1" and not RC.BluePickedB and not RC.obstacleBlueB == None)) and point2 not in RC.Checkpoint6:  # wenn der Roboter in Richtung 90 fahren soll
                 if point2 == "Checkpoint4.3":
                     self.driveForward(RC.CheckpointOnMainRoad["CP5."+RC.BluePosition] - RC.CheckpointOnMainRoad["CP4"] - 20, RC.fast_speed*(RC.offset/abs(RC.offset)))
                     self.turnOnPoint(-90*RC.offset/abs(RC.offset), RC.turn_speed)

@@ -12,8 +12,7 @@ gripper = Gripper()
 RC = rc()
 
 class schaufel():
-    def __init__(self):
-        pass
+    def __init__(self): pass
 
     @staticmethod
     def schnapp():
@@ -21,8 +20,7 @@ class schaufel():
         time.sleep(1.5)
     
     @staticmethod
-    def entschnapp():
-        Motor.VorneMotor.VorneMotor.run(-RC.speed)
+    def entschnapp(): Motor.Lifter.Lifter.run(-RC.speed)
 
     @staticmethod
     def battery_heben():

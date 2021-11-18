@@ -3,10 +3,10 @@ from robotContainer import robotContainer as rc
 from driveTrain import driveTrain
 from gamebord import gameBord
 
-GameBord = gameBord().getInstance()
-DriveTrain = driveTrain().getInstance()
-RC = rc().getInstance()
-robotArm = RobotArm().getInstance()
+GameBord = gameBord.getInstance()
+DriveTrain = driveTrain.getInstance()
+RC = rc.getInstance()
+robotArm = RobotArm.getInstance()
 
 class batery:
     def __init__(self):

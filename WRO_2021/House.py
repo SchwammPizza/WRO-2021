@@ -6,17 +6,18 @@ from lifter import Lifter
 from robotContainer import robotContainer as rc
 from motors import motor
 from scan import scan
+from math import cos, sin, pi
 
 import time
 
-GameBord = gameBord().getInstance()
+GameBord = gameBord.getInstance()
 DriveTrain = driveTrain.getInstance()
-gripper = Gripper().getInstance()
-lifter = Lifter().getInstance()
-Motor = motor().getInstance()
-Scan = scan().getInstance()
-RC = rc().getInstance()
-RA = RobotArm().getInstance()
+gripper = Gripper.getInstance()
+lifter = Lifter.getInstance()
+Motor = motor.getInstance()
+Scan = scan.getInstance()
+RC = rc.getInstance()
+RA = RobotArm.getInstance()
 
 class instanceBuffer:
     instance = 0
@@ -51,20 +52,23 @@ class house:
 
 
     def house_scan(self, point):
-        left = Scan.scan_color_left() 
-        print(left)
-        right = Scan.scan_color_right() 
-        print(right)
+        # left = Scan.scan_color_left() 
+        # print(left)
+        # right = Scan.scan_color_right() 
+        # print(right)
         if point == "Checkpoint1.0":
+            left = "Blue"
+            right = "None"
             GameBord.HouseScann[0][0] = left
             GameBord.HouseScann[0][1] = right
             time.sleep(0.2)
-            DriveTrain.turnOnWheel(-200, RC.turnOnWheel_speed, "left")
-            DriveTrain.driveForward(1.5, RC.speed)
-            DriveTrain.followLine(RC.speed, 17) # drivetrain zeile 204
-            DriveTrain.turnOnPoint(10, RC.turn_speed)
-            RC.offset = 0
+            DriveTrain.driveForward(-20, RC.fast_speed)
+            DriveTrain.turnOnPoint(90, RC.turn_speed)
+            DriveTrain.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP1.0"]-1)
+            RC.offset = -90
         elif point == "Checkpoint4.3":
+            left = "Green"
+            right = "Green"
             GameBord.HouseScann[1][0] = left
             GameBord.HouseScann[1][1] = right
             DriveTrain.turnOnWheel(-90, RC.turnOnWheel_speed, "left")
@@ -73,6 +77,8 @@ class house:
             DriveTrain.driveForward(12, -RC.speed)
             DriveTrain.driveForward(3.5, RC.speed)
         elif point == "Checkpoint6.1":
+            left = "Yellow"
+            right = "Yellow"
             GameBord.HouseScann[2][0] = left
             GameBord.HouseScann[2][1] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")

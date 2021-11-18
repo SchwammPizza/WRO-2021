@@ -9,14 +9,18 @@ class instanceBuffer:
 class motor:
     @staticmethod
     def getInstance():
-        if instanceBuffer.instance == 0:
-            instanceBuffer.instance = motor()
+        if instanceBuffer.instance == 0: instanceBuffer.instance = motor()
         return instanceBuffer.instance
 
     ev3 = EV3Brick()
     class DriveTrain:
         driveLeft = Motor(Port.C)
         driveRight = Motor(Port.B)
+
+        #Test code
+        driveLeft.control.limits(1000, 2000, 100)
+        driveRight.control.limits(1000, 2000, 100)
+
         driveColorLeft = ColorSensor(Port.S4)
         driveColorRight = ColorSensor(Port.S3)
     
@@ -24,8 +28,6 @@ class motor:
         ColorRight = ColorSensor(Port.S2)
         ColorLeft = ColorSensor(Port.S1)
 
-    class VorneMotor:
-        VorneMotor = Motor(Port.A)
+    class Lifter: Lifter = Motor(Port.A)
 
-    class HintenMotor:
-        HintenMotor = Motor(Port.D)
+    class Gripper: Gripper = Motor(Port.D)

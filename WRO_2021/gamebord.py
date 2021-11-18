@@ -1,6 +1,6 @@
 from robotContainer import robotContainer as rc
 
-RC = rc().getInstance()
+RC = rc.getInstance()
 
 class instanceBuffer:
     instance = 0

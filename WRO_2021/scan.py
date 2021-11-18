@@ -2,7 +2,7 @@ from robotContainer import robotContainer as rc
 from motors import motor
 
 Motor = motor()
-RC = rc().getInstance()
+RC = rc.getInstance()
 
 class instanceBuffer:
     instance = 0

@@ -5,11 +5,11 @@ from robotContainer import robotContainer as rc
 from lifter import Lifter
 import time
 
-GameBord = gameBord().getInstance()
-lifter = Lifter().getInstance()
-RC = rc().getInstance()
-RA = RobotArm().getInstance()
-DriveTrain = driveTrain().getInstance()
+GameBord = gameBord.getInstance()
+lifter = Lifter.getInstance()
+RC = rc.getInstance()
+RA = RobotArm.getInstance()
+DriveTrain = driveTrain.getInstance()
 
 class pickUp:
     class Checkpoint2:
@@ -138,7 +138,9 @@ class pickUp:
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, 8.7)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
+            RA.moveToPickupAGPosition()
             DriveTrain.driveForward(6, RC.fast_speed)
+            RA.moveUp()
             DriveTrain.driveForward(-3.5, RC.fast_speed)
             DriveTrain.turnOnPoint(-90 * ((side == "left") * 2 - 1), RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, 8.7)
