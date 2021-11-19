@@ -9,7 +9,7 @@ class GlegoMotor:
         LEFTLIGHT = ColorSensor(Port.S3)
         RIGHTLIGHT = ColorSensor(Port.S2)
 
-        ROTATION = GyroSensor(Port.S4)
+        # ROTATION = GyroSensor(Port.S4)
     
     class Gripper:
         LEFTGRIPPER = Motor(Port.A)
