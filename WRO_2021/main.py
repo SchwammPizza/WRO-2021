@@ -22,6 +22,7 @@ brick = EV3Brick()
 
 # rc = RC.getInstance()
 driveTrain = DriveTrain.getInstance()
+gripper = Gripper()
 
 driveTrain.driveForward(30, 80)
 
@@ -33,3 +34,13 @@ driveTrain.driveForward(30, 80)
 time.sleep(1)
 
 brick.light.on(Color.GREEN)
+
+gripper.both_close()
+time.sleep(3)
+gripper.gripSockel()
+time.sleep(3)
+gripper.both_close(speed=30, angle=152)
+time.sleep(3)
+gripper.gripSockel(angle=140)
+time.sleep(3)
+gripper.putInBattery(50)

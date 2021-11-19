@@ -1,3 +1,4 @@
+import time
 from pybricks.parameters import Stop
 from motors import GlegoMotor
 from robotContainer import robotContainer as RC
@@ -22,20 +23,21 @@ class Gripper:
         motoren[i].run_until_stalled(-900, Stop.HOLD, None)
 
     @staticmethod
-    def close(i, speed, wait=True): #0 linker Motor, 1 rechter Motor
-        motoren[i].run_angle(speed*9, 200, Stop.HOLD, wait)
+    def close(i, speed=100, angle=200,wait=True): #0 linker Motor, 1 rechter Motor
+        motoren[i].run_angle(speed*9, angle, Stop.HOLD, wait)
     
     @classmethod
-    def both_close(cls, speed):
+    def both_close(cls, speed=95, angle=200):
         for i in range(2):
-            cls.close(i, speed, i)
+            cls.close(i, speed, angle, i)
     
     @staticmethod
-    def gripSockel():
+    def gripSockel(angle=152):
         for i in range(2):
-            motoren[i].run_angle(-600, 152, Stop.HOLD, i)
+            motoren[i].run_angle(-600, angle, Stop.HOLD, i)
 
-    @staticmethod
-    def putInBattery():
-        for i in range(2):
-            motoren[i].run_angle(-300, 48, Stop.HOLD, i)
+    @classmethod
+    def putInBattery(cls, speed):
+        cls.both_close(speed, 120)
+        time.sleep(1)
+        cls.resetGripper()
