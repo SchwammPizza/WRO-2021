@@ -1,6 +1,6 @@
 from motors import GlegoMotor
 from robotContainer import robotContainer as RC 
-from math import pi
+from math import floor, pi
 
 rc = RC.getInstance()
 
@@ -27,6 +27,18 @@ class DriveTrain:
             
             GlegoMotor.DriveBase.LEFTMOTOR.run_angle(speedLeft, degrees, wait=False)
             GlegoMotor.DriveBase.RIGHTMOTOR.run_angle(speedRight, degrees, wait=True)
+
+            GlegoMotor.DriveBase.LEFTMOTOR.stop()
+            GlegoMotor.DriveBase.RIGHTMOTOR.stop()
+            GlegoMotor.DriveBase.LEFTMOTOR.hold()
+            GlegoMotor.DriveBase.RIGHTMOTOR.hold()
+
+        def on_degrees_tank(self, speedLeft, speedRight, degrees_left, degrees_right):
+            speedLeft *= -10
+            speedRight *= 10
+            
+            GlegoMotor.DriveBase.LEFTMOTOR.run_angle(speedLeft, degrees_left, wait=False)
+            GlegoMotor.DriveBase.RIGHTMOTOR.run_angle(speedRight, degrees_right, wait=True)
 
             GlegoMotor.DriveBase.LEFTMOTOR.stop()
             GlegoMotor.DriveBase.RIGHTMOTOR.stop()
@@ -70,6 +82,35 @@ class DriveTrain:
             GlegoMotor.DriveBase.LEFTMOTOR.run_angle(speed, angle)
 
         self.tank_drive.stop()
+
+    def turnCircle(self, angle, radius, speed):
+        outerCircle = ((angle * pi) / 180) * (radius + (RC.wheel_distance / 2))
+        innerCircle = ((angle * pi) / 180) * (radius - (RC.wheel_distance / 2))
+
+        if (radius < 0): 
+            speedRatio = outerCircle / innerCircle
+            leftSpeed = speed
+            rightSpeed = speed * speedRatio
+            leftCircle = outerCircle
+            rightCircle = innerCircle
+        else:
+            speedRatio = innerCircle / outerCircle
+            rightSpeed = speed
+            leftSpeed = speed * speedRatio
+            rightCircle = outerCircle
+            leftCircle = innerCircle
+
+        leftCircle = leftCircle / (rc.wheel_diameter * pi) * 360
+        rightCircle = rightCircle / (rc.wheel_diameter * pi) * 360
+
+        print(outerCircle, innerCircle)
+        print(speedRatio)
+        print(-leftSpeed, rightSpeed, leftCircle, rightCircle)
+        
+        self.tank_drive.on_degrees_tank(self, floor(leftSpeed), floor(rightSpeed), floor(leftCircle), floor(rightCircle)) 
+
+
+
 
     def followLine(self, speed, distance):
         wheel_diameter = 5.45
