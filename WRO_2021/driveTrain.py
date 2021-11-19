@@ -69,7 +69,7 @@ class DriveTrain:
         elif wheelDontDrive == "right":
             GlegoMotor.DriveBase.LEFTMOTOR.run_angle(speed, angle)
 
-        self.tank_drive.stop()
+        self.tank_drive.stop(self)
 
     def followLine(self, speed, distance):
         wheel_diameter = 5.45

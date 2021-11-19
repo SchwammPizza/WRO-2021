@@ -27,7 +27,6 @@ class LineFollower():
         previousErrorRight = 0
         integralLeft = 0.0
         integralRight = 0.0
-        # previousTime = time_ns() / 1000000.0
 
         degrees = dist / (rc.wheel_diameter * pi) * 360
         self.drive_left.reset_angle(0)
@@ -35,13 +34,11 @@ class LineFollower():
         dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
         while (abs(dist) <= abs(degrees)): 
-            print("Distance = {}, target = {}".format(dist, degrees))
+            # print("Distance = {}, target = {}".format(dist, degrees))
             dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
-            # currentTime = time_ns() / 1000000.0
             sensorValues = self.getReflectionValues()
-            print(sensorValues)
-            # time_diff = currentTime - previousTime
+            # print(sensorValues)
             time_diff = self.dt
 
             errorLeft = self.reflectionTarget - sensorValues[0]
@@ -68,29 +65,13 @@ class LineFollower():
                 else:
                     correctionRight = speed - 1000
 
-            # self.drive_left.run(speed + correctionLeft) 
-            # self.drive_right.run(-speed - correctionRight) 
-            # self.drive_left.run_time(speed + correctionLeft, self.dt * 1000, wait=False) 
-
-            # correctionLeft = (correctionLeft - correctionRight) / 2
-            # correctionRight = (correctionRight - correctionLeft) / 2
-
             self.drive_left.run(-speed + correctionLeft)
             self.drive_right.run(speed - correctionRight)
-            # print("correction left = {}, correction right = {}".format(correctionLeft, correctionRight))
-
-            # if (correctionLeft >= 0):
-            #     self.drive_left.run(-speed + correctionLeft)
-            #     self.drive_right.run(speed + correctionLeft)
-            #     sleep(self.dt) 
-            # else:
-            #     self.drive_left.run(-speed + correctionLeft)
-            #     self.drive_right.run(speed + correctionLeft)
-            #     sleep(self.dt) 
 
             previousErrorLeft = errorLeft
             previousErrorRight = errorRight
-            # previousTime = time_ns() / 1000000.0
 
         self.drive_left.stop()
         self.drive_right.stop()
+        self.drive_left.hold()
+        self.drive_right.hold()

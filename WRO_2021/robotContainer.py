@@ -17,7 +17,8 @@ class robotContainer:
     wheel_distance_turn_on_point = 16.5 #umso grösser umse mehr dreht er
 
     #speed
-    speed = 120
+    speed = 100
+    follow_speed = 80
     turn_speed = 40
     turnOnWheel_speed = 80
 
