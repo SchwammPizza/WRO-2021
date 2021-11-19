@@ -37,9 +37,14 @@ class house:
         DriveTrain.driveForward(-7, RC.speed)
         RA.moveUp()
 
+        if point == "Checkpoint1.0": i = 0
+        elif point == "Checkpoint4.1": i = 1
+        else: i = 2
+
         # DriveTrain.driveForward(3.5, RC.speed)
         DriveTrain.turnOnPoint(180, RC.turn_speed)
 
+        GameBord.updateHouseFulld(i)
         GameBord.stickColor = "None"
         GameBord.stickLoaden = 0
         GameBord.gripperColor = "None"
@@ -59,7 +64,7 @@ class house:
         # print(right)
         if point == "Checkpoint1.0":
             left = "Blue"
-            right = "None"
+            right = "Yellow"
             GameBord.HouseScann[0][0] = left
             GameBord.HouseScann[0][1] = right
             time.sleep(0.2)
@@ -67,9 +72,10 @@ class house:
             DriveTrain.turnOnPoint(90, RC.turn_speed)
             DriveTrain.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP1.0"]-1)
             RC.offset = -90
+            GameBord.updateR(0)
         elif point == "Checkpoint4.3":
             left = "Green"
-            right = "Green"
+            right = "Yellow"
             GameBord.HouseScann[1][0] = left
             GameBord.HouseScann[1][1] = right
             DriveTrain.turnOnWheel(-90, RC.turnOnWheel_speed, "left")
@@ -77,16 +83,17 @@ class house:
             DriveTrain.turnOnWheel(-90, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(12, -RC.speed)
             DriveTrain.driveForward(3.5, RC.speed)
+            GameBord.updateR(1)
         elif point == "Checkpoint6.1":
-            left = "Yellow"
-            right = "Yellow"
+            left = "None"
+            right = "Blue"
             GameBord.HouseScann[2][0] = left
             GameBord.HouseScann[2][1] = right
             DriveTrain.turnOnWheel(-190, RC.turnOnWheel_speed, "left")
             DriveTrain.driveForward(1, RC.speed)
             DriveTrain.followLine(RC.speed, 14) # drivetrain zeile 204
             DriveTrain.turnOnPoint(5, RC.turn_speed)
-
+            GameBord.updateR(2)
     
         # testen
             

@@ -14,6 +14,7 @@ class gameBord:
     
     def __init__(self):
         pass
+    
 
     # variabeln
     stickLoaden = 0
@@ -22,6 +23,16 @@ class gameBord:
     gripperColor = "None"
     HouseFulld = [False for x in range(3)]
     HouseScann = [[None, None] for x in range(3)]
+    s = [2,2,2]
+    r = []
+
+    def updateR(self, i):    
+        self.r.insert(i, self.HouseScann[i].count("None"))
+
+    def updateHouseFulld(self, i):
+        self.s[i] -= 1
+        if self.s[i] <= self.r[i]:
+            self.HouseFulld[i] = True
 
     def lookWitchColorNotThere(self, house):
         if self.stickColor in house:
@@ -214,6 +225,7 @@ class gameBord:
                 return ("Checkpoint2", 2)
 
     def calculateNextMove(self, point, x=-1): # returns Values ["Checkpoint", Number of action]
+        print(self.gripperLoaden)
         if point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"]:
             if point == "Checkpoint1.0":
                 pp = 0
@@ -235,6 +247,17 @@ class gameBord:
             else:
                 return ("Checkpoint6.0", 0)
         
+        elif self.gripperLoaden:
+            for i in range(3):
+                if not self.HouseFulld[i]:
+                    if self.gripperColor in self.HouseScann[i]:
+                        if i == 0:
+                            return ("Checkpoint1.0", 0)
+                        elif i == 1:
+                            return ("Checkpoint4.1", 0)
+                        elif i == 2:
+                            return ("Checkpoint6.1", 0)
+
         elif (self.gripperLoaden and self.stickLoaden == 2 or self.stickLoaden > 0 and self.gripperLoaden) and not (RC.obstacleYellowA or RC.obstacleBlueA or RC.obstacleGreenA or RC.obstacleYellowB or RC.obstacleBlueB or RC.obstacleGreenB): # 1
             return ("Checkpoint4.0", 1) # 1 = Abladen bei Batterie
         

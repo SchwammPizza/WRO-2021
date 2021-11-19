@@ -28,15 +28,12 @@ class scan_b:
             RC.obstacles()
         else:
             RC.obstacleBlueB = True
-            print("RC.obstacleBlueB after set = {}".format(RC.obstacleBlueB))
             RC.obstacles()
-            print("RC.obstacleBlueB after RC.obstacles() = {}".format(RC.obstacleBlueB))
             if hold:
                 GameBord.gripperColor = "Blue"
                 if RC.offset == 90:
                     RC.BluePickedB[1] = False
                 else:
-                    print("PluePickedB = {}".format(RC.BluePickedB))
                     RC.BluePickedB[0] = False
 
     # def scan_b(self, point, hold=False):

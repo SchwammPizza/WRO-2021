@@ -37,7 +37,7 @@ class solar2:
         dt.followLine(RC.speed, 76.8)
         dt.turnOnPoint(left, RC.turn_speed)
         dt.followLine(40, 41.4)
-        self.solar2
+        self.solar2()
         dt.turnOnPoint(left, RC.turn_speed)
         dt.driveForward(80, RC.speed)
         dt.driveForward(1, -RC.speed)

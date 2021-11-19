@@ -78,7 +78,7 @@ while True:
     elif turn[1] == 5:
         DriveTrain.driveChekpoints(point, turn[0], BPlaceUknow=turn[1])
         SB.scan_bs(turn[0], hold=True)
-        if not RC.obstacleBlueB:
+        if RC.obstacleBlueB == False:
             DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", BPlaceUknow=6)
             PU.picker("Checkpoint5.1")
             point = "Checkpoint5.1"

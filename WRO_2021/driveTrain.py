@@ -235,6 +235,7 @@ class driveTrain:
             elif point1 in RC.Checkpoint1 + ["Checkpoint0", "Checkpoint3"]:
                 self.driveChekpoints(point1, "Checkpoint4.0", BPlaceUknow=point2)
                 point1 = "Checkpoint4.0"
+                return
             
             if point1 in RC.Checkpoint2:
                 if RC.offset == 90:
@@ -362,7 +363,7 @@ class driveTrain:
                 else:
                     #With Checkpoint2
                     if RC.obstacleGreenB == None:
-                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP2"] - RC.CheckpointOnMainRoad["CP1." + point1[-1]])
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP2"] - RC.CheckpointOnMainRoad["CP1." + point1[-1]] + 1)
                         self.turnOnPoint(90, RC.turn_speed)
                         self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP4.2"])
                         self.turnOnPoint(-90, RC.turn_speed)
@@ -476,7 +477,7 @@ class driveTrain:
                         return
 
                     else:
-                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP2"] - RC.CheckpointOnMainRoad["CP1.1"])
+                        self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP2"] - RC.CheckpointOnMainRoad["CP1.0"])
                         self.turnOnPoint(90, RC.turn_speed)
                         self.followLine(RC.speed, RC.StandardDistances["House"])
                         RC.offset = 180
@@ -756,7 +757,6 @@ class driveTrain:
 
             elif point1 == "Checkpoint4.2":
                 if not RC.obstacleGreenB or RC.GreenPickedB[1]:
-                    
                     if point2 in RC.Checkpoint1 + RC.Checkpoint2 + ["Checkpoint3", "Checkpoint0"]:
                         if point2 in RC.Checkpoint1:
                             self.driveForward(RC.CheckpointOnMainRoad["CP4.2." + RC.GreenPosition] - RC.CheckpointOnMainRoad["CP1.0"], RC.fast_speed*RC.offset/abs(RC.offset))
@@ -806,12 +806,13 @@ class driveTrain:
                             RC.offset = 180
                             return
 
-                    elif RC.obstacleGreenB == None and point2 == "Checkpoint5.0":
-                        self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP4.2.0"], RC.fast_speed)
+                    elif RC.obstacleGreenB == False and point2 == "Checkpoint5.0":
+                        self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP4.2.0"] + 1, RC.fast_speed)
                         self.turnOnPoint(90, RC.turn_speed)
                         self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP5"] - RC.CheckpointOn4Road["CP4.2"])
                         self.turnOnPoint(-90, RC.turn_speed)
                         self.driveForward(RC.CheckpointOnMainRoad["CP5.0.1"] - RC.CheckpointOnMainRoad["CP4"], RC.fast_speed)
+                        RC.BluePosition = "0.1"
                         RC.offset = -90
                         return
 
@@ -852,7 +853,6 @@ class driveTrain:
                     elif RC.BluePickedB[1]:
                         self.driveForward(RC.CheckpointOnMainRoad["CP5.0.2"] - RC.CheckpointOnMainRoad["CP4"])
                         RC.BluePosition = "0.2"
-                    print("Here by blue")
                     RC.offset = -90
                     return
 
@@ -1012,8 +1012,7 @@ class driveTrain:
                     RC.offset = 0
                     return
                 else:
-                    print("2second here")
-                    self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP5."+RC.BluePosition], -RC.fast_speed*(-1)**(int(point1[-1])))
+                    self.driveForward(abs(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP5."+RC.BluePosition]), -RC.fast_speed*(-1)**(int(point1[-1])))
                     if point2 in ["Checkpoint4.1", "Checkpoint4.0"] or point2 not in (RC.Checkpoint5 + RC.Checkpoint6):
                         
                         if point2 == "Checkpoint4.1":

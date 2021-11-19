@@ -28,7 +28,7 @@ class pickUp:
             elif direction == "2.2.1":
                 turn2 = left
 
-            lifter.runTrue(-RC.slow_speed)
+            # lifter.runTrue(-RC.slow_speed)
 
             if direction == "2.2.0":
                 if RC.offset == 0:
@@ -37,7 +37,7 @@ class pickUp:
                     DriveTrain.turnOnPoint(-90, RC.turn_speed)
                 elif RC.offset == -90:
                     DriveTrain.turnOnPoint(180, RC.turn_speed)
-            elif direction == "2.2.0":
+            elif direction == "2.2.1":
                 if RC.offset == 0:
                     DriveTrain.turnOnPoint(-90, RC.turn_speed)
                 elif abs(RC.offset) == 180:

@@ -30,7 +30,7 @@ class motor:
 
     class Lifter: 
         Lifter = Motor(Port.A)
-        Lifter.control.limits(1000, 1000, 100)
+        Lifter.control.limits(1000, 500, 100)
 
     class Gripper: 
         Gripper = Motor(Port.D)

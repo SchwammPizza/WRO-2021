@@ -15,7 +15,7 @@ class robotContainer:
     wheel_diameter = 5.4
     wheel_distance = 16.5
     # wheel_distance_turn_on_point = 16.5
-    wheel_distance_turn_on_point = 16.7 #umso grösser umse mehr dreht er
+    wheel_distance_turn_on_point = 16.5 #umso grösser umse mehr dreht er
 
     #speed
     speed = 120
@@ -33,12 +33,12 @@ class robotContainer:
 
     line = ["Black", "Brown"] 
     # LOW_AGGRESSION = 13
-    HIGH_AGGRESSION = 15
-    LOW_AGGRESSION = 10
+    HIGH_AGGRESSION = 13
+    LOW_AGGRESSION = 8
     # LOW_AGGRESSION = 13
     # HIGH_AGGRESSION = 18
     #RobotArm
-    lifterSpeed = 50
+    lifterSpeed = 40
     lifterDistance = 123 #95+38
 
     #Checkpoint
