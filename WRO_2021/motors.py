@@ -1,37 +1,18 @@
-#!/usr/bin/env pybricks-micropython
-from pybricks.ev3devices import (Motor, ColorSensor)
+from pybricks.ev3devices import (Motor, ColorSensor, GyroSensor)
 from pybricks.parameters import Port
-from pybricks.hubs import EV3Brick
 
-class instanceBuffer:
-    instance = 0
+class GlegoMotor:
+    class DriveBase:
+        LEFTMOTOR = Motor(Port.C)
+        RIGHTMOTOR = Motor(Port.B)
 
-class motor:
-    @staticmethod
-    def getInstance():
-        if instanceBuffer.instance == 0: instanceBuffer.instance = motor()
-        return instanceBuffer.instance
+        LEFTLIGHT = ColorSensor(Port.S3)
+        RIGHTLIGHT = ColorSensor(Port.S2)
 
-    ev3 = EV3Brick()
-    class DriveTrain:
-        driveLeft = Motor(Port.C)
-        driveRight = Motor(Port.B)
-
-        #Test code
-        driveLeft.control.limits(1000, 2000, 100)
-        driveRight.control.limits(1000, 2000, 100)
-
-        driveColorLeft = ColorSensor(Port.S4)
-        driveColorRight = ColorSensor(Port.S3)
+        ROTATION = GyroSensor(Port.S4)
     
-    class Energy:
-        ColorRight = ColorSensor(Port.S2)
-        ColorLeft = ColorSensor(Port.S1)
-
-    class Lifter: 
-        Lifter = Motor(Port.A)
-        Lifter.control.limits(1000, 500, 100)
-
-    class Gripper: 
-        Gripper = Motor(Port.D)
-        Gripper.control.limits(1000, 1000, 100)
+    class Gripper:
+        LEFTGRIPPER = Motor(Port.A)
+        RIGHTGRIPPER = Motor(Port.D)
+    
+    
