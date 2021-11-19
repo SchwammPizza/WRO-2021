@@ -6,22 +6,22 @@ from math import pi
 rc = robotContainer.getInstance()
 
 class LineFollower():
-    def __init__(self, KP, KI, KD, reflectionTarget):
+    def __init__(self, reflectionTarget):
         self.drive_left = GlegoMotor.DriveBase.LEFTMOTOR
         self.drive_right = GlegoMotor.DriveBase.RIGHTMOTOR
         self.sensor_left = GlegoMotor.DriveBase.LEFTLIGHT
         self.sensor_right = GlegoMotor.DriveBase.RIGHTLIGHT
         self.dt = 0.1 #seconds
-        self.KP = KP
-        self.KI = KI
-        self.KD = KD
+        # self.KP = KP
+        # self.KI = KI
+        # self.KD = KD
         self.reflectionTarget = reflectionTarget
 
     def getReflectionValues(self):
         # return {"left" : self.sensor_left.reflection(), "right" : self.sensor_right.reflection}
         return [self.sensor_left.reflection(), self.sensor_right.reflection()]
 
-    def followLine(self, dist, speed):
+    def followLine(self, dist, speed, KP, KI, KD):
         speed *= 10
         previousErrorLeft = 0
         previousErrorRight = 0
@@ -30,14 +30,17 @@ class LineFollower():
         # previousTime = time_ns() / 1000000.0
 
         degrees = dist / (rc.wheel_diameter * pi) * 360
-        dist = ((self.drive_left.angle() + self.drive_right.angle()) / 2)
+        self.drive_left.reset_angle(0)
+        self.drive_right.reset_angle(0)
+        dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
-        while (dist < degrees): 
-            dist = ((self.drive_left.angle() + self.drive_right.angle()) / 2)
+        while (abs(dist) <= abs(degrees)): 
+            print("Distance = {}, target = {}".format(dist, degrees))
+            dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
             # currentTime = time_ns() / 1000000.0
             sensorValues = self.getReflectionValues()
-            # print(sensorValues)
+            print(sensorValues)
             # time_diff = currentTime - previousTime
             time_diff = self.dt
 
@@ -50,8 +53,8 @@ class LineFollower():
             derivativeLeft = (errorLeft - previousErrorLeft) / time_diff
             derivativeRight = (errorRight - previousErrorRight) / time_diff
 
-            correctionLeft = self.KP * errorLeft + self.KI * integralLeft + self.KD * derivativeLeft
-            correctionRight = self.KP * errorRight + self.KI * integralRight + self.KD * derivativeRight
+            correctionLeft = KP * errorLeft + KI * integralLeft + KD * derivativeLeft
+            correctionRight = KP * errorRight + KI * integralRight + KD * derivativeRight
 
             if (abs(speed + correctionLeft) > 1000):
                 if (correctionLeft > 0):
@@ -74,7 +77,7 @@ class LineFollower():
 
             self.drive_left.run(-speed + correctionLeft)
             self.drive_right.run(speed - correctionRight)
-            print("correction left = {}, correction right = {}".format(correctionLeft, correctionRight))
+            # print("correction left = {}, correction right = {}".format(correctionLeft, correctionRight))
 
             # if (correctionLeft >= 0):
             #     self.drive_left.run(-speed + correctionLeft)
@@ -88,3 +91,6 @@ class LineFollower():
             previousErrorLeft = errorLeft
             previousErrorRight = errorRight
             # previousTime = time_ns() / 1000000.0
+
+        self.drive_left.stop()
+        self.drive_right.stop()

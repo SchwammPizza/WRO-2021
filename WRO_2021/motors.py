@@ -4,7 +4,9 @@ from pybricks.parameters import Port
 class GlegoMotor:
     class DriveBase:
         LEFTMOTOR = Motor(Port.C)
+        LEFTMOTOR.control.limits(1000, 2000, 100)
         RIGHTMOTOR = Motor(Port.B)
+        RIGHTMOTOR.control.limits(1000, 2000, 100)
 
         LEFTLIGHT = ColorSensor(Port.S3)
         RIGHTLIGHT = ColorSensor(Port.S2)

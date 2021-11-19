@@ -12,16 +12,23 @@ from pybricks.hubs import EV3Brick
 from driveTrain import DriveTrain
 from motors import GlegoMotor
 from robotContainer import robotContainer as RC
-from gripper import Gripper
+from LineFollower import LineFollower
+from PIDController import PIDController
+# from gripper import Gripper
 
 brick = EV3Brick()
-rc = RC.getInstance()
+# lf = LineFollower(70)
+# lf.followLine(10, 80, 0, 0, 0)
+
+# rc = RC.getInstance()
 driveTrain = DriveTrain.getInstance()
 
-brick.light.on(Color.RED)
-print("READY")
+driveTrain.driveForward(30, 80)
 
-while not brick.buttons.pressed(): pass
+# brick.light.on(Color.RED)
+# print("READY")
+
+# while not brick.buttons.pressed(): pass
 
 time.sleep(1)
 
