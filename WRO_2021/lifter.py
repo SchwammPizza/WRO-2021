@@ -18,7 +18,6 @@ class Lifter:
 
     def moveMotor(self, speed, angle):
         speed *= -9
-        print(speed, angle)
         motor.Lifter.Lifter.run_angle(speed, angle)
         
     def moveUp(self, speed=300): motor.Lifter.Lifter.run_until_stalled(speed, Stop.HOLD, None)

@@ -7,7 +7,6 @@ Its for the Ussage of our Roboter made, so its difficult to use to other.
 
 # eigene
 import time
-from pybricks import parameters
 from pybricks.parameters import Color
 from pybricks.hubs import EV3Brick
 from RobotArm import RobotArm
@@ -77,10 +76,10 @@ while True:
         break
 
     elif turn[1] == 5:
-        DriveTrain.driveChekpoints(point, turn[0], tada=turn[1])
+        DriveTrain.driveChekpoints(point, turn[0], BPlaceUknow=turn[1])
         SB.scan_bs(turn[0], hold=True)
         if not RC.obstacleBlueB:
-            DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", tada=6)
+            DriveTrain.driveChekpoints(turn[0], "Checkpoint5.1", BPlaceUknow=6)
             PU.picker("Checkpoint5.1")
             point = "Checkpoint5.1"
         else: point = turn[0]

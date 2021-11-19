@@ -50,15 +50,12 @@ class pickUp:
 
             # DriveTrain.driveForward(RC.speed, 5) => RobotContainer driveForward to pick
             DriveTrain.driveForward(5, RC.speed)
-            print("Du Hurensohn")
             pickUp.buttonPickUp.pickUp(pickUp)
-            print("Flo isch e Hure")
 
             DriveTrain.driveForward(-5, RC.speed)
             DriveTrain.turnOnPoint(right, RC.turn_speed)
             DriveTrain.followLine(RC.speed, dist)
             RC.offset = -90*(-1)**int(direction[-1])
-            print("Drekiger hure")
             #start von 2 return 0, followLine, grip gelbe AA bei 2.2.0/2.2.1, schaut nach 180(unten)
 
         def grip_solar(self):
@@ -122,12 +119,9 @@ class pickUp:
             pass
 
         def pickUp(self):
-            print("Flo")
             RA.grip()
-            print("isch")
             time.sleep(0.25)
             RA.moveUp()
-            print("Hurig")
     
     class pickupA:
         def __init__(self):
@@ -155,11 +149,10 @@ class pickUp:
                 DriveTrain.turnOnPoint(180, RC.turn_speed)
             DriveTrain.driveForward(7.3, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1), RC.turn_speed)
-            DriveTrain.driveForward(-6, RC.fast_speed)
+            DriveTrain.driveForward(-4, RC.fast_speed)
             RA.moveToPickupABPosition()
-            DriveTrain.driveForward(8, RC.fast_speed)
+            DriveTrain.driveForward(4, RC.fast_speed)
             RA.moveToTransportPosition(150)
-            DriveTrain.driveForward(-2, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "right") * 2 - 1), RC.turn_speed)
             DriveTrain.driveForward(7.3, RC.fast_speed)
             DriveTrain.turnOnPoint(90 * ((side == "left") * 2 - 1), RC.turn_speed)
@@ -184,6 +177,7 @@ class pickUp:
         elif point == "Checkpoint3": 
             if RC.GreenPickedA[0]:
                 self.pickupA.pickUpG(self, "right")
+                RC.GreenPickedA[0] = False
             else:
                 self.pickupA.pickUpG(self, "left")
 
@@ -196,6 +190,7 @@ class pickUp:
         elif point == "Checkpoint5.1":
             if RC.BluePickedA[0]:
                 self.pickupA.pickUpB(self, "right")
+                RC.BluePickedA[0] = False
             else:
                 self.pickupA.pickUpB(self, "left")
 

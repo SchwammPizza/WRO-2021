@@ -6,7 +6,7 @@ from driveTrain import driveTrain
 import time
 
 lifter = Lifter()
-RC = rc()
+RC = rc.getInstance()
 gripper = Gripper()
 dt = driveTrain()
 

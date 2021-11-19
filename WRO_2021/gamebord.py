@@ -29,7 +29,7 @@ class gameBord:
         elif self.gripperColor in house:
             return self.gripperColor
 
-    def lookIfSthOnPoint(self, point):
+    def lookIfSthOnPoint(self, point, b=False):
         if point == "Checkpoint1.1":
             if RC.obstacleYellowB:
                 return True
@@ -37,7 +37,10 @@ class gameBord:
             if RC.obstacleGreenB:
                 return True
         elif point == "Checkpoint5.0":
-            if RC.obstacleBlueB:
+            if b:
+                if RC.obstacleBlueB == None:
+                    return True
+            elif RC.obstacleBlueB:
                 return True
         elif point == "Checkpoint5.1":
             if RC.obstacleBlueA:
@@ -52,7 +55,6 @@ class gameBord:
             return False
     
     def stickcolorKnow(self, point, i):
-        print(self.gripperColor, self.stickColor, self.HouseScann[0])
         if self.HouseScann[i][0] == self.stickColor:
             if self.HouseScann[i][1] == "Green":
                 if RC.obstacleGreenB:
@@ -181,6 +183,8 @@ class gameBord:
             else:
                 if RC.obstacleBlueB and not self.gripperLoaden:
                     return ("Checkpoint5.0", 2)
+                elif RC.obstacleBlueB == None and not self.gripperLoaden:
+                    return ("Checkpoint5.0", 5)
                 return ("Checkpoint5.1", 2)
         elif point in RC.Checkpoint2:
             if "Yellow" in self.HouseScann[i]:
@@ -209,7 +213,7 @@ class gameBord:
                     return ("Checkpoint1.1", 2)
                 return ("Checkpoint2", 2)
 
-    def calculateNextMove(self, point, x=-1, live=False): # returns Values ["Checkpoint", Number of action]
+    def calculateNextMove(self, point, x=-1): # returns Values ["Checkpoint", Number of action]
         if point in ["Checkpoint1.0", "Checkpoint4.1", "Checkpoint6.0"]:
             if point == "Checkpoint1.0":
                 pp = 0
@@ -247,6 +251,8 @@ class gameBord:
                             return ("Checkpoint4.2", 2)
                         elif self.lookIfSthOnPoint("Checkpoint3") and not self.stickLoaden == 2:
                             return ("Checkpoint3", 2)
+                        elif self.lookIfSthOnPoint("Checkpoint5.0", b=True) and not self.gripperLoaden:
+                            return ("Checkpoint5.0", 5)
                         elif self.lookIfSthOnPoint("Checkpoint5.0") and not self.gripperLoaden:
                             return ("Checkpoint5.0", 2)    
                         elif self.lookIfSthOnPoint("Checkpoint5.1") and not self.stickLoaden == 2:
@@ -409,6 +415,8 @@ class gameBord:
                 else:
                     if RC.obstacleBlueB:
                         return ("Checkpoint5.0", 2)
+                    elif RC.obstacleBlueB == None:
+                        return ("Checkpoint5.0", 5)
                     else:
                         return ("Checkpoint5.1", 2)
             

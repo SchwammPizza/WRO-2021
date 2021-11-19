@@ -9,7 +9,7 @@ Motor = motor()
 DT = dt()
 lifter = Lifter()
 gripper = Gripper()
-RC = rc()
+RC = rc.getInstance()
 
 class schaufel():
     def __init__(self): pass

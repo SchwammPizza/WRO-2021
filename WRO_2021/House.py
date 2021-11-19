@@ -34,10 +34,10 @@ class house:
     
     def put_down(self, point):
         RA.putDown()
-        DriveTrain.driveForward(-3.5, RC.speed)
+        DriveTrain.driveForward(-7, RC.speed)
         RA.moveUp()
 
-        DriveTrain.driveForward(3.5, RC.speed)
+        # DriveTrain.driveForward(3.5, RC.speed)
         DriveTrain.turnOnPoint(180, RC.turn_speed)
 
         GameBord.stickColor = "None"

@@ -223,18 +223,17 @@ class driveTrain:
         self.tank_drive.stop(self)
         # self.driveForward(4.6, speed)
         # NEWCODE
-        self.driveForward(3.6, speed)
 
-    def driveChekpoints(self, point1, point2, tada=False):
+    def driveChekpoints(self, point1, point2, BPlaceUknow=False):
         if point1 == point2:
             return
         
-        if tada == 5:
+        if BPlaceUknow == 5:
             if point1 in RC.Checkpoint6:
                 self.driveChekpoints(point1, "Checkpoint5.1")
                 point1 = "Checkpoint5"
             elif point1 in RC.Checkpoint1 + ["Checkpoint0", "Checkpoint3"]:
-                self.driveChekpoints(point1, "Checkpoint4.0")
+                self.driveChekpoints(point1, "Checkpoint4.0", BPlaceUknow=point2)
                 point1 = "Checkpoint4.0"
             
             if point1 in RC.Checkpoint2:
@@ -279,7 +278,7 @@ class driveTrain:
                 RC.BluePosition = "0.1"
                 return 
         
-        elif tada == 6:
+        elif BPlaceUknow == 6:
             self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5." + RC.BluePosition], RC.fast_speed)
             RC.offset = 90*(-1)**int(RC.BluePosition[-1])
             RC.BluePosition = "1"
@@ -287,14 +286,15 @@ class driveTrain:
         
         elif point1 == "Checkpoint0":
             if point2 == "Checkpoint1.0":
-                self.followToLine(RC.fast_speed, RC.line)
+                # self.followToLine(RC.fast_speed, RC.line)
+                self.driveForward(12 , RC.fast_speed)
                 self.followLine(RC.fast_speed, RC.StandardDistances["CP0.0"])
                 # angle = math.acos((RC.wheel_distance - 0.5)/RC.wheel_distance) * 180/pi
                 # distance = 20 - ((RC.wheel_distance)**2 - (RC.wheel_distance-0.5)**2)**0.5 
                 # self.turnOnWheel(angle, RC.turnOnWheel_speed, "left")
                 # self.turnOnWheel(angle, -RC.turnOnWheel_speed, "right")
                 # self.driveForward(distance, RC.fast_speed)
-                self.driveForward(20,RC.fast_speed)
+                self.driveForward(18,RC.fast_speed)
                 RC.offset = 180
                 return
             
@@ -368,7 +368,6 @@ class driveTrain:
                         self.turnOnPoint(-90, RC.turn_speed)
                         self.driveForward(RC.CheckpointOnMainRoad["CP4.2.0"] - RC.CheckpointOnMainRoad["CP2"], RC.fast_speed)
                         SB.scan_bs("Checkpoint4.2")
-                        print(RC.obstacleGreenB, "obstacle")
                         if RC.obstacleGreenB or point2 in RC.Checkpoint2:
                             self.driveForward(RC.CheckpointOnMainRoad["CP4.2.0"] - RC.CheckpointOnMainRoad["CP2"], -RC.fast_speed)
                             self.turnOnPoint(90, RC.turn_speed)
@@ -379,13 +378,13 @@ class driveTrain:
                             return
                         
                         else:
-                            self.turnOnPoint(-90, RC.turn_speed)
-                            self.driveForward(RC.CheckpointOn4Road["CP4.2"] - 2, RC.fast_speed)
-                            self.followToLine(RC.fast_speed, RC.line)
-                            self.turnOnPoint(90, RC.turn_speed)
-                            self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP4.2.0"])
+                            # self.turnOnPoint(-90, RC.turn_speed)
+                            # self.driveForward(RC.CheckpointOn4Road["CP4.2"] - 2, RC.fast_speed)
+                            # self.followToLine(RC.fast_speed, RC.line)
+                            # self.turnOnPoint(90, RC.turn_speed)
+                            # self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP4.2.0"])
                             RC.offset = -90
-                            self.driveChekpoints("Checkpoint4.0", point2)
+                            self.driveChekpoints("Checkpoint4.2", BPlaceUknow)
                             return
 
                     if RC.obstacleGreenB:
@@ -577,7 +576,6 @@ class driveTrain:
                         return
 
         elif point1 == "Checkpoint3":
-            print(1)
             if point2 == "Checkpoint4.2":
                 self.driveForward(-RC.CheckpointOn4Road["CP4.2"], RC.fast_speed)
                 self.turnOnPoint(90, RC.turn_speed)
@@ -646,7 +644,6 @@ class driveTrain:
                     return
 
             else:
-                print(2)
                 self.turnOnPoint(90, RC.turn_speed)
                 if point2 in RC.Checkpoint4:
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP3"])
@@ -675,32 +672,27 @@ class driveTrain:
                     return
                 
                 else:
-                    print(3)
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP3"])
                     self.turnOnPoint(90, RC.turn_speed)
                     self.driveForward(RC.CheckpointOn4Road["CP5"], RC.fast_speed)
                     self.turnOnPoint(-90*(int(point2[-1]) - 1), RC.turn_speed)
                     RC.offset = -90*(int(point2[-1]) - 1)
                     if point2 == "Checkpoint5.0":
-                        print(4)
                         if RC.BluePickedB[1]:
-                            print(5)
                             self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5.0.4"], RC.fast_speed)
                             RC.BluePosition = "0.4"
-                            print("Here 0.4")
                         elif RC.BluePickedB[0]:
                             self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5.0.3"], RC.fast_speed)
                             RC.BluePosition = "0.3"
                     return
 
         elif point1 in RC.Checkpoint4: 
-            print(RC.obstacleBlueB)
             if point1 in ["Checkpoint4.1", "Checkpoint4.0"]:
                 RC.GreenPosition = ""
 
             if point2 in RC.Checkpoint4:
                 if point1 == "Checkpoint4.2":
-                    if RC.GreenPickedB[1]:
+                    if RC.GreenPickedB != None and RC.GreenPickedB[1]:
                         self.driveForward(-5, RC.fast_speed)
                         self.turnOnPoint(90, RC.turn_speed)
                         self.driveForward(RC.StandardDistances["CP4.2"], RC.fast_speed)
@@ -763,7 +755,8 @@ class driveTrain:
                         return
 
             elif point1 == "Checkpoint4.2":
-                if RC.GreenPickedB[1] or not RC.obstacleGreenB:
+                if not RC.obstacleGreenB or RC.GreenPickedB[1]:
+                    
                     if point2 in RC.Checkpoint1 + RC.Checkpoint2 + ["Checkpoint3", "Checkpoint0"]:
                         if point2 in RC.Checkpoint1:
                             self.driveForward(RC.CheckpointOnMainRoad["CP4.2." + RC.GreenPosition] - RC.CheckpointOnMainRoad["CP1.0"], RC.fast_speed*RC.offset/abs(RC.offset))
@@ -793,7 +786,7 @@ class driveTrain:
                             self.driveForward(RC.StandardDistances["CP0.1"], RC.fast_speed)
                             return
                 
-                    elif RC.GreenPickedB[1]:
+                    elif RC.GreenPickedB != None and RC.GreenPickedB[1]:
                         self.driveForward(-5, RC.fast_speed)
                         self.turnOnPoint(90, RC.turn_speed)
 
@@ -812,6 +805,15 @@ class driveTrain:
                             self.driveForward(RC.StandardDistances["CP4.2"] + RC.CheckpointOn4Road["CP4.2"] + RC.StandardDistances["House"], RC.fast_speed)
                             RC.offset = 180
                             return
+
+                    elif RC.obstacleGreenB == None and point2 == "Checkpoint5.0":
+                        self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP4.2.0"], RC.fast_speed)
+                        self.turnOnPoint(90, RC.turn_speed)
+                        self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP5"] - RC.CheckpointOn4Road["CP4.2"])
+                        self.turnOnPoint(-90, RC.turn_speed)
+                        self.driveForward(RC.CheckpointOnMainRoad["CP5.0.1"] - RC.CheckpointOnMainRoad["CP4"], RC.fast_speed)
+                        RC.offset = -90
+                        return
 
                 else:
                         self.driveForward(-5, RC.fast_speed)
@@ -836,7 +838,6 @@ class driveTrain:
                     return
             
             elif point2 in RC.Checkpoint6 or (point2 in RC.Checkpoint5 and (RC.obstacleBlueB or RC.obstacleBlueB == None)) or ((point2 in RC.Checkpoint1 + ["Checkpoint3", "Checkpoint0"]) and (not RC.obstacleGreenB and RC.obstacleGreenB == None)):
-                print(1)
                 if point2 == "Checkpoint5.0":
                     if point1 == "Checkpoint4.1":
                         self.followLine(RC.fast_speed, RC.CheckpointOn4Road["CP4.1"] - RC.CheckpointOn4Road["CP5"])
@@ -851,6 +852,7 @@ class driveTrain:
                     elif RC.BluePickedB[1]:
                         self.driveForward(RC.CheckpointOnMainRoad["CP5.0.2"] - RC.CheckpointOnMainRoad["CP4"])
                         RC.BluePosition = "0.2"
+                    print("Here by blue")
                     RC.offset = -90
                     return
 
@@ -916,7 +918,6 @@ class driveTrain:
                     return
 
                 elif RC.obstacleBlueB or RC.obstacleBlueB == None:
-                    print(2)
                     self.followLine(RC.fast_speed, RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP4"])
                     self.turnOnPoint(90, RC.turn_speed)
                     self.driveForward(RC.CheckpointOn4Road["CP5"], RC.speed)
@@ -1011,6 +1012,7 @@ class driveTrain:
                     RC.offset = 0
                     return
                 else:
+                    print("2second here")
                     self.driveForward(RC.CheckpointOnMainRoad["CP4"] - RC.CheckpointOnMainRoad["CP5."+RC.BluePosition], -RC.fast_speed*(-1)**(int(point1[-1])))
                     if point2 in ["Checkpoint4.1", "Checkpoint4.0"] or point2 not in (RC.Checkpoint5 + RC.Checkpoint6):
                         
@@ -1038,7 +1040,6 @@ class driveTrain:
                                 self.driveChekpoints("Checkpoint4.0", point2)
                             return
             else:
-                print(RC.BluePosition)
                 self.driveForward(RC.CheckpointOnMainRoad["CP5.1"] - RC.CheckpointOnMainRoad["CP5." + RC.BluePosition], RC.fast_speed*lookdirektion)
         
                 if abs(RC.offset) != 180:
