@@ -21,24 +21,29 @@ class LineFollower():
         # return {"left" : self.sensor_left.reflection(), "right" : self.sensor_right.reflection}
         return [self.sensor_left.reflection(), self.sensor_right.reflection()]
 
-    def followLine(self, dist, speed, KP, KI, KD):
+    def followLine(self, dist, speed, KP, KI, KD, sensor = "both"):
         speed *= 10
         previousErrorLeft = 0
         previousErrorRight = 0
         integralLeft = 0.0
         integralRight = 0.0
+        # previousTime = time_ns() / 1000000.0
 
         degrees = dist / (rc.wheel_diameter * pi) * 360
         self.drive_left.reset_angle(0)
         self.drive_right.reset_angle(0)
         dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
-        while (abs(dist) <= abs(degrees)): 
-            # print("Distance = {}, target = {}".format(dist, degrees))
+        finished = False
+
+        while (not finished): 
+            print("Distance = {}, target = {}".format(dist, degrees))
             dist = ((self.drive_left.angle() - self.drive_right.angle()) / 2)
 
+            # currentTime = time_ns() / 1000000.0
             sensorValues = self.getReflectionValues()
-            # print(sensorValues)
+            print(sensorValues)
+            # time_diff = currentTime - previousTime
             time_diff = self.dt
 
             errorLeft = self.reflectionTarget - sensorValues[0]
@@ -65,13 +70,37 @@ class LineFollower():
                 else:
                     correctionRight = speed - 1000
 
-            self.drive_left.run(-speed + correctionLeft)
-            self.drive_right.run(speed - correctionRight)
+            if (sensor == "both"):
+                self.drive_left.run(-speed + correctionLeft)
+                self.drive_right.run(speed - correctionRight)
+
+            if (sensor == "left"):
+                if (correctionLeft >= 0):
+                    self.drive_left.run(-speed + correctionLeft)
+                    self.drive_right.run(speed + correctionLeft)
+                else:
+                    self.drive_left.run(-speed + correctionLeft)
+                    self.drive_right.run(speed + correctionLeft)
+
+            if (sensor == "right"):
+                if (correctionRight >= 0):
+                    self.drive_left.run(-speed + correctionRight)
+                    self.drive_right.run(speed + correctionRight)
+                else:
+                    self.drive_left.run(-speed + correctionRight)
+                    self.drive_right.run(speed + correctionRight)
 
             previousErrorLeft = errorLeft
             previousErrorRight = errorRight
 
+            if (degrees == 0 and sensor == "left" or degrees == 0 and sensor == "right"):
+                if (sensor == "left"):
+                    finished = sensorValues[1] < 50
+                else:
+                    finished = sensorValues[0] < 50
+                    print("Finished is {} and the value is {}".format(finished, sensorValues[0]))
+            else:
+                finished = abs(dist) >= abs(degrees)
+
         self.drive_left.stop()
         self.drive_right.stop()
-        self.drive_left.hold()
-        self.drive_right.hold()
