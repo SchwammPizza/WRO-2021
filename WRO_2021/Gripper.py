@@ -33,7 +33,7 @@ class Gripper:
     @staticmethod
     def gripSockel(angle=152):
         for i in range(2):
-            motoren[i].run_angle(-600, angle, Stop.HOLD, i)
+            motoren[i].run_angle(-500, angle, Stop.HOLD, i)
 
     @classmethod
     def putInBattery(cls, speed):

@@ -103,10 +103,6 @@ class DriveTrain:
         leftCircle = leftCircle / (rc.wheel_diameter * pi) * 360
         rightCircle = rightCircle / (rc.wheel_diameter * pi) * 360
 
-        print(outerCircle, innerCircle)
-        print(speedRatio)
-        print(-leftSpeed, rightSpeed, leftCircle, rightCircle)
-        
         self.tank_drive.on_degrees_tank(self, floor(leftSpeed), floor(rightSpeed), floor(leftCircle), floor(rightCircle)) 
 
 

@@ -15,6 +15,8 @@ class GlegoMotor:
     
     class Gripper:
         LEFTGRIPPER = Motor(Port.A)
+        LEFTGRIPPER.control.limits(1000, 2000, 100)
         RIGHTGRIPPER = Motor(Port.D)
+        RIGHTGRIPPER.control.limits(1000, 2000, 100)
     
     
